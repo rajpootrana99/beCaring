@@ -1,0 +1,29 @@
+<!-- Left Sidenav -->
+<div class="left-sidenav">
+    <!-- LOGO -->
+    <div class="brand">
+        <a href="{{ route('index') }}" class="logo">
+                    <span style="color: #011592;">
+{{--                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="logo-small" class="logo-sm">--}}
+                        <h4><strong>Be Caring</strong></h4>
+                    </span>
+            {{--<span>
+                <img src="{{ asset('assets/images/logo.png') }}" alt="logo-large" class="logo-lg logo-light">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="logo-large" class="logo-lg logo-dark">
+            </span>--}}
+        </a>
+    </div>
+    <!--end logo-->
+    <div class="menu-content h-100" data-simplebar>
+        <ul class="metismenu left-sidenav-menu">
+            <li class="menu-label mt-0">Main</li>
+            <li>
+                <a href="{{ route('index') }}"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
+            </li>
+            <li class="{{ (request()->is('nurse')) ? 'active' : '' }}">
+                <a href="{{ route('nurse.index') }}" class="iq-waves-effect collapsed" ><i class="las la-user"></i><span>Nurses</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- end left-sidenav-->
