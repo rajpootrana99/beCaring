@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Be Caring</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
@@ -11,9 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('assets/images/logo-sm-dark.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo-sm-dark.png') }}">
 
-<!-- App css -->
+    <!-- App css -->
     <link href="{{ asset('plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -22,6 +23,13 @@
     <link href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/dropify/css/dropify.min.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+
+    <!-- Jquery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -63,6 +71,9 @@
 <script src="{{ asset('assets/pages/jquery.forms-advanced.js')}}"></script>
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
 
 </body>
 
