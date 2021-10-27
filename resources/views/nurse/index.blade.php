@@ -27,14 +27,16 @@
                     </div><!--end card-header-->
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover mb-0">
+                            <table class="table table-bordered mb-0 table-centered">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Action</th>
+                                    <th width="3%">#</th>
+                                    <th width="5%">Image</th>
+                                    <th width="30%">Name</th>
+                                    <th width="20%">Phone</th>
+                                    <th width="30%">Email</th>
+                                    <th width="3%"><i class="fa fa-edit"></i></th>
+                                    <th width="3%"><i class="fa fa-trash"></i></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -44,7 +46,9 @@
                                         <td><img class="avatar-box" height="50px" src="{{ asset('storage/'.$nurse->image) }}"></td>
                                         <td>{{ $nurse->name }}</td>
                                         <td>{{ $nurse->phone }}</td>
-                                        <td >
+                                        <td>{{ $nurse->email }}</td>
+                                        <td><i class="fa fa-edit"></i></td>
+                                        <td>
                                             <div class="row">
                                                 <form id="{{ 'delete_'.$nurse->id }}" method="post" action="{{ route('nurse.destroy', ['nurse' => $nurse]) }}">
                                                     @method('DELETE')

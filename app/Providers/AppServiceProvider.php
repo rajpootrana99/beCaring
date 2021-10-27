@@ -28,8 +28,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         $nurses = User::where('is_nurse', 1)->get();
+        $patients = User::where('is_patient', 1)->get();
         View::share([
             'nurses' => $nurses,
+            'patients' => $patients,
         ]);
     }
 }

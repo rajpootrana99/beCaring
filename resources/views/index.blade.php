@@ -50,7 +50,7 @@
                             <div class="row d-flex justify-content-center">
                                 <div class="col">
                                     <p class="text-dark mb-0 font-weight-semibold">Patients</p>
-                                    <h3 class="m-0"></h3>
+                                    <h3 class="m-0">{{ count($patients) }}</h3>
                                 </div>
                             </div>
                         </div><!--end card-body-->
