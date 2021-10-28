@@ -26,3 +26,8 @@ Route::get('nurse', 'NurseController@nurse')->middleware('auth:api');
 Route::get('nurseLogout', 'NurseController@logout')->middleware('auth:api');
 Route::get('nurseIndex', 'NurseController@index')->middleware('auth:api');
 Route::post('nurseUpdate/{nurse}', 'NurseController@update')->middleware('auth:api');
+
+//AppointmentController Routes
+Route::get('fetchAppointments', 'AppointmentController@fetchAppointments')->middleware('auth:api');
+Route::get('fetchBookings', 'AppointmentController@fetchBookings')->middleware('auth:api');
+Route::post('bookAppointment', 'AppointmentController@bookAppointment')->middleware('auth:api');
