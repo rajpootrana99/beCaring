@@ -19,6 +19,7 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedBigInteger('nurse_id');
             $table->string('date');
             $table->string('time');
+            $table->string('rate')->nullable();
             $table->integer('status')->default(0);
 
             $table->foreign('patient_id')->references('id')->on('users');

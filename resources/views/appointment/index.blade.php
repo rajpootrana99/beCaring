@@ -34,10 +34,11 @@
                                 <tr>
                                     <th width="5%">#</th>
                                     <th width="20%">Nurse Name</th>
-                                    <th width="25%">Patient Name</th>
-                                    <th width="20%">Date</th>
-                                    <th width="20%">Time</th>
-                                    <th width="20%">Status</th>
+                                    <th width="20%">Patient Name</th>
+                                    <th width="10%">Date</th>
+                                    <th width="10%">Time</th>
+                                    <th width="10%">Rate</th>
+                                    <th width="15%">Status</th>
                                     <th width="3%"><i class="fa fa-edit"></i></th>
                                     <th width="3%"><i class="fa fa-trash"></i></th>
                                 </tr>
@@ -220,6 +221,7 @@
                             <td>'+appointment.patient.name+'</td>\
                             <td>'+appointment.date+'</td>\
                             <td>'+appointment.time+'</td>\
+                            <td>'+appointment.rate+'</td>\
                             <td>'+appointment.status+'</td>\
                             <td><button value="'+appointment.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
                             <td><button value="'+appointment.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\

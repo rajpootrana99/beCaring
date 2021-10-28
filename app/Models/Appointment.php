@@ -14,6 +14,7 @@ class Appointment extends Model
         'nurse_id',
         'date',
         'time',
+        'rate',
         'status',
     ];
 
