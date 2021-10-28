@@ -26,6 +26,9 @@
             <li class="{{ (request()->is('patient')) ? 'active' : '' }}">
                 <a href="{{ route('patient.index') }}" class="iq-waves-effect collapsed" ><i class="las la-user"></i><span>Patients</span></a>
             </li>
+            <li class="{{ (request()->is('appointment')) ? 'active' : '' }}">
+                <a href="{{ route('appointment.index') }}" class="iq-waves-effect collapsed" ><i class="las la-uber"></i><span>Appointments</span></a>
+            </li>
         </ul>
     </div>
 </div>

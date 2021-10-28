@@ -21,6 +21,13 @@ class NurseController extends Controller
         ]);
     }
 
+    public function fetchNurses(){
+        $nurses = User::where('is_nurse', 1)->get();
+        return response()->json([
+            'nurses' => $nurses,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
