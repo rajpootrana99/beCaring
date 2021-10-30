@@ -29,6 +29,9 @@
             <li class="{{ (request()->is('appointment')) ? 'active' : '' }}">
                 <a href="{{ route('appointment.index') }}" class="iq-waves-effect collapsed"><i class="las la-clipboard"></i><span>Appointments</span></a>
             </li>
+            <li class="{{ (request()->is('notification')) ? 'active' : '' }}">
+                <a href="{{ route('notification.index') }}" class="iq-waves-effect collapsed"><i class="las la-clipboard"></i><span>Notifications</span></a>
+            </li>
         </ul>
     </div>
 </div>

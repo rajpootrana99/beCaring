@@ -23,4 +23,6 @@ Route::resource('patient', 'Admin\PatientController')->middleware('is_admin');
 Route::get('fetchPatients', 'Admin\PatientController@fetchPatients')->middleware(['is_admin']);
 Route::resource('appointment', 'Admin\AppointmentController')->middleware('is_admin');
 Route::get('fetchAppointments', 'Admin\AppointmentController@fetchAppointments')->middleware(['is_admin']);
-require __DIR__.'/auth.php';
+Route::resource('notification', 'Admin\NotificationController')->middleware('is_admin');
+
+require __DIR__ . '/auth.php';
