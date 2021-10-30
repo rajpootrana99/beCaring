@@ -42,7 +42,7 @@
                                     <th width="20%">Title</th>
                                     <th width="15%">Body</th>
                                     <!-- <th width="3%"><i class="fa fa-edit"></i></th> -->
-                                    <th width="3%"><i class="fa fa-trash"></i></th>
+                                    <!-- <th width="3%"><i class="fa fa-trash"></i></th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -181,28 +181,25 @@
             }
         });
 
-        // fetchPatients();
+        fetchNotifications();
 
-        // function fetchPatients() {
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "fetchPatients",
-        //         dataType: "json",
-        //         success: function(response) {
-        //             $('tbody').html("");
-        //             $.each(response.patients, function(key, patient) {
-        //                 $('tbody').append('<tr>\
-        //                     <td>' + patient.id + '</td>\
-        //                     <td>' + patient.name + '</td>\
-        //                     <td>' + patient.phone + '</td>\
-        //                     <td>' + patient.email + '</td>\
-        //                     <td><button value="' + patient.id + '" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
-        //                     <td><button value="' + patient.id + '" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
-        //             </tr>');
-        //             });
-        //         }
-        //     });
-        // }
+        function fetchNotifications() {
+            $.ajax({
+                type: "GET",
+                url: "fetchNotifications",
+                dataType: "json",
+                success: function(response) {
+                    $('tbody').html("");
+                    $.each(response.notifications, function(key, notification) {
+                        $('tbody').append('<tr>\
+                            <td>' + notification.id + '</td>\
+                            <td>' + notification.title + '</td>\
+                            <td>' + notification.body + '</td>\
+                    </tr>');
+                    });
+                }
+            });
+        }
 
         // $(document).on('click', '.delete_btn', function(e) {
         //     e.preventDefault();
@@ -310,7 +307,7 @@
                     } else {
                         $('#addNotificationDetailForm')[0].reset();
                         $('#addNotificationDetail').modal('hide');
-                        // fetchPatients();
+                        fetchNotifications();
                     }
                 },
                 error: function(error) {

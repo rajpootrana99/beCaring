@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -33,6 +34,14 @@ class NotificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function fetchNotifications()
+    {
+        $notifications = Notification::all();
+        return response()->json([
+            'notifications' => $notifications,
+        ]);
+    }
 
     public function store(Request $request)
     {
@@ -83,6 +92,10 @@ class NotificationController extends Controller
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
+        Notification::create([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+        ]);
         $response = curl_exec($ch);
         if ($response) {
             return response()->json(['status' => 1, 'message' => 'Patient Added Successfully']);
