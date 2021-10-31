@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\GeneralTrait;
+use App\Models\Nurse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,10 +63,16 @@ class NurseController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
+            'gender' => 'required',
+            'dob' => 'required',
+            'address' => 'required',
         ]), function (){
             if(request()->hasFile(request()->image)){
                 Validator::make(request()->all(),[
                     'image' => 'required|file|image',
+                    'identification_document' => 'required|file|image',
+                    'dbs_certificate' => 'required|file|image',
+                    'care_qualification_certificate' => 'required|file|image',
                 ]);
             }
             if (request()->phone){
@@ -93,12 +100,20 @@ class NurseController extends Controller
                 'is_nurse' => 1,
             ]);
             $this->storeImage($nurse);
+            $nurse_detail = Nurse::create([
+                'nurse_id' => $nurse->id,
+                'gender' => $request->input('gender'),
+                'dob' => $request->input('dob'),
+                'address' => $request->input('address'),
+            ]);
+            $this->storeDocument($nurse_detail);
             $token = $nurse->createToken('app')->accessToken;
             return response([
                 'status' => true,
                 'message' => 'Success',
                 'token' => $token,
-                'nurse' => $nurse
+                'nurse' => $nurse,
+                'nurse_detail' => $nurse_detail,
             ]);
         }catch (\Exception $exception){
             return response([
@@ -139,10 +154,16 @@ class NurseController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|exists:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
+            'gender' => 'required',
+            'dob' => 'required',
+            'address' => 'required',
         ]), function (){
             if(request()->hasFile(request()->image)){
                 Validator::make(request()->all(),[
                     'image' => 'required|file|image',
+                    'identification_document' => 'required|file|image',
+                    'dbs_certificate' => 'required|file|image',
+                    'care_qualification_certificate' => 'required|file|image',
                 ]);
             }
             if (request()->phone){
@@ -168,6 +189,13 @@ class NurseController extends Controller
                 'phone' => $request->input('phone') ?? '',
             ]);
             $this->storeImage($nurse);
+            $nurse_detail = Nurse::where('nurse_id', $nurse->id)->first();
+            $nurse_detail->update([
+                'gender' => $request->input('gender'),
+                'dob' => $request->input('dob'),
+                'address' => $request->input('address'),
+            ]);
+            $this->storeDocument($nurse_detail);
 //            $token = $nurse->createToken('app')->accessToken;
             return response([
                 'status' => true,
@@ -186,6 +214,14 @@ class NurseController extends Controller
     public function storeImage($nurse){
         $nurse->update([
             'image' => $this->imagePath('image', 'nurse', $nurse),
+        ]);
+    }
+
+    public function storeDocument($nurse_detail){
+        $nurse_detail->update([
+            'identification_document' => $this->imagePath('identification_document', 'nurse', $nurse_detail),
+            'dbs_certificate' => $this->imagePath('dbs_certificate', 'nurse', $nurse_detail),
+            'care_qualification_certificate' => $this->imagePath('care_qualification_certificate', 'nurse', $nurse_detail),
         ]);
     }
 }
