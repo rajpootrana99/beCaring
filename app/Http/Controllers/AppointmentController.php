@@ -46,6 +46,7 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::find($request->appointment_id);
         $appointment->update([
+            'nurse_id' => Auth::id(),
             'rate' => $request->input('rate'),
             'status' => 1,
         ]);

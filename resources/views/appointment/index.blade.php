@@ -69,15 +69,6 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="nurse_id" class="col-form-label text-right">Select Nurse</label>
-                                    <select class="select2 mb-3 form-control custom-select" name="nurse_id" id="nurse_id" style="width: 100%; height:36px;" data-placeholder="Select Nurse">
-
-                                    </select>
-                                    <span class="text-danger error-text nurse_id_error"></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
                                     <label for="patient_id" class="col-form-label text-right">Select Patient</label>
                                     <select class="select2 mb-3 form-control custom-select" name="patient_id" id="patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient">
 
@@ -125,15 +116,6 @@
                     <div class="modal-body">
                         <div class="row">
                             <input type="hidden" name="appointment_id" id="appointment_id">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="edit_nurse_id" class="col-form-label text-right">Select Nurse</label>
-                                    <select class="select2 mb-3 form-control custom-select" name="nurse_id" id="edit_nurse_id" style="width: 100%; height:36px;" data-placeholder="Select Nurse">
-
-                                    </select>
-                                    <span class="text-danger error-text nurse_id_update_error"></span>
-                                </div>
-                            </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="edit_patient_id" class="col-form-label text-right">Select Patient</label>
@@ -215,9 +197,15 @@
                     success: function (response) {
                         $('tbody').html("");
                         $.each(response.appointments, function (key, appointment) {
+                            if (appointment.nurse != null){
+                                var nurse = appointment.nurse.name;
+                            }
+                            else {
+                                nurse = '';
+                            }
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
-                            <td>'+appointment.nurse.name+'</td>\
+                            <td>'+nurse+'</td>\
                             <td>'+appointment.patient.name+'</td>\
                             <td>'+appointment.date+'</td>\
                             <td>'+appointment.time+'</td>\
@@ -226,22 +214,6 @@
                             <td><button value="'+appointment.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
                             <td><button value="'+appointment.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                     </tr>');
-                        });
-                    }
-                });
-            }
-
-            function fetchNurses()
-            {
-                $.ajax({
-                    type: "GET",
-                    url: "fetchNurses",
-                    dataType: "json",
-                    success: function (response) {
-                        var nurse_id = $('#nurse_id');
-                        $('#nurse_id').children().remove().end()
-                        $.each(response.nurses, function (nurse) {
-                            nurse_id.append($("<option />").val(response.nurses[nurse].id).text(response.nurses[nurse].name));
                         });
                     }
                 });
@@ -267,7 +239,6 @@
                 e.preventDefault();
                 $('#addAppointment').modal('show');
                 fetchPatients();
-                fetchNurses();
                 $(document).find('span.error-text').text('');
             });
 
@@ -311,11 +282,6 @@
                             $('#editAppointment').modal('hide');
                         }
                         else {
-                            var nurse_id = $('#edit_nurse_id');
-                            $('#edit_nurse_id').children().remove().end()
-                            $.each(response.nurses, function (nurse) {
-                                nurse_id.append($("<option />").val(response.nurses[nurse].id).text(response.nurses[nurse].name));
-                            });
                             var patient_id = $('#edit_patient_id');
                             $('#edit_patient_id').children().remove().end()
                             $.each(response.patients, function (patient) {

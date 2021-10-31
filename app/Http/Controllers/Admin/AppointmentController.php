@@ -47,7 +47,6 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nurse_id' => 'required',
             'patient_id' => 'required',
             'date' => 'required',
             'time' => 'required',
@@ -82,13 +81,11 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::find($appointment);
         $patients = User::where('is_patient', 1)->get();
-        $nurses = User::where('is_nurse', 1)->get();
         if ($appointment){
             return response()->json([
                 'status' => 200,
                 'appointment' => $appointment,
                 'patients' => $patients,
-                'nurses' => $nurses,
             ]);
         }
         else{
@@ -109,7 +106,6 @@ class AppointmentController extends Controller
     public function update(Request $request, $appointment)
     {
         $validator = Validator::make($request->all(), [
-            'nurse_id' => 'required',
             'patient_id' => 'required',
             'date' => 'required',
             'time' => 'required',

@@ -16,7 +16,7 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
-            $table->unsignedBigInteger('nurse_id');
+            $table->unsignedBigInteger('nurse_id')->nullable();
             $table->string('date');
             $table->string('time');
             $table->string('rate')->nullable();
