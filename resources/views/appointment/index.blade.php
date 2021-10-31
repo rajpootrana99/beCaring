@@ -198,7 +198,7 @@
                         $('tbody').html("");
                         $.each(response.appointments, function (key, appointment) {
                             if (appointment.nurse != null){
-                                var nurse = appointment.nurse.name;
+                                var nurse = appointment.nurse.first_name+' '+appointment.nurse.last_name;
                             }
                             else {
                                 nurse = '';
@@ -206,7 +206,7 @@
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
                             <td>'+nurse+'</td>\
-                            <td>'+appointment.patient.name+'</td>\
+                            <td>'+appointment.patient.first_name+' '+appointment.patient.last_name+'</td>\
                             <td>'+appointment.date+'</td>\
                             <td>'+appointment.time+'</td>\
                             <td>'+appointment.rate+'</td>\
@@ -229,7 +229,7 @@
                         var patient_id = $('#patient_id');
                         $('#patient_id').children().remove().end()
                         $.each(response.patients, function (patient) {
-                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].name));
+                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].first_name+' '+response.patients[patient].last_name));
                         });
                     }
                 });
@@ -285,7 +285,7 @@
                             var patient_id = $('#edit_patient_id');
                             $('#edit_patient_id').children().remove().end()
                             $.each(response.patients, function (patient) {
-                                patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].name));
+                                patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].first_name+' '+response.patients[patient].last_name));
                             });
                             $('#appointment_id').val(response.appointment.id);
                             $('#edit_date').val(response.appointment.date);

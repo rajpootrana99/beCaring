@@ -66,9 +66,16 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="name" class="col-form-label text-right">Name</label>
-                                    <input class="form-control" type="text" name="name" id="name" >
-                                    <span class="text-danger error-text name_error"></span>
+                                    <label for="first_name" class="col-form-label text-right">First Name</label>
+                                    <input class="form-control" type="text" name="first_name" id="first_name" >
+                                    <span class="text-danger error-text first_name_error"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="last_name" class="col-form-label text-right">Last Name</label>
+                                    <input class="form-control" type="text" name="last_name" id="last_name" >
+                                    <span class="text-danger error-text last_name_error"></span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -135,9 +142,16 @@
                             <input type="hidden" name="user_id" id="user_id">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="edit_name" class="col-form-label text-right">Name</label>
-                                    <input class="form-control" type="text" name="name" id="edit_name" >
-                                    <span class="text-danger error-text name_update_error"></span>
+                                    <label for="edit_first_name" class="col-form-label text-right">Name</label>
+                                    <input class="form-control" type="text" name="first_name" id="edit_first_name" >
+                                    <span class="text-danger error-text first_name_update_error"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="edit_last_name" class="col-form-label text-right">Name</label>
+                                    <input class="form-control" type="text" name="last_name" id="edit_last_name" >
+                                    <span class="text-danger error-text last_name_update_error"></span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -222,7 +236,7 @@
                         $.each(response.patients, function (key, patient) {
                             $('tbody').append('<tr>\
                             <td>'+patient.id+'</td>\
-                            <td>'+patient.name+'</td>\
+                            <td>'+patient.first_name+' '+patient.last_name +'</td>\
                             <td>'+patient.phone+'</td>\
                             <td>'+patient.email+'</td>\
                             <td><button value="'+patient.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
@@ -275,7 +289,8 @@
                         else {
                             console.log(response.patient);
                             $('#user_id').val(response.patient.id);
-                            $('#edit_name').val(response.patient.name);
+                            $('#edit_first_name').val(response.patient.first_name);
+                            $('#edit_last_name').val(response.patient.last_name);
                             $('#edit_email').val(response.patient.email);
                             $('#edit_phone').val(response.patient.phone);
                         }

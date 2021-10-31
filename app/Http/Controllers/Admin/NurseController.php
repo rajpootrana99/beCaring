@@ -15,10 +15,7 @@ class NurseController extends Controller
      */
     public function index()
     {
-        $nurses = User::where('is_nurse', 1)->get();
-        return view('nurse.index', [
-            'nurses' => $nurses,
-        ]);
+        return view('nurse.index');
     }
 
     public function fetchNurses(){
@@ -89,8 +86,19 @@ class NurseController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($user)
     {
-        //
+        $nurse = User::find($user);
+        if (!$nurse){
+            return response()->json([
+                'status' => 0,
+                'message' => 'Nurse not exist'
+            ]);
+        }
+        $nurse->delete();
+        return response()->json([
+            'status' => 1,
+            'message' => 'Nurse Deleted Successfully'
+        ]);
     }
 }

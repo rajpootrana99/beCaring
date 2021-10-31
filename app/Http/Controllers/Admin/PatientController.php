@@ -48,7 +48,8 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
@@ -58,7 +59,8 @@ class PatientController extends Controller
         }
 
         $patient = User::create([
-            'name' => $request->input('name'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'phone' => $request->input('phone') ?? '',
@@ -114,7 +116,8 @@ class PatientController extends Controller
     public function update(Request $request, $user)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|exists:users',
         ]);

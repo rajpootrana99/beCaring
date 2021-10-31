@@ -58,7 +58,8 @@ class NurseController extends Controller
     public function register(Request $request){
         /** @var User $nurse */
         $validator = tap(Validator::make($request->all(),[
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
         ]), function (){
@@ -84,7 +85,8 @@ class NurseController extends Controller
         }
         try {
             $nurse = User::create([
-                'name' => $request->input('name'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
                 'phone' => $request->input('phone') ?? '',
@@ -133,7 +135,8 @@ class NurseController extends Controller
 
     public function update(Request $request, User $nurse){
         $validator = tap(Validator::make($request->all(),[
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email|exists:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
         ]), function (){
@@ -159,7 +162,8 @@ class NurseController extends Controller
         }
         try {
             $nurse->update([
-                'name' => $request->input('first_name'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
                 'password' => Hash::make($request->input('password')),
                 'phone' => $request->input('phone') ?? '',
             ]);
