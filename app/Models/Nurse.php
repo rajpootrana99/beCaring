@@ -17,4 +17,8 @@ class Nurse extends Model
         'dbs_certificate',
         'care_qualification_certificate',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
