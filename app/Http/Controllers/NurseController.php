@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\GeneralTrait;
 use App\Models\Nurse;
+use App\Models\Token;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,6 +108,10 @@ class NurseController extends Controller
                 'address' => $request->input('address'),
             ]);
             $this->storeDocument($nurse_detail);
+            $device_token = Token::create([
+                'nurse_id' => $nurse->id,
+                'token' => $request->input('token'),
+            ]);
             $token = $nurse->createToken('app')->accessToken;
             return response([
                 'status' => true,
@@ -114,6 +119,7 @@ class NurseController extends Controller
                 'token' => $token,
                 'nurse' => $nurse,
                 'nurse_detail' => $nurse_detail,
+                'device_token' => $device_token,
             ]);
         }catch (\Exception $exception){
             return response([

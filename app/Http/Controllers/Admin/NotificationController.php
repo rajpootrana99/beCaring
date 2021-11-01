@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notification;
+use App\Models\Token;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -45,61 +46,67 @@ class NotificationController extends Controller
 
     public function store(Request $request)
     {
+        $response = '';
 
         $SERVER_API_KEY = 'AAAAH13Wawo:APA91bE61OXDrCbPrhfsXw91djC-QKAfgqVBfFaL3ta9pexkMuTmOTfa_xgryZwN45KrFgM-G_VVN8zpbdAfWrIXEEKClwMY3eImdYGUzsx7hFo_HXUxTlDJ0GhXShOxW9y-D5SB4kFI';
 
-        $token_1 = 'dXpXYb5tS9acomfCAVlxxH:APA91bEo4Lzxrfx05GY3vgRlsAcCdqivlXu_RVkYdiVCa57QpF91AsDxSzXZNieTsK0_51MVc0u26nlvQhtpI7pdanrBs_nv0N6jJwGov_rsg8Gvebr9ob1-ovKbIjXBmy8-Gg3iNhWd';
+        $tokens = Token::all();
+        foreach ($tokens as $token){
+            $token_1 = $token->token;
 
-        $data = [
+            $data = [
 
-            "registration_ids" => [
-                $token_1
-            ],
+                "registration_ids" => [
+                    $token_1
+                ],
 
-            "notification" => [
+                "notification" => [
 
-                "title" => $request->input('title'),
+                    "title" => $request->input('title'),
 
-                "body" => $request->input('body'),
+                    "body" => $request->input('body'),
 
-                "sound" => "default" // required for sound on ios
+                    "sound" => "default" // required for sound on ios
 
-            ],
+                ],
 
-        ];
+            ];
 
-        $dataString = json_encode($data);
+            $dataString = json_encode($data);
 
-        $headers = [
+            $headers = [
 
-            'Authorization: key=' . $SERVER_API_KEY,
+                'Authorization: key=' . $SERVER_API_KEY,
 
-            'Content-Type: application/json',
+                'Content-Type: application/json',
 
-        ];
+            ];
 
-        $ch = curl_init();
+            $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
 
-        curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POST, true);
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+            $response = curl_exec($ch);
+        }
+
+        if ($response) {
+            return response()->json(['status' => 1, 'message' => 'Notification Send Successfully']);
+        }
 
         Notification::create([
             'title' => $request->input('title'),
             'body' => $request->input('body'),
         ]);
-        $response = curl_exec($ch);
-        if ($response) {
-            return response()->json(['status' => 1, 'message' => 'Patient Added Successfully']);
-        }
     }
 
     /**

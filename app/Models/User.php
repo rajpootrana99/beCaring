@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function nurse(){
         return $this->hasOne(Nurse::class);
     }
+
+    public function token(){
+        return $this->hasOne(Token::class);
+    }
 }
