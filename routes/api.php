@@ -30,4 +30,6 @@ Route::post('nurseUpdate/{nurse}', 'NurseController@update')->middleware('auth:a
 //AppointmentController Routes
 Route::get('fetchAppointments', 'AppointmentController@fetchAppointments')->middleware('auth:api');
 Route::get('fetchBookings', 'AppointmentController@fetchBookings')->middleware('auth:api');
+Route::get('fetchPastBookings', 'AppointmentController@fetchPastBookings')->middleware('auth:api');
 Route::post('bookAppointment', 'AppointmentController@bookAppointment')->middleware('auth:api');
+Route::post('completeAppointment', 'AppointmentController@completeAppointment')->middleware('auth:api');

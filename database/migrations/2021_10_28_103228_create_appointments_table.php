@@ -21,6 +21,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('time');
             $table->string('rate')->nullable();
             $table->integer('status')->default(0);
+            $table->integer('is_complete')->default(0);
 
             $table->foreign('patient_id')->references('id')->on('users');
             $table->foreign('nurse_id')->references('id')->on('users');

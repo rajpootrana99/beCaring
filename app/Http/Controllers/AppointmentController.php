@@ -21,7 +21,8 @@ class AppointmentController extends Controller
     public function fetchBookings(){
         $bookings = Appointment::where([
             'nurse_id' => Auth::id(),
-            'status' => 1
+            'status' => 1,
+            'is_complete' => 0,
         ])->get();
         return response([
             'status' => true,
@@ -49,6 +50,43 @@ class AppointmentController extends Controller
             'nurse_id' => Auth::id(),
             'rate' => $request->input('rate'),
             'status' => 1,
+        ]);
+
+        return response([
+            'status' => true,
+            'appointment' => $appointment,
+        ]);
+    }
+
+    public function fetchPastBookings(){
+        $bookings = Appointment::where([
+            'nurse_id' => Auth::id(),
+            'status' => 1,
+            'is_complete' => 1,
+        ])->get();
+        return response([
+            'status' => true,
+            'bookings' => $bookings,
+        ]);
+    }
+
+    public function completeAppointment(Request $request){
+        $validator = Validator::make($request->all(),[
+            'appointment_id' => 'required',
+        ]);
+
+
+        if($validator->fails()){
+            $message = $validator->errors();
+            return response([
+                'status' => false,
+                'message' =>$message->first()
+            ],401);
+        }
+
+        $appointment = Appointment::find($request->appointment_id);
+        $appointment->update([
+            'is_complete' => 1,
         ]);
 
         return response([
