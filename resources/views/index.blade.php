@@ -132,7 +132,7 @@
                         if (appointment.status == 'Pending'){
                             pending_appointments += 1;
                         }
-                        if (appointment.is_complete == 'InComplete' && appointment.status == 'Booked'){
+                        if (appointment.is_complete == 'In Complete' && appointment.status == 'Booked'){
                             incomplete_appointments +=1;
                         }
                         if (appointment.is_complete == 'Complete'){
