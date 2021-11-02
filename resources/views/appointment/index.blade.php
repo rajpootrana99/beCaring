@@ -33,12 +33,13 @@
                                 <thead>
                                 <tr>
                                     <th width="5%">#</th>
-                                    <th width="20%">Nurse Name</th>
-                                    <th width="20%">Patient Name</th>
+                                    <th width="15%">Nurse Name</th>
+                                    <th width="15%">Patient Name</th>
                                     <th width="10%">Date</th>
-                                    <th width="10%">Time</th>
+                                    <th width="10%">Start Time</th>
+                                    <th width="10%">End Time</th>
                                     <th width="10%">Rate</th>
-                                    <th width="15%">Status</th>
+                                    <th width="10%">Status</th>
                                     <th width="15%">Type</th>
                                     <th width="3%"><i class="fa fa-edit"></i></th>
                                     <th width="3%"><i class="fa fa-trash"></i></th>
@@ -64,14 +65,14 @@
                         <span aria-hidden="true"><i class="la la-times"></i></span>
                     </button>
                 </div><!--end modal-header-->
-                <form method="post" id="addAppointmentForm" enctype="multipart/form-data">
+                <form method="post" id="addAppointmentForm">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="patient_id" class="col-form-label text-right">Select Patient</label>
-                                    <select class="select2 mb-3 form-control custom-select" name="patient_id" id="patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient">
+                                    <select class="select2 mb-3 select2-multiple" name="patient_id[]" id="patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
 
                                     </select>
                                     <span class="text-danger error-text patient_id_error"></span>
@@ -86,9 +87,23 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="time" class="col-form-label text-right">Time</label>
-                                    <input class="form-control" type="time" name="time" id="time">
-                                    <span class="text-danger error-text time_error"></span>
+                                    <label for="start_time" class="col-form-label text-right">Start Time</label>
+                                    <input class="form-control" type="time" name="start_time" id="start_time">
+                                    <span class="text-danger error-text start_time_error"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="end_time" class="col-form-label text-right">End Time</label>
+                                    <input class="form-control" type="time" name="end_time" id="end_time">
+                                    <span class="text-danger error-text end_time_error"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="rate" class="col-form-label text-right">Rate</label>
+                                    <input class="form-control" type="text" name="rate" id="rate">
+                                    <span class="text-danger error-text rate_error"></span>
                                 </div>
                             </div>
                         </div><!--end row-->
@@ -111,7 +126,7 @@
                         <span aria-hidden="true"><i class="la la-times"></i></span>
                     </button>
                 </div><!--end modal-header-->
-                <form method="post" id="editAppointmentForm" enctype="multipart/form-data">
+                <form method="post" id="editAppointmentForm">
                     @csrf
                     @method('PATCH')
                     <div class="modal-body">
@@ -120,7 +135,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="edit_patient_id" class="col-form-label text-right">Select Patient</label>
-                                    <select class="select2 mb-3 form-control custom-select" name="patient_id" id="edit_patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient">
+                                    <select class="select2 mb-3 select2-multiple" name="patient_id[]" id="edit_patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
 
                                     </select>
                                     <span class="text-danger error-text patient_id_update_error"></span>
@@ -129,15 +144,29 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="edit_date" class="col-form-label text-right">Date</label>
-                                    <input class="form-control" type="text" name="date" id="edit_date" >
+                                    <input class="form-control" type="date" name="date" id="edit_date" >
                                     <span class="text-danger error-text date_update_error"></span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="edit_time" class="col-form-label text-right">Time</label>
-                                    <input class="form-control" type="text" name="time" id="edit_time">
-                                    <span class="text-danger error-text time_update_error"></span>
+                                    <label for="edit_start_time" class="col-form-label text-right">Start Time</label>
+                                    <input class="form-control" type="time" name="start_time" id="edit_start_time">
+                                    <span class="text-danger error-text start_time_update_error"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="edit_end_time" class="col-form-label text-right">End Time</label>
+                                    <input class="form-control" type="time" name="end_time" id="edit_end_time">
+                                    <span class="text-danger error-text end_time_update_error"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="edit_rate" class="col-form-label text-right">Rate</label>
+                                    <input class="form-control" type="text" name="rate" id="edit_rate">
+                                    <span class="text-danger error-text rate_update_error"></span>
                                 </div>
                             </div>
                         </div><!--end row-->
@@ -207,9 +236,10 @@
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
                             <td>'+nurse+'</td>\
-                            <td>'+appointment.patient.first_name+' '+appointment.patient.last_name+'</td>\
+                            <td>'+appointment.patients.first_name+' '+appointment.patients.last_name+'</td>\
                             <td>'+appointment.date+'</td>\
-                            <td>'+appointment.time+'</td>\
+                            <td>'+appointment.start_time+'</td>\
+                            <td>'+appointment.end_time+'</td>\
                             <td>'+appointment.rate+'</td>\
                             <td>'+appointment.status+'</td>\
                             <td>'+appointment.is_complete+'</td>\
@@ -291,9 +321,14 @@
                             });
                             $('#appointment_id').val(response.appointment.id);
                             $('#edit_date').val(response.appointment.date);
-                            $('#edit_time').val(response.appointment.time);
-                            $('#edit_nurse_id').val(response.appointment.nurse_id).change();
-                            $('#edit_patient_id').val(response.appointment.patient_id).change();
+                            $('#edit_start_time').val(response.appointment.start_time);
+                            $('#edit_end_time').val(response.appointment.end_time);
+                            $('#edit_rate').val(response.appointment.rate);
+                            var options = new Array();
+                            $.each(response.appointment.patients, function (key, patient) {
+                                options[key] = patient.id;
+                            });
+                            $('#edit_patient_id').val(options);
                         }
                     }
                 });

@@ -33,7 +33,6 @@ class AppointmentController extends Controller
     public function bookAppointment(Request $request){
         $validator = Validator::make($request->all(),[
             'appointment_id' => 'required',
-            'rate' => 'required'
         ]);
 
 
@@ -48,7 +47,6 @@ class AppointmentController extends Controller
         $appointment = Appointment::find($request->appointment_id);
         $appointment->update([
             'nurse_id' => Auth::id(),
-            'rate' => $request->input('rate'),
             'status' => 1,
         ]);
 

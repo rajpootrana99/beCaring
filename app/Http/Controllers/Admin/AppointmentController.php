@@ -22,7 +22,7 @@ class AppointmentController extends Controller
     }
 
     public function fetchAppointments(){
-        $appointments = Appointment::with('nurse', 'patient')->get();
+        $appointments = Appointment::with('nurse', 'patients')->get();
         return response()->json([
             'status' => true,
             'appointments' => $appointments,
@@ -49,12 +49,20 @@ class AppointmentController extends Controller
         $validator = Validator::make($request->all(), [
             'patient_id' => 'required',
             'date' => 'required',
-            'time' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'rate' => 'required',
         ]);
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
-        $appointment = Appointment::create($request->all());
+        $appointment = Appointment::create([
+            'date' => $request->input('date'),
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+            'rate' => $request->input('rate'),
+        ]);
+        $appointment->patients()->attach($request->patient_id);
         if ($appointment){
             return response()->json(['status' => 1, 'message' => 'Appointment Added Successfully']);
         }
@@ -79,7 +87,7 @@ class AppointmentController extends Controller
      */
     public function edit($appointment)
     {
-        $appointment = Appointment::find($appointment);
+        $appointment = Appointment::with('patients')->where('id', $appointment)->first();
         $patients = User::where('is_patient', 1)->get();
         if ($appointment){
             return response()->json([
@@ -108,14 +116,22 @@ class AppointmentController extends Controller
         $validator = Validator::make($request->all(), [
             'patient_id' => 'required',
             'date' => 'required',
-            'time' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'rate' => 'required',
         ]);
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
-
         $appointment = Appointment::find($appointment);
-        $appointment->update($request->all());
+        $appointment->update([
+            'date' => $request->input('date'),
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+            'rate' => $request->input('rate'),
+        ]);
+        $appointment->patients()->detach();
+        $appointment->patients()->attach($request->patient_id);
         if ($appointment){
             return response()->json(['status' => 1, 'message' => 'Appointment Updated Successfully']);
         }
@@ -136,6 +152,7 @@ class AppointmentController extends Controller
                 'message' => 'Appointment not exist'
             ]);
         }
+        $appointment->patients()->detach();
         $appointment->delete();
         return response()->json([
             'status' => 1,

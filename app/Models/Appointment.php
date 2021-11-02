@@ -10,10 +10,10 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'patient_id',
         'nurse_id',
         'date',
-        'time',
+        'start_time',
+        'end_time',
         'rate',
         'status',
         'is_complete',
@@ -42,8 +42,8 @@ class Appointment extends Model
         ];
     }
 
-    public function patient(){
-        return $this->hasOne(User::class, 'id', 'patient_id');
+    public function patients(){
+        return $this->belongsToMany(User::class);
     }
 
     public function nurse(){
