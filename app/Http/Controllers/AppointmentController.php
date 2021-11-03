@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class AppointmentController extends Controller
 {
     public function fetchAppointments(){
-        $appointments = Appointment::where('satatus',0)->get();
+        $appointments = Appointment::where('status',0)->get();
         return response([
             'status' => true,
             'appointments' => $appointments,
