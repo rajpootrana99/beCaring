@@ -22,6 +22,6 @@ class Medication extends Model
     }
 
     public function nurse(){
-        return $this->belongsTo(User::class, 'nurse', 'id');
+        return $this->belongsTo(User::class, 'nurse_id', 'id');
     }
 }
