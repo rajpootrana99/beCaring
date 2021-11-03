@@ -35,6 +35,9 @@
             <li class="{{ (request()->is('notification')) ? 'active' : '' }}">
                 <a href="{{ route('notification.index') }}" class="iq-waves-effect collapsed"><i class="las la-bell"></i><span>Notifications</span></a>
             </li>
+            <li class="{{ (request()->is('wishList')) ? 'active' : '' }}">
+                <a href="{{ route('wishList.index') }}" class="iq-waves-effect collapsed"><i class="las la-clipboard"></i><span>Wish Lists</span></a>
+            </li>
         </ul>
     </div>
 </div>

@@ -39,3 +39,6 @@ Route::get('fetchPatients', 'MedicationController@fetchPatients')->middleware('a
 Route::get('fetchNurseMedication', 'MedicationController@fetchNurseMedication')->middleware('auth:api');
 Route::get('fetchPatientMedication', 'MedicationController@fetchPatientMedication')->middleware('auth:api');
 Route::post('createMedication', 'MedicationController@createMedication')->middleware('auth:api');
+
+//WishListController Route
+Route::post('wishList', 'WishListControllerController@store');

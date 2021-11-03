@@ -32,4 +32,7 @@ Route::get('fetchNotifications', 'Admin\NotificationController@fetchNotification
 Route::resource('medication', 'Admin\MedicationController')->middleware('is_admin');
 Route::get('fetchMedications', 'Admin\MedicationController@fetchMedications')->middleware(['is_admin']);
 
+Route::resource('wishList', 'Admin\WishListController')->middleware('is_admin');
+Route::get('fetchWishLists', 'Admin\WishListController@fetchWishLists')->middleware(['is_admin']);
+
 require __DIR__ . '/auth.php';
