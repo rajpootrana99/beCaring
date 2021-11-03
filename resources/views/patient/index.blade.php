@@ -106,6 +106,14 @@
                                     <span class="text-danger error-text phone_error"></span>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" id="address-input" name="address" class="form-control map-input">
+                                    <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                                    <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                                </div>
+                            </div>
                             <div class="col-lg-6">
                                 <label for="image" class="col-form-label text-right">Image</label>
                                 <div class="custom-file mb-3">

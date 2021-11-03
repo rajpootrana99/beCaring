@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\GeneralTrait;
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,7 +25,7 @@ class PatientController extends Controller
     }
 
     public function fetchPatients(){
-        $patients = User::where('is_patient', 1)->get();
+        $patients = User::with('address')->where('is_patient', 1)->get();
         return response()->json([
             'patients' => $patients,
         ]);
@@ -53,6 +55,7 @@ class PatientController extends Controller
             'phone' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
+            'address' => 'required',
         ]);
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
@@ -67,6 +70,12 @@ class PatientController extends Controller
             'is_patient' => 1,
         ]);
         $this->storeImage($patient);
+        $patient = Address::create([
+            'patient_id' => $patient->id,
+            'address' => $request->input('address'),
+            'address_latitude' => $request->input('address_latitude'),
+            'address_longitude' => $request->input('address_longitude'),
+        ]);
         if ($patient){
             return response()->json(['status' => 1, 'message' => 'Patient Added Successfully']);
         }
@@ -91,7 +100,7 @@ class PatientController extends Controller
      */
     public function edit($user)
     {
-        $patient = User::find($user);
+        $patient = User::with('address')->where('id', $user)->first();
         if ($patient){
             return response()->json([
                 'status' => 200,
