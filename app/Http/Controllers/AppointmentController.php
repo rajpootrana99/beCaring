@@ -50,6 +50,8 @@ class AppointmentController extends Controller
             'status' => 1,
         ]);
 
+        $appointment = Appointment::with('patients', 'nurse')->where('id', $appointment->id)->first();
+
         return response([
             'status' => true,
             'appointment' => $appointment,
