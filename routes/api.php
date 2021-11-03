@@ -33,3 +33,9 @@ Route::get('fetchBookings', 'AppointmentController@fetchBookings')->middleware('
 Route::get('fetchPastBookings', 'AppointmentController@fetchPastBookings')->middleware('auth:api');
 Route::post('bookAppointment', 'AppointmentController@bookAppointment')->middleware('auth:api');
 Route::post('completeAppointment', 'AppointmentController@completeAppointment')->middleware('auth:api');
+
+//MedicationController Route
+Route::get('fetchPatients', 'MedicationController@fetchPatients')->middleware('auth:api');
+Route::get('fetchNurseMedication', 'MedicationController@fetchNurseMedication')->middleware('auth:api');
+Route::get('fetchPatientMedication', 'MedicationController@fetchPatientMedication')->middleware('auth:api');
+Route::post('createMedication', 'MedicationController@createMedication')->middleware('auth:api');
