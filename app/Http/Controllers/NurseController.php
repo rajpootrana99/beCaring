@@ -64,16 +64,10 @@ class NurseController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
-            'gender' => 'required',
-            'dob' => 'required',
-            'address' => 'required',
         ]), function (){
             if(request()->hasFile(request()->image)){
                 Validator::make(request()->all(),[
                     'image' => 'required|file|image',
-                    'identification_document' => 'required|file|image',
-                    'dbs_certificate' => 'required|file|image',
-                    'care_qualification_certificate' => 'required|file|image',
                 ]);
             }
             if (request()->phone){
@@ -101,13 +95,6 @@ class NurseController extends Controller
                 'is_nurse' => 1,
             ]);
             $this->storeImage($nurse);
-            $nurse_detail = Nurse::create([
-                'nurse_id' => $nurse->id,
-                'gender' => $request->input('gender'),
-                'dob' => $request->input('dob'),
-                'address' => $request->input('address'),
-            ]);
-            $this->storeDocument($nurse_detail);
             $device_token = Token::create([
                 'nurse_id' => $nurse->id,
                 'token' => $request->input('token'),
@@ -118,7 +105,6 @@ class NurseController extends Controller
                 'message' => 'Success',
                 'token' => $token,
                 'nurse' => $nurse,
-                'nurse_detail' => $nurse_detail,
                 'device_token' => $device_token,
             ]);
         }catch (\Exception $exception){
@@ -208,6 +194,52 @@ class NurseController extends Controller
                 'message' => 'Success',
 //                'token' => $token,
                 'nurse' => $nurse,
+            ]);
+        }catch (\Exception $exception){
+            return response([
+                'status' => false,
+                'message' => $exception->getMessage()
+            ], 400);
+        }
+    }
+
+    public function completeProfile(Request $request){
+        $validator = tap(Validator::make($request->all(),[
+            'gender' => 'required',
+            'dob' => 'required',
+            'address' => 'required',
+        ]), function (){
+            if(request()->hasFile(request()->image)){
+                Validator::make(request()->all(),[
+                    'identification_document' => 'required|file|image',
+                    'dbs_certificate' => 'required|file|image',
+                    'care_qualification_certificate' => 'required|file|image',
+                ]);
+            }
+        });
+
+
+        if($validator->fails()){
+            $message = $validator->errors();
+            return collect([
+                'status' => false,
+                'message' =>$message->first()
+            ]);
+        }
+        try {
+            $nurse = Nurse::where('id', Auth::id() )->first();
+            $nurse_detail = Nurse::create([
+                'nurse_id' => Auth::id(),
+                'gender' => $request->input('gender'),
+                'dob' => $request->input('dob'),
+                'address' => $request->input('address'),
+            ]);
+            $this->storeDocument($nurse_detail);
+            return response([
+                'status' => true,
+                'message' => 'Success',
+                'nurse' => $nurse,
+                'nurse_detail' => $nurse_detail,
             ]);
         }catch (\Exception $exception){
             return response([

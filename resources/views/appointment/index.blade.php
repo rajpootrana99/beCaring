@@ -233,10 +233,16 @@
                             else {
                                 nurse = '';
                             }
+                            var patient = appointment.patients
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
                             <td>'+nurse+'</td>\
-                            <td>'+appointment.patients.first_name+' '+appointment.patients.last_name+'</td>\
+                            <td>'+appointment.patients.forEach(function (p){
+                                var first_name = p.first_name
+                                var last_name = p.last_name
+                                console.log(last_name)
+                                '<span>'+first_name+' '+last_name+'</span>'
+                            })+'</td>\
                             <td>'+appointment.date+'</td>\
                             <td>'+appointment.start_time+'</td>\
                             <td>'+appointment.end_time+'</td>\
