@@ -7,7 +7,9 @@ use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class AppointmentController extends Controller
 {
@@ -88,7 +90,8 @@ class AppointmentController extends Controller
     public function edit($appointment)
     {
         $appointment = Appointment::with('patients')->where('id', $appointment)->first();
-        $patients = User::where('is_patient', 1)->get();
+        $role = Role::where('name', 'Patient')->first();
+        $patients = $role->users()->get();
         if ($appointment){
             return response()->json([
                 'status' => 200,

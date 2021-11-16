@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class NurseController extends Controller
 {
@@ -19,7 +20,8 @@ class NurseController extends Controller
     }
 
     public function fetchNurses(){
-        $nurses = User::where('is_nurse', 1)->get();
+        $role = Role::where('name', 'Nurse')->first();
+        $nurses = $role->users()->get();
         return response()->json([
             'nurses' => $nurses,
         ]);

@@ -27,13 +27,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
-        $nurses = User::where('is_nurse', 1)->get();
-        $patients = User::where('is_patient', 1)->get();
+        Schema::defaultStringLength(125);
         $appointments = Appointment::all();
         View::share([
-            'nurses' => $nurses,
-            'patients' => $patients,
             'appointments' => $appointments,
         ]);
     }

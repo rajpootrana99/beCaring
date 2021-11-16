@@ -18,9 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->integer('is_admin')->default(0);
-            $table->integer('is_patient')->default(0);
-            $table->integer('is_nurse')->default(0);
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('image')->nullable();

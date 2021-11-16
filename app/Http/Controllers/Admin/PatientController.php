@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class PatientController extends Controller
 {
@@ -25,7 +26,8 @@ class PatientController extends Controller
     }
 
     public function fetchPatients(){
-        $patients = User::with('address')->where('is_patient', 1)->get();
+        $role = Role::where('name', 'Patient')->first();
+        $patients = $role->users()->get();
         return response()->json([
             'patients' => $patients,
         ]);
@@ -67,8 +69,8 @@ class PatientController extends Controller
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'phone' => $request->input('phone') ?? '',
-            'is_patient' => 1,
         ]);
+        $patient->assignRole('Patient');
         $this->storeImage($patient);
         $patient = Address::create([
             'patient_id' => $patient->id,

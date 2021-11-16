@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class AuthenticatedSessionController extends Controller
+class   AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
@@ -32,7 +34,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $user = User::where('email', $request->email)->where('password', Hash::check($request->password, 'password'))->first();
+        $role = $user->getRoleNames()->first();
+        if ($role == 'Admin' || $role == 'Company'){
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
 
     /**

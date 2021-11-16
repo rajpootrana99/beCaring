@@ -15,24 +15,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', function () {
     return view('index');
-})->middleware(['is_admin'])->name('index');
+})->middleware(['role:Admin|Company'])->name('index');
 
-Route::resource('nurse', 'Admin\NurseController')->middleware(['is_admin']);
-Route::get('fetchNurses', 'Admin\NurseController@fetchNurses')->middleware(['is_admin']);
+Route::resource('nurse', 'Admin\NurseController')->middleware('permission:Manage Nurse');
+Route::get('fetchNurses', 'Admin\NurseController@fetchNurses')->middleware('permission:Manage Nurse');
 
-Route::resource('patient', 'Admin\PatientController')->middleware('is_admin');
-Route::get('fetchPatients', 'Admin\PatientController@fetchPatients')->middleware(['is_admin']);
+Route::resource('patient', 'Admin\PatientController')->middleware('permission:Manage Patient');
+Route::get('fetchPatients', 'Admin\PatientController@fetchPatients')->middleware('permission:Manage Patient');
 
-Route::resource('appointment', 'Admin\AppointmentController')->middleware('is_admin');
-Route::get('fetchAppointments', 'Admin\AppointmentController@fetchAppointments')->middleware(['is_admin']);
+Route::resource('appointment', 'Admin\AppointmentController')->middleware('permission:Manage Appointments');
+Route::get('fetchAppointments', 'Admin\AppointmentController@fetchAppointments')->middleware('permission:Manage Appointments');
 
-Route::resource('notification', 'Admin\NotificationController')->middleware('is_admin');
-Route::get('fetchNotifications', 'Admin\NotificationController@fetchNotifications')->middleware(['is_admin']);
+Route::resource('notification', 'Admin\NotificationController')->middleware('permission:Manage Notification');
+Route::get('fetchNotifications', 'Admin\NotificationController@fetchNotifications')->middleware('permission:Manage Notification');
 
-Route::resource('medication', 'Admin\MedicationController')->middleware('is_admin');
-Route::get('fetchMedications', 'Admin\MedicationController@fetchMedications')->middleware(['is_admin']);
+Route::resource('medication', 'Admin\MedicationController')->middleware('permission:Manage Medication');
+Route::get('fetchMedications', 'Admin\MedicationController@fetchMedications')->middleware('permission:Manage Medication');
 
-Route::resource('wishList', 'Admin\WishListController')->middleware('is_admin');
-Route::get('fetchWishLists', 'Admin\WishListController@fetchWishLists')->middleware(['is_admin']);
+Route::resource('wishList', 'Admin\WishListController')->middleware('permission:Manage Wish List');
+Route::get('fetchWishLists', 'Admin\WishListController@fetchWishLists')->middleware('permission:Manage Wish List');
 
 require __DIR__ . '/auth.php';

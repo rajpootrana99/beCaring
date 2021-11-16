@@ -6,12 +6,15 @@ use App\Models\Medication;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class MedicationController extends Controller
 {
     public function fetchPatients(){
-        $patients = User::where('is_patient', 1)->get();
+        $role = Role::where('name', 'Patient')->first();
+        $patients = $role->users()->get();
         return response([
             'status' => true,
             'patients' => $patients,

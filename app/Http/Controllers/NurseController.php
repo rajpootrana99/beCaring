@@ -92,8 +92,8 @@ class NurseController extends Controller
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
                 'phone' => $request->input('phone') ?? '',
-                'is_nurse' => 1,
             ]);
+            $nurse->assignRole('Nurse');
             $this->storeImage($nurse);
             $device_token = Token::create([
                 'nurse_id' => $nurse->id,

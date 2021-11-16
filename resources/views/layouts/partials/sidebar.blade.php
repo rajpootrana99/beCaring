@@ -17,27 +17,41 @@
     <div class="menu-content h-100" data-simplebar>
         <ul class="metismenu left-sidenav-menu">
             <li class="menu-label mt-0">Main</li>
+            @if(Auth::user()->hasRole('Admin'))
             <li>
                 <a href="{{ route('index') }}"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
             </li>
+            @endif
+            @can('Manage Nurse')
             <li class="{{ (request()->is('nurse')) ? 'active' : '' }}">
                 <a href="{{ route('nurse.index') }}" class="iq-waves-effect collapsed"><i class="las la-user"></i><span>Nurses</span></a>
             </li>
+            @endcan
+            @can('Manage Patient')
             <li class="{{ (request()->is('patient')) ? 'active' : '' }}">
                 <a href="{{ route('patient.index') }}" class="iq-waves-effect collapsed"><i class="las la-users"></i><span>Patients</span></a>
             </li>
+            @endcan
+            @can('Manage Appointments')
             <li class="{{ (request()->is('appointment')) ? 'active' : '' }}">
                 <a href="{{ route('appointment.index') }}" class="iq-waves-effect collapsed"><i class="las la-clipboard"></i><span>Appointments</span></a>
             </li>
+            @endcan
+            @can('Manage Medication')
             <li class="{{ (request()->is('medication')) ? 'active' : '' }}">
                 <a href="{{ route('medication.index') }}" class="iq-waves-effect collapsed"><i class="las la-clipboard"></i><span>Medications</span></a>
             </li>
+            @endcan
+            @can('Manage Notification')
             <li class="{{ (request()->is('notification')) ? 'active' : '' }}">
                 <a href="{{ route('notification.index') }}" class="iq-waves-effect collapsed"><i class="las la-bell"></i><span>Notifications</span></a>
             </li>
+            @endcan
+            @can('Manage Wish List')
             <li class="{{ (request()->is('wishList')) ? 'active' : '' }}">
                 <a href="{{ route('wishList.index') }}" class="iq-waves-effect collapsed"><i class="las la-clipboard"></i><span>Wish Lists</span></a>
             </li>
+            @endcan
         </ul>
     </div>
 </div>
