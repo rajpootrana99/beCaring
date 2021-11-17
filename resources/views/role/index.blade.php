@@ -40,7 +40,7 @@
                                 <tr>
                                     <th width="5%">#</th>
                                     <th width="20%">Name</th>
-                                    <th width="15%">Permission</th>
+                                    <th>Permissions</th>
                                     <th width="3%"><i class="fa fa-edit"></i></th>
                                     <th width="3%"><i class="fa fa-trash"></i></th>
                                 </tr>
@@ -194,10 +194,16 @@
                 success: function(response) {
                     $('tbody').html("");
                     $.each(response.roles, function(key, role) {
+                        var options = new Array();
+                        let i = 0;
+                        role.permissions.forEach(function (p){
+                            options[i] = '<span class="badge badge-info">'+p.name+'</span>';
+                            i = i+1;
+                        })
                         $('tbody').append('<tr>\
                             <td>'+role.id+'</td>\
                             <td>'+role.name+'</td>\
-                            <td>'+role.permissions.name+'</td>\
+                            <td>'+options.join(' ')+'</td>\
                             <td><button value="'+role.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
                             <td><button value="'+role.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                     </tr>');
@@ -251,6 +257,11 @@
                         });
                         $('#role_id').val(response.role.id);
                         $('#edit_name').val(response.role.name);
+                        var options = new Array();
+                        $.each(response.rolePermissions, function (key, permission) {
+                            options[key] = permission.id;
+                        });
+                        $('#edit_permission_id').val(options);
                     }
                 }
             });

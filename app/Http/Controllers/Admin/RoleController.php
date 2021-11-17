@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -57,7 +58,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'permission_id' => 'required',
+            'name' => 'required|unique:roles',
+        ]);
+        if (!$validator->passes()){
+            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
+        }
+        $role = Role::create($request->all());
+        $role->givePermissionTo($request->permission_id);
+
+        if ($role){
+            return response()->json(['status' => 1, 'message' => 'Role Added Successfully']);
+        }
     }
 
     /**
@@ -77,9 +90,17 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($role)
     {
-        //
+        $permissions = Permission::all();
+        $role = Role::find($role);
+        $rolePermissions = $role->permissions()->get();
+        return response()->json([
+            'status' => 200,
+            'permissions' => $permissions,
+            'role' => $role,
+            'rolePermissions' => $rolePermissions,
+        ]);
     }
 
     /**
@@ -89,9 +110,23 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $role)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'permission_id' => 'required',
+            'name' => 'required|exists:roles',
+        ]);
+        if (!$validator->passes()){
+            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
+        }
+
+        $role = Role::find($role);
+        $role->update($request->all());
+        $role->revokePermissionTo($role->permissions);
+        $role->givePermissionTo($request->permission_id);
+        if ($role){
+            return response()->json(['status' => 1, 'message' => 'Role Updated Successfully']);
+        }
     }
 
     /**
@@ -100,8 +135,19 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($role)
     {
-        //
+        $role = Role::find($role);
+        if (!$role){
+            return response()->json([
+                'status' => 0,
+                'message' => 'Role not exist'
+            ]);
+        }
+        $role->delete();
+        return response()->json([
+            'status' => 1,
+            'message' => 'Role Deleted Successfully',
+        ]);
     }
 }

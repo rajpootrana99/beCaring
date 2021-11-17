@@ -225,6 +225,8 @@
                     url: "fetchAppointments",
                     dataType: "json",
                     success: function (response) {
+                        var options = new Array();
+                        let i = 0;
                         $('tbody').html("");
                         $.each(response.appointments, function (key, appointment) {
                             if (appointment.nurse != null){
@@ -233,15 +235,14 @@
                             else {
                                 nurse = 'Not Assigned yet';
                             }
-                            var patient = appointment.patients
+                            appointment.patients.forEach(function (p){
+                                options[i] = p.first_name+' '+p.last_name;
+                                i = i+1;
+                            })
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
                             <td>'+nurse+'</td>\
-                            <td>'+appointment.patients.forEach(function (p){
-                                console.log(p.first_name)
-                                console.log(p.last_name)
-                                p.first_name+' '+p.last_name
-                            })+'</td>\
+                            <td>'+options+'</td>\
                             <td>'+appointment.date+'</td>\
                             <td>'+appointment.start_time+'</td>\
                             <td>'+appointment.end_time+'</td>\
