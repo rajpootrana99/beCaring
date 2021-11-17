@@ -18,21 +18,27 @@ Route::get('/admin', function () {
 })->middleware(['role:Admin|Company'])->name('index');
 
 Route::resource('nurse', 'Admin\NurseController')->middleware('permission:Manage Nurse');
-Route::get('fetchNurses', 'Admin\NurseController@fetchNurses')->middleware('permission:Manage Nurse');
+Route::get('fetchNurses', 'Admin\NurseController@fetchNurses')->middleware('permission:Show Nurse');
 
 Route::resource('patient', 'Admin\PatientController')->middleware('permission:Manage Patient');
-Route::get('fetchPatients', 'Admin\PatientController@fetchPatients')->middleware('permission:Manage Patient');
+Route::get('fetchPatients', 'Admin\PatientController@fetchPatients')->middleware('permission:Show Patient');
 
 Route::resource('appointment', 'Admin\AppointmentController')->middleware('permission:Manage Appointments');
-Route::get('fetchAppointments', 'Admin\AppointmentController@fetchAppointments')->middleware('permission:Manage Appointments');
+Route::get('fetchAppointments', 'Admin\AppointmentController@fetchAppointments')->middleware('permission:Show Appointments');
 
 Route::resource('notification', 'Admin\NotificationController')->middleware('permission:Manage Notification');
-Route::get('fetchNotifications', 'Admin\NotificationController@fetchNotifications')->middleware('permission:Manage Notification');
+Route::get('fetchNotifications', 'Admin\NotificationController@fetchNotifications')->middleware('permission:Show Notification');
 
 Route::resource('medication', 'Admin\MedicationController')->middleware('permission:Manage Medication');
-Route::get('fetchMedications', 'Admin\MedicationController@fetchMedications')->middleware('permission:Manage Medication');
+Route::get('fetchMedications', 'Admin\MedicationController@fetchMedications')->middleware('permission:Show Medication');
 
 Route::resource('wishList', 'Admin\WishListController')->middleware('permission:Manage Wish List');
-Route::get('fetchWishLists', 'Admin\WishListController@fetchWishLists')->middleware('permission:Manage Wish List');
+Route::get('fetchWishLists', 'Admin\WishListController@fetchWishLists')->middleware('permission:Show Wish List');
+
+Route::resource('company', 'Admin\CompanyController')->middleware('permission:Manage Company');
+Route::get('fetchCompanies', 'Admin\CompanyController@fetchCompanies')->middleware('permission:Show Company');
+
+Route::resource('role', 'Admin\RoleController')->middleware('permission:Manage Role');
+Route::get('fetchRoles', 'Admin\RoleController@fetchRoles')->middleware('permission:Show Role');
 
 require __DIR__ . '/auth.php';

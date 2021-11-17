@@ -231,17 +231,16 @@
                                 var nurse = appointment.nurse.first_name+' '+appointment.nurse.last_name;
                             }
                             else {
-                                nurse = '';
+                                nurse = 'Not Assigned yet';
                             }
                             var patient = appointment.patients
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
                             <td>'+nurse+'</td>\
                             <td>'+appointment.patients.forEach(function (p){
-                                var first_name = p.first_name
-                                var last_name = p.last_name
-                                console.log(last_name)
-                                '<span>'+first_name+' '+last_name+'</span>'
+                                console.log(p.first_name)
+                                console.log(p.last_name)
+                                p.first_name+' '+p.last_name
                             })+'</td>\
                             <td>'+appointment.date+'</td>\
                             <td>'+appointment.start_time+'</td>\

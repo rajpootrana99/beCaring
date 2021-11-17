@@ -25,12 +25,22 @@ class PermissionCommand extends Command
     public function handle()
     {
         $permissions = [
+            ['name' => 'Manage Company'],
             ['name' => 'Manage Nurse'],
             ['name' => 'Manage Patient'],
             ['name' => 'Manage Notification'],
             ['name' => 'Manage Appointments'],
             ['name' => 'Manage Medications'],
             ['name' => 'Manage Wish List'],
+            ['name' => 'Manage Role'],
+            ['name' => 'Show Company'],
+            ['name' => 'Show Nurse'],
+            ['name' => 'Show Patient'],
+            ['name' => 'Show Notification'],
+            ['name' => 'Show Appointments'],
+            ['name' => 'Show Medications'],
+            ['name' => 'Show Wish List'],
+            ['name' => 'Show Role'],
 
         ];
         foreach ($permissions as $permission){
@@ -40,6 +50,10 @@ class PermissionCommand extends Command
         $role->givePermissionTo(Permission::all());
         $role = Role::where('name', 'Company')->first();
         $permission = Permission::where('name', 'Manage Appointments')->get();
+        $role->givePermissionTo($permission);
+        $permission = Permission::where('name', 'Show Appointments')->get();
+        $role->givePermissionTo($permission);
+        $permission = Permission::where('name', 'Show Patient')->get();
         $role->givePermissionTo($permission);
         $this->info('Permissions successfully created!');
     }

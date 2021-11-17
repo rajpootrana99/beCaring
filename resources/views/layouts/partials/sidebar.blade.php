@@ -52,6 +52,16 @@
                 <a href="{{ route('wishList.index') }}" class="iq-waves-effect collapsed"><i class="las la-clipboard"></i><span>Wish Lists</span></a>
             </li>
             @endcan
+            @can('Manage Company')
+                <li class="{{ (request()->is('company')) ? 'active' : '' }}">
+                    <a href="{{ route('company.index') }}" class="iq-waves-effect collapsed"><i class="las la-building"></i><span>Company</span></a>
+                </li>
+            @endcan
+            @can('Manage Role')
+                <li class="{{ (request()->is('role')) ? 'active' : '' }}">
+                    <a href="{{ route('role.index') }}" class="iq-waves-effect collapsed"><i class="las la-building"></i><span>Role</span></a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>
