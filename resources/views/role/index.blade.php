@@ -176,6 +176,7 @@
 </div>
 
 <script>
+
     $(document).ready(function() {
 
         $.ajaxSetup({
@@ -186,18 +187,28 @@
 
         fetchRoles();
 
+        function shuffle(array) {
+            array.sort(() => Math.random() - 0.5);
+        }
+
         function fetchRoles() {
             $.ajax({
                 type: "GET",
                 url: "fetchRoles",
                 dataType: "json",
                 success: function(response) {
+                    var tags = ['primary','secondary','success','danger','warning','info','dark'];
                     $('tbody').html("");
                     $.each(response.roles, function(key, role) {
                         var options = new Array();
                         let i = 0;
+                        let j = 0;
                         role.permissions.forEach(function (p){
-                            options[i] = '<span class="badge badge-info">'+p.name+'</span>';
+                            shuffle(tags);
+                            options[i] = '<span class="badge badge-'+tags[j++]+'">'+p.name+'</span>';
+                            if(j >= tags.length){
+                                j = 0
+                            }
                             i = i+1;
                         })
                         $('tbody').append('<tr>\
