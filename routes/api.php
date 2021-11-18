@@ -43,3 +43,7 @@ Route::post('createMedication', 'MedicationController@createMedication')->middle
 
 //WishListController Route
 Route::post('wishList', 'WishListControllerController@store');
+
+//TrainingController Route
+Route::post('markVideoComplete', 'TrainingController@markVideoComplete')->middleware('auth:api');
+
