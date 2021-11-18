@@ -51,18 +51,23 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validator = tap(Validator::make($request->all(),[
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
             'address' => 'required',
-        ]);
+        ]), function (){
+            if(request()->hasFile(request()->image)){
+                Validator::make(request()->all(),[
+                    'image' => 'required|file|image',
+                ]);
+            }
+        });
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
-
         $patient = User::create([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -126,12 +131,18 @@ class PatientController extends Controller
      */
     public function update(Request $request, $user)
     {
-        $validator = Validator::make($request->all(), [
+        $validator = tap(Validator::make($request->all(),[
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|exists:users',
-        ]);
+        ]), function (){
+            if(request()->hasFile(request()->image)){
+                Validator::make(request()->all(),[
+                    'image' => 'required|file|image',
+                ]);
+            }
+        });
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }

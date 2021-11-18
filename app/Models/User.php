@@ -65,4 +65,8 @@ class User extends Authenticatable
     public function address(){
         return $this->hasOne(Address::class, 'id', 'patient_id');
     }
+
+    public function trainings(){
+        return $this->hasMany(Training::class);
+    }
 }

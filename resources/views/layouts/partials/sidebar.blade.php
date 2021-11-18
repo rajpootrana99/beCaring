@@ -62,6 +62,11 @@
                     <a href="{{ route('role.index') }}" class="iq-waves-effect collapsed"><i class="las la-building"></i><span>Role</span></a>
                 </li>
             @endcan
+            @can('Manage Training')
+                <li class="{{ (request()->is('training')) ? 'active' : '' }}">
+                    <a href="{{ route('training.index') }}" class="iq-waves-effect collapsed"><i class="la la-gears"></i><span>Training</span></a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>

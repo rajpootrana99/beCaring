@@ -150,14 +150,14 @@
                             <input type="hidden" name="user_id" id="user_id">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="edit_first_name" class="col-form-label text-right">Name</label>
+                                    <label for="edit_first_name" class="col-form-label text-right">First Name</label>
                                     <input class="form-control" type="text" name="first_name" id="edit_first_name" >
                                     <span class="text-danger error-text first_name_update_error"></span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="edit_last_name" class="col-form-label text-right">Name</label>
+                                    <label for="edit_last_name" class="col-form-label text-right">Last Name</label>
                                     <input class="form-control" type="text" name="last_name" id="edit_last_name" >
                                     <span class="text-danger error-text last_name_update_error"></span>
                                 </div>

@@ -67,7 +67,7 @@
                 <span class="text-danger error-text">{{ $errors->first('first_name') }}</span>
 
                 <div class="form-group mb-2">
-                    <label for="last_name">First Name</label>
+                    <label for="last_name">Last Name</label>
                     <div class="input-group">
                         <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter Last Name">
                     </div>

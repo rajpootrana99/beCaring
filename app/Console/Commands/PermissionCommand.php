@@ -33,6 +33,7 @@ class PermissionCommand extends Command
             ['name' => 'Manage Medications'],
             ['name' => 'Manage Wish List'],
             ['name' => 'Manage Role'],
+            ['name' => 'Manage Training'],
             ['name' => 'Show Company'],
             ['name' => 'Show Nurse'],
             ['name' => 'Show Patient'],
@@ -41,6 +42,7 @@ class PermissionCommand extends Command
             ['name' => 'Show Medications'],
             ['name' => 'Show Wish List'],
             ['name' => 'Show Role'],
+            ['name' => 'Show Training'],
 
         ];
         foreach ($permissions as $permission){

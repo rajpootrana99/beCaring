@@ -41,4 +41,7 @@ Route::get('fetchCompanies', 'Admin\CompanyController@fetchCompanies')->middlewa
 Route::resource('role', 'Admin\RoleController')->middleware('permission:Manage Role');
 Route::get('fetchRoles', 'Admin\RoleController@fetchRoles')->middleware('permission:Show Role');
 
+Route::resource('training', 'Admin\TrainingController')->middleware('permission:Manage Training');
+Route::get('fetchTrainings', 'Admin\TrainingController@fetchTrainings')->middleware('permission:Show Training');
+
 require __DIR__ . '/auth.php';
