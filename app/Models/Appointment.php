@@ -14,7 +14,9 @@ class Appointment extends Model
         'date',
         'start_time',
         'end_time',
-        'rate',
+        'max_price',
+        'min_price',
+        'bid_price',
         'status',
         'is_complete',
     ];

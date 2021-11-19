@@ -19,7 +19,9 @@ class CreateAppointmentsTable extends Migration
             $table->string('date');
             $table->string('start_time');
             $table->string('end_time');
-            $table->string('rate');
+            $table->string('max_price');
+            $table->string('min_price');
+            $table->string('bid_price')->nullable();
             $table->integer('status')->default(0);
             $table->integer('is_complete')->default(0);
 

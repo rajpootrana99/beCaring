@@ -53,7 +53,9 @@ class AppointmentController extends Controller
             'date' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
-            'rate' => 'required',
+            'max_price' => 'required|numeric',
+            'min_price' => 'required|numeric',
+            'bid_price' => 'required|numeric',
         ]);
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
@@ -62,7 +64,9 @@ class AppointmentController extends Controller
             'date' => $request->input('date'),
             'start_time' => $request->input('start_time'),
             'end_time' => $request->input('end_time'),
-            'rate' => $request->input('rate'),
+            'max_price' => $request->input('max_price'),
+            'min_price' => $request->input('min_price'),
+            'bid_price' => $request->input('bid_price'),
         ]);
         $appointment->patients()->attach($request->patient_id);
         if ($appointment){
@@ -121,7 +125,7 @@ class AppointmentController extends Controller
             'date' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
-            'rate' => 'required',
+            'price' => 'required|numeric',
         ]);
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
@@ -131,7 +135,8 @@ class AppointmentController extends Controller
             'date' => $request->input('date'),
             'start_time' => $request->input('start_time'),
             'end_time' => $request->input('end_time'),
-            'rate' => $request->input('rate'),
+            'max_price' => $request->input('max_price'),
+            'min_price' => $request->input('min_price'),
         ]);
         $appointment->patients()->detach();
         $appointment->patients()->attach($request->patient_id);

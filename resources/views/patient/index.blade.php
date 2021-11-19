@@ -114,6 +114,9 @@
                                     <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
                                 </div>
                             </div>
+                            <div id="address-map-container" style="width:100%;height:400px; ">
+                                <div style="width: 100%; height: 100%" id="address-map"></div>
+                            </div>
                             <div class="col-lg-6">
                                 <label for="image" class="col-form-label text-right">Image</label>
                                 <div class="custom-file mb-3">

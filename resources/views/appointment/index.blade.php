@@ -38,7 +38,9 @@
                                     <th width="10%">Date</th>
                                     <th width="10%">Start Time</th>
                                     <th width="10%">End Time</th>
-                                    <th width="10%">Rate</th>
+                                    <th width="10%">Max Price/ hour</th>
+                                    <th width="10%">Min Price/ hour</th>
+                                    <th width="10%">Bid Price/ hour</th>
                                     <th width="10%">Status</th>
                                     <th width="15%">Type</th>
                                     <th width="3%"><i class="fa fa-edit"></i></th>
@@ -69,7 +71,7 @@
                     @csrf
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="patient_id" class="col-form-label text-right">Select Patient</label>
                                     <select class="select2 mb-3 select2-multiple" name="patient_id[]" id="patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
@@ -78,7 +80,7 @@
                                     <span class="text-danger error-text patient_id_error"></span>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="date" class="col-form-label text-right">Date</label>
                                     <input class="form-control" type="date" name="date" id="date">
@@ -101,11 +103,14 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="rate" class="col-form-label text-right">Rate</label>
-                                    <input class="form-control" type="text" name="rate" id="rate">
-                                    <span class="text-danger error-text rate_error"></span>
+                                    <label for="price" class="col-form-label text-right">Price</label>
+                                    <input class="form-control" type="text" name="price" id="price">
+                                    <span class="text-danger error-text price_error"></span>
                                 </div>
                             </div>
+                            <input type="hidden" name="max_price" id="max_price">
+                            <input type="hidden" name="min_price" id="min_price">
+                            <input type="hidden" name="bid_price" id="bid_price">
                         </div><!--end row-->
                     </div><!--end modal-body-->
                     <div class="modal-footer">
@@ -132,7 +137,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <input type="hidden" name="appointment_id" id="appointment_id">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="edit_patient_id" class="col-form-label text-right">Select Patient</label>
                                     <select class="select2 mb-3 select2-multiple" name="patient_id[]" id="edit_patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
@@ -141,7 +146,7 @@
                                     <span class="text-danger error-text patient_id_update_error"></span>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="edit_date" class="col-form-label text-right">Date</label>
                                     <input class="form-control" type="date" name="date" id="edit_date" >
@@ -164,9 +169,9 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="edit_rate" class="col-form-label text-right">Rate</label>
-                                    <input class="form-control" type="text" name="rate" id="edit_rate">
-                                    <span class="text-danger error-text rate_update_error"></span>
+                                    <label for="edit_price" class="col-form-label text-right">Price</label>
+                                    <input class="form-control" type="text" name="price" id="edit_price">
+                                    <span class="text-danger error-text price_update_error"></span>
                                 </div>
                             </div>
                         </div><!--end row-->
@@ -246,7 +251,9 @@
                             <td>'+appointment.date+'</td>\
                             <td>'+appointment.start_time+'</td>\
                             <td>'+appointment.end_time+'</td>\
-                            <td>'+appointment.rate+'</td>\
+                            <td>'+parseFloat(appointment.max_price).toFixed(2)+'</td>\
+                            <td>'+parseFloat(appointment.min_price).toFixed(2)+'</td>\
+                            <td>'+parseFloat(appointment.bid_price).toFixed(2)+'</td>\
                             <td>'+appointment.status+'</td>\
                             <td>'+appointment.is_complete+'</td>\
                             <td><button value="'+appointment.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
@@ -272,6 +279,22 @@
                     }
                 });
             }
+
+            $(document).on('change', '#price', function (e) {
+                e.preventDefault();
+                var price = $('#price').val();
+                var max_price = parseInt(price) - ((parseInt(price) /100)*2);
+                var min_price = max_price - ((max_price /100)*30);
+                var date = $('#date').val();
+                var current_date = new Date();
+                date = new Date(date);
+                var days_left = date.getDate()-current_date.getDate();
+                var per = 30/days_left;
+                var bid_price = min_price +((max_price /100)*per);
+                $('#max_price').val(max_price);
+                $('#min_price').val(min_price);
+                $('#bid_price').val(bid_price);
+            })
 
             $(document).on('click', '#addAppointmentButton', function (e) {
                 e.preventDefault();
