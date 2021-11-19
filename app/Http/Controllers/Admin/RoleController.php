@@ -59,7 +59,6 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'permission_id' => 'required',
             'name' => 'required|unique:roles',
         ]);
         if (!$validator->passes()){
@@ -113,7 +112,6 @@ class RoleController extends Controller
     public function update(Request $request, $role)
     {
         $validator = Validator::make($request->all(), [
-            'permission_id' => 'required',
             'name' => 'required|exists:roles',
         ]);
         if (!$validator->passes()){
@@ -144,6 +142,7 @@ class RoleController extends Controller
                 'message' => 'Role not exist'
             ]);
         }
+        $role->revokePermissionTo($role->permissions);
         $role->delete();
         return response()->json([
             'status' => 1,

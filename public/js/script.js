@@ -1,5 +1,5 @@
 function initialize() {
-    $("#addPatientDetail").on("keyup keypress", function (e) {
+    $("#address-input").on("keyup keypress", function (e) {
         var keyCode = e.keyCode || e.which;
         if (keyCode === 13) {
             e.preventDefault();
@@ -7,7 +7,6 @@ function initialize() {
         }
     });
     const locationInputs = document.getElementsByClassName("map-input");
-
     const autocompletes = [];
     const geocoder = new google.maps.Geocoder();
     for (let i = 0; i < locationInputs.length; i++) {
@@ -40,6 +39,7 @@ function initialize() {
         marker.setVisible(isEdit);
 
         const autocomplete = new google.maps.places.Autocomplete(input);
+
         autocomplete.key = fieldKey;
         autocompletes.push({
             input: input,

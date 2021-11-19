@@ -25,6 +25,21 @@ class User extends Authenticatable
         'password',
         'phone',
         'image',
+        'parent_id',
+    ];
+
+    public function getPermissionAttribute()
+    {
+        return $this->getAllPermissions();
+    }
+
+    protected $appends = [
+        'permission'
+    ];
+
+    protected $with =[
+        'permissions',
+        'roles'
     ];
 
     /**
