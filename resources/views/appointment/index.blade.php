@@ -174,6 +174,10 @@
                                     <span class="text-danger error-text price_update_error"></span>
                                 </div>
                             </div>
+
+                            <input type="hidden" name="max_price" id="edit_max_price">
+                            <input type="hidden" name="min_price" id="edit_min_price">
+                            <input type="hidden" name="bid_price" id="edit_bid_price">
                         </div><!--end row-->
                     </div><!--end modal-body-->
                     <div class="modal-footer">
@@ -296,6 +300,22 @@
                 $('#bid_price').val(bid_price);
             })
 
+            $(document).on('change', '#edit_price', function (e) {
+                e.preventDefault();
+                var price = $('#edit_price').val();
+                var max_price = parseInt(price) - ((parseInt(price) /100)*2);
+                var min_price = max_price - ((max_price /100)*30);
+                var date = $('#edit_date').val();
+                var current_date = new Date();
+                date = new Date(date);
+                var days_left = date.getDate()-current_date.getDate();
+                var per = 30/days_left;
+                var bid_price = min_price +((max_price /100)*per);
+                $('#edit_max_price').val(max_price);
+                $('#edit_min_price').val(min_price);
+                $('#edit_bid_price').val(bid_price);
+            })
+
             $(document).on('click', '#addAppointmentButton', function (e) {
                 e.preventDefault();
                 $('#addAppointment').modal('show');
@@ -352,7 +372,10 @@
                             $('#edit_date').val(response.appointment.date);
                             $('#edit_start_time').val(response.appointment.start_time);
                             $('#edit_end_time').val(response.appointment.end_time);
-                            $('#edit_rate').val(response.appointment.rate);
+                            $('#edit_price').val(response.appointment.price);
+                            $('#edit_max_price').val(response.appointment.max_price);
+                            $('#edit_min_price').val(response.appointment.min_price);
+                            $('#edit_bid_price').val(response.appointment.bid_price);
                             var options = new Array();
                             $.each(response.appointment.patients, function (key, patient) {
                                 options[key] = patient.id;
