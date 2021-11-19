@@ -88,6 +88,7 @@ class EmployeeController extends Controller
             'parent_id' => Auth::id(),
         ]);
         $employee->givePermissionTo($request->input('permission_id'));
+        $employee->assignRole('Moderator');
         $this->storeImage($employee);
         if ($employee){
             return response()->json(['status' => 1, 'message' => 'Patient Added Successfully']);
@@ -182,6 +183,7 @@ class EmployeeController extends Controller
             ]);
         }
         $employee->revokePermissionTo($employee->permissions);
+        $employee->roles()->detach();
         $employee->delete();
         return response()->json([
             'status' => 1,

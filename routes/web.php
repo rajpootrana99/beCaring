@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', function () {
     return view('index');
-})->middleware(['role:Admin|Company'])->name('index');
+})->middleware(['role:Admin|Company|Moderator'])->name('index');
 
 Route::resource('nurse', 'Admin\NurseController')->middleware('permission:Manage Nurse');
 Route::get('fetchNurses', 'Admin\NurseController@fetchNurses')->middleware('permission:Show Nurse');
