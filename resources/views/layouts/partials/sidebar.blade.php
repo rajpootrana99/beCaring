@@ -5,7 +5,7 @@
         <a href="{{ route('index') }}" class="logo">
             <span style="color: #011592;">
                 {{-- <img src="{{ asset('assets/images/logo.png') }}" alt="logo-small" class="logo-sm">--}}
-                <h4><strong>Be Caring</strong></h4>
+                <h4><strong>My Care Shift</strong></h4>
             </span>
             {{--<span>
                 <img src="{{ asset('assets/images/logo.png') }}" alt="logo-large" class="logo-lg logo-light">
@@ -53,24 +53,24 @@
             </li>
             @endcan
             @can('Manage Company')
-                <li class="{{ (request()->is('company')) ? 'active' : '' }}">
-                    <a href="{{ route('company.index') }}" class="iq-waves-effect collapsed"><i class="las la-building"></i><span>Company</span></a>
-                </li>
+            <li class="{{ (request()->is('company')) ? 'active' : '' }}">
+                <a href="{{ route('company.index') }}" class="iq-waves-effect collapsed"><i class="las la-building"></i><span>Company</span></a>
+            </li>
             @endcan
             @can('Manage Role')
-                <li class="{{ (request()->is('role')) ? 'active' : '' }}">
-                    <a href="{{ route('role.index') }}" class="iq-waves-effect collapsed"><i class="las la-building"></i><span>Role</span></a>
-                </li>
+            <li class="{{ (request()->is('role')) ? 'active' : '' }}">
+                <a href="{{ route('role.index') }}" class="iq-waves-effect collapsed"><i class="las la-building"></i><span>Role</span></a>
+            </li>
             @endcan
             @can('Manage Training')
-                <li class="{{ (request()->is('training')) ? 'active' : '' }}">
-                    <a href="{{ route('training.index') }}" class="iq-waves-effect collapsed"><i class="la la-gears"></i><span>Training</span></a>
-                </li>
+            <li class="{{ (request()->is('training')) ? 'active' : '' }}">
+                <a href="{{ route('training.index') }}" class="iq-waves-effect collapsed"><i class="la la-gears"></i><span>Training</span></a>
+            </li>
             @endcan
             @can('Manage Employee')
-                <li class="{{ (request()->is('employee')) ? 'active' : '' }}">
-                    <a href="{{ route('employee.index') }}" class="iq-waves-effect collapsed"><i class="las la-users"></i><span>Employee</span></a>
-                </li>
+            <li class="{{ (request()->is('employee')) ? 'active' : '' }}">
+                <a href="{{ route('employee.index') }}" class="iq-waves-effect collapsed"><i class="las la-users"></i><span>Employee</span></a>
+            </li>
             @endcan
         </ul>
     </div>

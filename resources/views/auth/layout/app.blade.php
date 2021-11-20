@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Be Caring</title>
+    <title>My Care Shift</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="" name="author" />
@@ -32,8 +32,8 @@
                                     <a href="{{route('index')}}" class="logo logo-admin">
                                         <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="logo" class="auth-logo">
                                     </a>
-                                    <h4 class="mt-3 mb-1 font-weight-semibold text-white font-18">Let's Get Started Be Caring</h4>
-                                    <p class="text-muted  mb-0">Sign in to continue to Be Caring.</p>
+                                    <h4 class="mt-3 mb-1 font-weight-semibold text-white font-18">Let's Get Started My Care Shift</h4>
+                                    <p class="text-muted  mb-0">Sign in to continue to My Care Shift.</p>
                                 </div>
                             </div>
                             <div class="card-body p-0">

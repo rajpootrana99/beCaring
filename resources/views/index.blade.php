@@ -10,10 +10,11 @@
                     <div class="col">
                         <h4 class="page-title">Analytics</h4>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Be Caring</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">My Care Shift</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                    </div><!--end col-->
+                    </div>
+                    <!--end col-->
                     <div class="col-auto align-self-center">
                         <a href="#" class="btn btn-sm btn-outline-primary" id="Dash_Date">
                             <span class="ay-name" id="Day_Name">Today:</span>&nbsp;
@@ -23,11 +24,16 @@
                         <a href="#" class="btn btn-sm btn-outline-primary">
                             <i data-feather="download" class="align-self-center icon-xs"></i>
                         </a>
-                    </div><!--end col-->
-                </div><!--end row-->
-            </div><!--end page-title-box-->
-        </div><!--end col-->
-    </div><!--end row-->
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+            </div>
+            <!--end page-title-box-->
+        </div>
+        <!--end col-->
+    </div>
+    <!--end row-->
     <!-- end page title end breadcrumb -->
     <div class="row">
         <div class="col-lg-9">
@@ -41,9 +47,12 @@
                                     <h3 class="m-0">0</h3>
                                 </div>
                             </div>
-                        </div><!--end card-body-->
-                    </div><!--end card-->
-                </div> <!--end col-->
+                        </div>
+                        <!--end card-body-->
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
                 <div class="col-md-6 col-lg-3">
                     <div class="card report-card">
                         <div class="card-body">
@@ -53,9 +62,12 @@
                                     <h3 class="m-0">0</h3>
                                 </div>
                             </div>
-                        </div><!--end card-body-->
-                    </div><!--end card-->
-                </div> <!--end col-->
+                        </div>
+                        <!--end card-body-->
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
                 <div class="col-md-6 col-lg-3">
                     <div class="card report-card">
                         <div class="card-body">
@@ -91,15 +103,21 @@
                                     <h3 class="m-0" id="revenue"></h3>
                                 </div>
                             </div>
-                        </div><!--end card-body-->
-                    </div><!--end card-->
-                </div> <!--end col-->
-            </div><!--end row-->
-        </div><!--end col-->
-    </div><!--end row-->
+                        </div>
+                        <!--end card-body-->
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end col-->
+    </div>
+    <!--end row-->
 </div><!-- container -->
 <script>
-    $(document).ready(function (){
+    $(document).ready(function() {
 
         $.ajaxSetup({
             headers: {
@@ -109,36 +127,35 @@
 
         fetchAppointments();
 
-        function fetchAppointments()
-        {
+        function fetchAppointments() {
             $.ajax({
                 type: "GET",
                 url: "fetchAppointments",
                 dataType: "json",
-                success: function (response) {
+                success: function(response) {
                     var booked_appointments = 0;
                     var reject_appointments = 0;
                     var pending_appointments = 0;
                     var complete_appointments = 0;
                     var incomplete_appointments = 0;
                     var revenue = 0;
-                    $.each(response.appointments, function (key, appointment) {
-                        if (appointment.status == 'Booked'){
-                             booked_appointments += 1;
+                    $.each(response.appointments, function(key, appointment) {
+                        if (appointment.status == 'Booked') {
+                            booked_appointments += 1;
                         }
-                        if (appointment.status == 'Reject'){
+                        if (appointment.status == 'Reject') {
                             reject_appointments += 1;
                         }
-                        if (appointment.status == 'Pending'){
+                        if (appointment.status == 'Pending') {
                             pending_appointments += 1;
                         }
-                        if (appointment.is_complete == 'In Complete' && appointment.status == 'Booked'){
-                            incomplete_appointments +=1;
+                        if (appointment.is_complete == 'In Complete' && appointment.status == 'Booked') {
+                            incomplete_appointments += 1;
                         }
-                        if (appointment.is_complete == 'Complete'){
+                        if (appointment.is_complete == 'Complete') {
                             complete_appointments += 1;
                         }
-                        if (appointment.rate != null){
+                        if (appointment.rate != null) {
                             revenue += parseFloat(appointment.rate);
                         }
                     });
