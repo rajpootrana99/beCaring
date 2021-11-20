@@ -30,6 +30,10 @@ class AppointmentController extends Controller
         ]);
     }
 
+    public function getBidAmount(){
+
+    }
+
     public function bookAppointment(Request $request){
         $validator = Validator::make($request->all(),[
             'appointment_id' => 'required',

@@ -34,6 +34,7 @@
                                     <th width="20%">Name</th>
                                     <th width="15%">Phone</th>
                                     <th width="20%">Email</th>
+                                    <th>Permissions</th>
                                     <th width="3%"><i class="fa fa-edit"></i></th>
                                     <th width="3%"><i class="fa fa-trash"></i></th>
                                 </tr>
@@ -130,6 +131,10 @@
 
             fetchCompanies();
 
+            function shuffle(array) {
+                array.sort(() => Math.random() - 0.5);
+            }
+
             function fetchCompanies()
             {
                 $.ajax({
@@ -137,13 +142,26 @@
                     url: "fetchCompanies",
                     dataType: "json",
                     success: function (response) {
+                        var tags = ['primary','secondary','success','danger','warning','info','dark'];
                         $('tbody').html("");
                         $.each(response.companies, function (key, Company) {
+                            var options = new Array();
+                            let i = 0;
+                            let j = 0;
+                            Company.permission.forEach(function (p){
+                                shuffle(tags);
+                                options[i] = '<span class="badge badge-'+tags[j++]+'">'+p.name+'</span>';
+                                if(j >= tags.length){
+                                    j = 0
+                                }
+                                i = i+1;
+                            })
                             $('tbody').append('<tr>\
                             <td>'+Company.id+'</td>\
                             <td>'+Company.first_name+' '+Company.last_name +'</td>\
                             <td>'+Company.phone+'</td>\
                             <td>'+Company.email+'</td>\
+                            <td>'+options.join(' ')+'</td>\
                             <td><button value="'+Company.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
                             <td><button value="'+Company.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                     </tr>');
