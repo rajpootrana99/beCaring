@@ -22,13 +22,9 @@ class PatientController extends Controller
      */
     public function index()
     {
-        return view('patient.index');
-    }
-
-    public function fetchPatients(){
         $role = Role::where('name', 'Patient')->first();
         $patients = $role->users()->get();
-        return response()->json([
+        return view('patient.index', [
             'patients' => $patients,
         ]);
     }
@@ -40,7 +36,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        return view('patient.create');
     }
 
     /**
@@ -51,41 +47,27 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = tap(Validator::make($request->all(),[
+        $data = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
             'address' => 'required',
-        ]), function (){
-            if(request()->hasFile(request()->image)){
-                Validator::make(request()->all(),[
-                    'image' => 'required|file|image',
-                ]);
-            }
-        });
-        if (!$validator->passes()){
-            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
-        }
+        ]);
         $patient = User::create([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'phone' => $request->input('phone') ?? '',
-        ]);
-        $patient->assignRole('Patient');
-        $this->storeImage($patient);
-        $patient = Address::create([
-            'patient_id' => $patient->id,
             'address' => $request->input('address'),
             'address_latitude' => $request->input('address_latitude'),
             'address_longitude' => $request->input('address_longitude'),
         ]);
-        if ($patient){
-            return response()->json(['status' => 1, 'message' => 'Patient Added Successfully']);
-        }
+        $patient->assignRole('Patient');
+        $this->storeImage($patient);
+        return redirect(route('patient.index'));
     }
 
     /**
@@ -107,19 +89,10 @@ class PatientController extends Controller
      */
     public function edit($user)
     {
-        $patient = User::with('address')->where('id', $user)->first();
-        if ($patient){
-            return response()->json([
-                'status' => 200,
-                'patient' => $patient,
-            ]);
-        }
-        else{
-            return response()->json([
-                'status' => 404,
-                'message' => 'Patient not found'
-            ]);
-        }
+        $patient = User::find($user);
+        return view('patient.edit',[
+            'patient' => $patient,
+        ]);
     }
 
     /**
@@ -131,28 +104,17 @@ class PatientController extends Controller
      */
     public function update(Request $request, $user)
     {
-        $validator = tap(Validator::make($request->all(),[
+        $data = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|exists:users',
-        ]), function (){
-            if(request()->hasFile(request()->image)){
-                Validator::make(request()->all(),[
-                    'image' => 'required|file|image',
-                ]);
-            }
-        });
-        if (!$validator->passes()){
-            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
-        }
-
+            'address' => 'required',
+        ]);
         $patient = User::find($user);
         $patient->update($request->all());
         $this->storeImage($patient);
-        if ($patient){
-            return response()->json(['status' => 1, 'message' => 'Patient Updated Successfully']);
-        }
+        return redirect(route('patient.index'));
     }
 
     /**
@@ -164,17 +126,8 @@ class PatientController extends Controller
     public function destroy($user)
     {
         $patient = User::find($user);
-        if (!$patient){
-            return response()->json([
-                'status' => 0,
-                'message' => 'Patient not exist'
-            ]);
-        }
         $patient->delete();
-        return response()->json([
-            'status' => 1,
-            'message' => 'Patient Deleted Successfully'
-        ]);
+        return redirect(route('patient.index'));
     }
 
     public function storeImage($patient)

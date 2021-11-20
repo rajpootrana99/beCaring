@@ -26,6 +26,9 @@ class User extends Authenticatable
         'phone',
         'image',
         'parent_id',
+        'address',
+        'address_latitude',
+        'address_longitude',
     ];
 
     public function getPermissionAttribute()
@@ -75,10 +78,6 @@ class User extends Authenticatable
 
     public function medications(){
         return $this->hasMany(Medication::class);
-    }
-
-    public function address(){
-        return $this->hasOne(Address::class, 'id', 'patient_id');
     }
 
     public function trainings(){
