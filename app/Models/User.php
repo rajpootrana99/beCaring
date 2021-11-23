@@ -29,6 +29,7 @@ class User extends Authenticatable
         'address',
         'address_latitude',
         'address_longitude',
+        'is_approved',
     ];
 
     public function getPermissionAttribute()

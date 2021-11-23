@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
                 ->middleware('guest')
-                ->name('register');
+                ->name('registerCompany');
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
-                ->middleware('guest');
+                ->middleware('guest')
+                ->name('register');
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')

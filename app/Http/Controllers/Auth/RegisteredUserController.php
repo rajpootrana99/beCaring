@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\GeneralTrait;
+use App\Models\Company;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -13,6 +15,7 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
+    use GeneralTrait;
     /**
      * Display the registration view.
      *
@@ -35,25 +38,59 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', Rules\Password::defaults()],
             'phone' => ['required'],
+            'address' => ['required'],
+            'company_name' => ['required'],
+            'company_website' => ['required'],
+            'business_name' => ['required'],
+            'current_cqc_rating' => ['required'],
+            'your_needs' => ['required'],
+            'provide_staff' => ['required'],
+            'staff_type' => ['required'],
+            'hours_per_week' => ['required'],
+            'full_time_employees' => ['required'],
+            'cqc' => ['required'],
+            'insurance_proof' => ['required'],
         ]);
 
         $user = User::create([
             'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'address' => $request->last_name,
         ]);
 
+        $company = Company::create([
+            'user_id' => $user->id,
+            'company_name' => $request->company_name,
+            'company_website' => $request->company_website,
+            'business_name' => $request->business_name,
+            'contact' => $request->contact,
+            'name' => $request->name,
+            'mobile_number' => $request->mobile_number,
+            'position' => $request->position,
+            'current_cqc_rating' => $request->current_cqc_rating,
+            'your_needs' => $request->your_needs,
+            'provide_staff' => $request->provide_staff,
+            'staff_type' => $request->staff_type,
+            'hours_per_week' => $request->hours_per_week,
+            'full_time_employees' => $request->full_time_employees,
+        ]);
+        $this->storeImage($company);
         $user->assignRole('Company');
         event(new Registered($user));
 
-        Auth::login($user);
+        return view('dashboard');
+    }
 
-        return redirect(RouteServiceProvider::HOME);
+    public function storeImage($company)
+    {
+        $company->update([
+            'cqc' => $this->imagePath('cqc', 'company', $company),
+            'insurance_proof' => $this->imagePath('insurance_proof', 'company', $company),
+        ]);
     }
 }
