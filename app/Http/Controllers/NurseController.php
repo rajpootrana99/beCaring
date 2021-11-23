@@ -111,7 +111,8 @@ class NurseController extends Controller
                 'name' => $first_name.' '.$last_name,
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
-                'phone' => $request->input('phone') ?? '',
+                'phone' => $request->input('phone'),
+                'address' => $request->input('address'),
             ]);
             $nurse->assignRole('Nurse');
             $this->storeImage($nurse);
@@ -125,7 +126,6 @@ class NurseController extends Controller
                 'postal_code' => $request->input('postal_code'),
                 'date_of_interview' => $request->input('date_of_interview'),
                 'dob' => $request->input('dob'),
-                'address' => $request->input('address'),
             ]);
             $this->storeDocument($nurse_detail);
             $token = $nurse->createToken('app')->accessToken;
@@ -208,7 +208,8 @@ class NurseController extends Controller
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'password' => Hash::make($request->input('password')),
-                'phone' => $request->input('phone') ?? '',
+                'phone' => $request->input('phone'),
+                'address' => $request->input('address'),
             ]);
             $this->storeImage($nurse);
             $nurse_detail = Nurse::where('nurse_id', $nurse->id)->first();
@@ -217,7 +218,6 @@ class NurseController extends Controller
                 'postal_code' => $request->input('postal_code'),
                 'date_of_interview' => $request->input('date_of_interview'),
                 'dob' => $request->input('dob'),
-                'address' => $request->input('address'),
             ]);
             $this->storeDocument($nurse_detail);
 //            $token = $nurse->createToken('app')->accessToken;
@@ -238,7 +238,6 @@ class NurseController extends Controller
     public function completeProfile(Request $request){
         $validator = tap(Validator::make($request->all(),[
             'dob' => 'required',
-            'address' => 'required',
         ]), function (){
             if(request()->hasFile(request()->image)){
                 Validator::make(request()->all(),[
@@ -262,7 +261,6 @@ class NurseController extends Controller
             $nurse_detail = Nurse::create([
                 'nurse_id' => Auth::id(),
                 'dob' => $request->input('dob'),
-                'address' => $request->input('address'),
             ]);
             $this->storeDocument($nurse_detail);
             return response([

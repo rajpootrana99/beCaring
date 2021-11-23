@@ -13,7 +13,6 @@ class Nurse extends Model
         'dob',
         'working_radius',
         'postal_code',
-        'address',
         'date_of_interview',
         'identification_document',
         'dbs_certificate',

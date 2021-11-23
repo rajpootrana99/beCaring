@@ -18,7 +18,6 @@ class CreateNursesTable extends Migration
             $table->unsignedBigInteger('nurse_id');
             $table->string('dob');
             $table->string('working_radius');
-            $table->string('address');
             $table->string('postal_code');
             $table->string('date_of_interview');
             $table->string('identification_document')->nullable();
