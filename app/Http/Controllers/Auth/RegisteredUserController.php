@@ -68,7 +68,7 @@ class RegisteredUserController extends Controller
             'company_name' => $request->company_name,
             'company_website' => $request->company_website,
             'business_name' => $request->business_name,
-            'contact' => $request->contact,
+            'contact' => $request->contact ?? 0,
             'contact_name' => $request->contact_name,
             'mobile_number' => $request->mobile_number,
             'position' => $request->position,
