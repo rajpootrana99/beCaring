@@ -83,7 +83,9 @@ class RegisteredUserController extends Controller
         $user->assignRole('Company');
         event(new Registered($user));
 
-        return view('dashboard');
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
     }
 
     public function storeImage($company)
