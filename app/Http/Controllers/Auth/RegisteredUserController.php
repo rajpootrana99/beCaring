@@ -95,4 +95,23 @@ class RegisteredUserController extends Controller
             'insurance_proof' => $this->imagePath('insurance_proof', 'company', $company),
         ]);
     }
+
+    public function approveUser($user){
+        $user = User::find($user);
+        if ($user->is_approved == 'Not Approved'){
+            $value = 1;
+        }
+        else{
+            $value = 0;
+        }
+        $user->update([
+            'is_approved' => $value,
+        ]);
+        if ($user){
+            return response()->json([
+                'status' => true,
+                'message' => 'Status changed successfully',
+            ]);
+        }
+    }
 }

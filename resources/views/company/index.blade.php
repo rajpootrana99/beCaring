@@ -31,12 +31,15 @@
                                 <thead>
                                 <tr>
                                     <th width="5%">#</th>
-                                    <th width="20%">Name</th>
+                                    <th width="15%">Company Name</th>
+                                    <th width="15%">Company Website</th>
+                                    <th width="15%">Business Name</th>
                                     <th width="15%">Phone</th>
-                                    <th width="20%">Email</th>
                                     <th>Permissions</th>
+                                    <th width="8%">Status</th>
                                     <th width="3%"><i class="fa fa-edit"></i></th>
                                     <th width="3%"><i class="fa fa-trash"></i></th>
+                                    <th width="3%"><i class="fa fa-check-circle"></i></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -144,11 +147,18 @@
                     success: function (response) {
                         var tags = ['primary','secondary','success','danger','warning','info','dark'];
                         $('tbody').html("");
-                        $.each(response.companies, function (key, Company) {
+                        $.each(response.companies, function (key, company) {
+                            var status;
+                            if (company.user.is_approved == 'Approved'){
+                                status = '<span class="badge badge-success">'+company.user.is_approved+'</span>';
+                            }
+                            else {
+                                status = '<span class="badge badge-primary">'+company.user.is_approved+'</span>';
+                            }
                             var options = new Array();
                             let i = 0;
                             let j = 0;
-                            Company.permission.forEach(function (p){
+                            company.user.permission.forEach(function (p){
                                 shuffle(tags);
                                 options[i] = '<span class="badge badge-'+tags[j++]+'">'+p.name+'</span>';
                                 if(j >= tags.length){
@@ -157,18 +167,34 @@
                                 i = i+1;
                             })
                             $('tbody').append('<tr>\
-                            <td>'+Company.id+'</td>\
-                            <td>'+Company.name +'</td>\
-                            <td>'+Company.phone+'</td>\
-                            <td>'+Company.email+'</td>\
+                            <td>'+company.id+'</td>\
+                            <td>'+company.company_name +'</td>\
+                            <td>'+company.company_website +'</td>\
+                            <td>'+company.business_name +'</td>\
+                            <td>'+company.user.phone+'</td>\
                             <td>'+options.join(' ')+'</td>\
-                            <td><button value="'+Company.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
-                            <td><button value="'+Company.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
+                            <td>'+status+'</td>\
+                            <td><button value="'+company.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
+                            <td><button value="'+company.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
+                            <td><button value="'+company.user.id+'" style="border: none; background-color: #fff" class="approve_btn"><i class="fa fa-check-circle"></i></button></td>\
                     </tr>');
                         });
                     }
                 });
             }
+
+            $(document).on('click', '.approve_btn', function (e) {
+                e.preventDefault();
+                var user_id = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: 'approveUser/'+user_id,
+                    dataType: "json",
+                    success: function (response) {
+                        fetchCompanies();
+                    }
+                });
+            });
 
             $(document).on('click', '.delete_btn', function (e) {
                 e.preventDefault();

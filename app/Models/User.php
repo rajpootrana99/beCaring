@@ -31,6 +31,17 @@ class User extends Authenticatable
         'is_approved',
     ];
 
+    public function getIsApprovedAttribute($attribute){
+        return $this->isApprovedOptions()[$attribute] ?? 0;
+    }
+
+    public function isApprovedOptions(){
+        return [
+            1 => 'Approved',
+            0 => 'Not Approved',
+        ];
+    }
+
     public function getPermissionAttribute()
     {
         return $this->getAllPermissions();

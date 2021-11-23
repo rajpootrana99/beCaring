@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -22,8 +23,7 @@ class CompanyController extends Controller
     }
 
     public function fetchCompanies(){
-        $role = Role::where('name', 'Company')->first();
-        $companies = $role->users()->get();
+        $companies = Company::with('user')->get();
         return response()->json([
             'companies' => $companies,
         ]);
