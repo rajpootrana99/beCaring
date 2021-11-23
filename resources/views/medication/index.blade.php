@@ -101,8 +101,8 @@
                         $.each(response.medications, function (key, medication) {
                             $('tbody').append('<tr>\
                             <td>'+medication.id+'</td>\
-                            <td>'+medication.patient.first_name+' '+medication.patient.last_name +'</td>\
-                            <td>'+medication.nurse.first_name+' '+medication.nurse.last_name +'</td>\
+                            <td>'+medication.patient.name +'</td>\
+                            <td>'+medication.nurse.name +'</td>\
                             <td>'+medication.disease+'</td>\
                             <td>'+medication.precautions+'</td>\
                             <td>'+medication.medicine+'</td>\

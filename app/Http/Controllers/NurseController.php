@@ -86,9 +86,10 @@ class NurseController extends Controller
             ]);
         }
         try {
+            $first_name = $request->input('first_name');
+            $last_name = $request->input('last_name');
             $nurse = User::create([
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
+                'name' => $first_name.' '.$last_name,
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
                 'phone' => $request->input('phone') ?? '',

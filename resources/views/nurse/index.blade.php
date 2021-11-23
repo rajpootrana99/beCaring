@@ -99,7 +99,7 @@
                         $.each(response.nurses, function (key, nurse) {
                             $('tbody').append('<tr>\
                             <td>'+nurse.id+'</td>\
-                            <td>'+nurse.first_name+' '+nurse.last_name +'</td>\
+                            <td>'+nurse.name +'</td>\
                             <td>'+nurse.phone+'</td>\
                             <td>'+nurse.email+'</td>\
                             <td><button value="'+nurse.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\

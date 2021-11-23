@@ -21,6 +21,7 @@ Route::resource('nurse', 'Admin\NurseController')->middleware('permission:Manage
 Route::get('fetchNurses', 'Admin\NurseController@fetchNurses')->middleware('permission:Show Nurse');
 
 Route::resource('patient', 'Admin\PatientController')->middleware('permission:Manage Patient');
+Route::get('fetchPatients', 'Admin\PatientController@fetchPatients')->middleware('permission:Show Appointments');
 
 Route::resource('appointment', 'Admin\AppointmentController')->middleware('permission:Manage Appointments');
 Route::get('fetchAppointments', 'Admin\AppointmentController@fetchAppointments')->middleware('permission:Show Appointments');

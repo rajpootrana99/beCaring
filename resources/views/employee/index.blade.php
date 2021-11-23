@@ -256,7 +256,7 @@
                             })
                             $('tbody').append('<tr>\
                             <td>'+employee.id+'</td>\
-                            <td>'+employee.first_name+' '+employee.last_name +'</td>\
+                            <td>'+employee.name+'</td>\
                             <td>'+employee.email+'</td>\
                             <td>'+options.join(' ')+'</td>\
                             <td><button value="'+employee.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\

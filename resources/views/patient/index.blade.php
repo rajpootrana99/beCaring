@@ -45,7 +45,7 @@
                                 @foreach($patients as $patient)
                                     <tr>
                                         <td>{{ $patient->id }}</td>
-                                        <td>{{ $patient->first_name.' '.$patient->last_name}}</td>
+                                        <td>{{ $patient->name}}</td>
                                         <td>{{ $patient->phone }}</td>
                                         <td>{{ $patient->email }}</td>
                                         <td>{{ $patient->address }}</td>

@@ -20,7 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('company_website');
             $table->string('business_name');
             $table->integer('contact')->default(0);
-            $table->string('name')->nullable();
+            $table->string('contact_name')->nullable();
             $table->string('mobile_number')->nullable();
             $table->string('position')->nullable();
             $table->string('current_cqc_rating');

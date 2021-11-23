@@ -158,7 +158,7 @@
                             })
                             $('tbody').append('<tr>\
                             <td>'+Company.id+'</td>\
-                            <td>'+Company.first_name+' '+Company.last_name +'</td>\
+                            <td>'+Company.name +'</td>\
                             <td>'+Company.phone+'</td>\
                             <td>'+Company.email+'</td>\
                             <td>'+options.join(' ')+'</td>\
@@ -216,7 +216,7 @@
                                 permission_id.append($("<option />").val(response.permissions[permission].id).text(response.permissions[permission].name));
                             });
                             $('#user_id').val(response.company.id);
-                            $('#edit_name').val(response.company.first_name+' '+response.company.last_name);
+                            $('#edit_name').val(response.company.name);
                         }
                     }
                 });

@@ -29,6 +29,15 @@ class PatientController extends Controller
         ]);
     }
 
+    public function fetchPatients(){
+        $role = Role::where('name', 'Patient')->first();
+        $patients = $role->users()->get();
+        return response()->json([
+            'status' => true,
+            'patients' => $patients,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -55,9 +64,10 @@ class PatientController extends Controller
             'password' => 'required|min:8|confirmed:password_confirmation',
             'address' => 'required',
         ]);
+        $first_name = $request->input('first_name');
+        $last_name = $request->input('last_name');
         $patient = User::create([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
+            'name' => $first_name.' '.$last_name,
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'phone' => $request->input('phone') ?? '',
@@ -112,7 +122,16 @@ class PatientController extends Controller
             'address' => 'required',
         ]);
         $patient = User::find($user);
-        $patient->update($request->all());
+        $first_name = $request->input('first_name');
+        $last_name = $request->input('last_name');
+        $patient->update([
+            'name' => $first_name.' '.$last_name,
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone') ?? '',
+            'address' => $request->input('address'),
+            'address_latitude' => $request->input('address_latitude'),
+            'address_longitude' => $request->input('address_longitude'),
+        ]);
         $this->storeImage($patient);
         return redirect(route('patient.index'));
     }

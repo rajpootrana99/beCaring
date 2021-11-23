@@ -79,13 +79,14 @@ class EmployeeController extends Controller
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
+        $first_name = $request->input('first_name');
+        $last_name = $request->input('last_name');
         $employee = User::create([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
+            'name' => $first_name.' '.$last_name,
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'phone' => $request->input('phone') ?? '',
             'parent_id' => Auth::id(),
+            'is_approved' => 1,
         ]);
         $employee->givePermissionTo($request->input('permission_id'));
         $employee->assignRole('Moderator');
@@ -156,9 +157,13 @@ class EmployeeController extends Controller
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
-
+        $first_name = $request->input('first_name');
+        $last_name = $request->input('last_name');
         $employee = User::find($user);
-        $employee->update($request->all());
+        $employee->update([
+            'name' => $first_name.' '.$last_name,
+            'email' => $request->input('email'),
+        ]);
         $employee->revokePermissionTo($employee->permissions);
         $employee->givePermissionTo($request->permission_id);
         $this->storeImage($employee);

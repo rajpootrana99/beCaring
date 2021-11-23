@@ -239,13 +239,13 @@
                         $('tbody').html("");
                         $.each(response.appointments, function (key, appointment) {
                             if (appointment.nurse != null){
-                                var nurse = appointment.nurse.first_name+' '+appointment.nurse.last_name;
+                                var nurse = appointment.nurse.name;
                             }
                             else {
                                 nurse = 'Not Assigned yet';
                             }
                             appointment.patients.forEach(function (p){
-                                options[i] = p.first_name+' '+p.last_name;
+                                options[i] = p.name;
                                 i = i+1;
                             })
                             $('tbody').append('<tr>\
@@ -278,7 +278,7 @@
                         var patient_id = $('#patient_id');
                         $('#patient_id').children().remove().end()
                         $.each(response.patients, function (patient) {
-                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].first_name+' '+response.patients[patient].last_name));
+                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].name));
                         });
                     }
                 });
@@ -366,7 +366,7 @@
                             var patient_id = $('#edit_patient_id');
                             $('#edit_patient_id').children().remove().end()
                             $.each(response.patients, function (patient) {
-                                patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].first_name+' '+response.patients[patient].last_name));
+                                patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].name));
                             });
                             $('#appointment_id').val(response.appointment.id);
                             $('#edit_date').val(response.appointment.date);

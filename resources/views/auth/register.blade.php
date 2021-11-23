@@ -21,12 +21,12 @@
     <div class="tab-content">
         <div class="tab-pane active p-3" id="personal_information_tab" role="tabpanel">
             <div class="form-group mb-2">
-                <label for="first_name">Your Name</label>
+                <label for="name">Your Name</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter Your Name">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Your Name">
                 </div>
             </div>
-            <span class="text-danger error-text">{{ $errors->first('first_name') }}</span>
+            <span class="text-danger error-text">{{ $errors->first('name') }}</span>
 
             <div class="form-group mb-2">
                 <label for="company_name">Company Name</label>
@@ -112,13 +112,13 @@
             <!--end form-group-->
 
             <div class="form-group mb-2">
-                <label for="name">Name</label>
+                <label for="contact_name">Name</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+                    <input type="text" class="form-control" name="contact_name" id="contact_name" placeholder="Enter Name">
                 </div>
             </div>
             <!--end form-group-->
-            <span class="text-danger error-text">{{ $errors->first('name') }}</span>
+            <span class="text-danger error-text">{{ $errors->first('contact_name') }}</span>
 
             <div class="form-group mb-2">
                 <label for="mobile_number">Mobile Number</label>

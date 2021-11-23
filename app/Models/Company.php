@@ -15,7 +15,7 @@ class Company extends Model
         'company_website',
         'business_name',
         'contact',
-        'name',
+        'contact_name',
         'mobile_number',
         'position',
         'current_cqc_rating',
