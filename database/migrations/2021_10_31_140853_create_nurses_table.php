@@ -16,9 +16,11 @@ class CreateNursesTable extends Migration
         Schema::create('nurses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nurse_id');
-            $table->string('gender');
             $table->string('dob');
+            $table->string('working_radius');
             $table->string('address');
+            $table->string('postal_code');
+            $table->string('date_of_interview');
             $table->string('identification_document')->nullable();
             $table->string('dbs_certificate')->nullable();
             $table->string('care_qualification_certificate')->nullable();

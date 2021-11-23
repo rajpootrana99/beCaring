@@ -22,6 +22,8 @@ Route::post('checkToken', 'NurseForgotController@checkToken');
 //NurseController Routes
 Route::post('nurseLogin', 'NurseController@login');
 Route::post('nurseRegister', 'NurseController@register');
+Route::post('verifyToken', 'NurseController@verifyToken');
+Route::post('verifyEmail', 'NurseController@verifyEmail');
 Route::post('completeProfile', 'NurseController@completeProfile');
 Route::get('nurse', 'NurseController@nurse')->middleware('auth:api');
 Route::get('nurseLogout', 'NurseController@logout')->middleware('auth:api');

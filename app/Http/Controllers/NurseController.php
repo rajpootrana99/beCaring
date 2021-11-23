@@ -7,8 +7,11 @@ use App\Models\Nurse;
 use App\Models\Token;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class NurseController extends Controller
@@ -60,14 +63,23 @@ class NurseController extends Controller
     public function register(Request $request){
         /** @var User $nurse */
         $validator = tap(Validator::make($request->all(),[
+            'token' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
+            'dob' => 'required',
+            'working_radius' => 'required',
+            'postal_code' => 'required',
+            'date_of_interview' => 'required',
+            'address' => 'required',
         ]), function (){
             if(request()->hasFile(request()->image)){
                 Validator::make(request()->all(),[
                     'image' => 'required|file|image',
+                    'identification_document' => 'required|file|image',
+                    'dbs_certificate' => 'required|file|image',
+                    'care_qualification_certificate' => 'required|file|image',
                 ]);
             }
             if (request()->phone){
@@ -86,6 +98,13 @@ class NurseController extends Controller
             ]);
         }
         try {
+            $token = $request->input('token');
+            if(!$verifyEmail = DB::table('verify_emails')->where('token', $token)->first()){
+                return response([
+                    'status' => false,
+                    'message' => 'Invalid token!'
+                ], 400);
+            }
             $first_name = $request->input('first_name');
             $last_name = $request->input('last_name');
             $nurse = User::create([
@@ -100,6 +119,15 @@ class NurseController extends Controller
                 'nurse_id' => $nurse->id,
                 'token' => $request->input('token'),
             ]);
+            $nurse_detail = Nurse::create([
+                'nurse_id' => $nurse->id,
+                'working_radius' => $request->input('working_radius'),
+                'postal_code' => $request->input('postal_code'),
+                'date_of_interview' => $request->input('date_of_interview'),
+                'dob' => $request->input('dob'),
+                'address' => $request->input('address'),
+            ]);
+            $this->storeDocument($nurse_detail);
             $token = $nurse->createToken('app')->accessToken;
             return response([
                 'status' => true,
@@ -146,9 +174,10 @@ class NurseController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|exists:users',
-            'password' => 'required|min:8|confirmed:password_confirmation',
-            'gender' => 'required',
             'dob' => 'required',
+            'working_radius' => 'required',
+            'postal_code' => 'required',
+            'date_of_interview' => 'required',
             'address' => 'required',
         ]), function (){
             if(request()->hasFile(request()->image)){
@@ -184,7 +213,9 @@ class NurseController extends Controller
             $this->storeImage($nurse);
             $nurse_detail = Nurse::where('nurse_id', $nurse->id)->first();
             $nurse_detail->update([
-                'gender' => $request->input('gender'),
+                'working_radius' => $request->input('working_radius'),
+                'postal_code' => $request->input('postal_code'),
+                'date_of_interview' => $request->input('date_of_interview'),
                 'dob' => $request->input('dob'),
                 'address' => $request->input('address'),
             ]);
@@ -206,7 +237,6 @@ class NurseController extends Controller
 
     public function completeProfile(Request $request){
         $validator = tap(Validator::make($request->all(),[
-            'gender' => 'required',
             'dob' => 'required',
             'address' => 'required',
         ]), function (){
@@ -231,7 +261,6 @@ class NurseController extends Controller
             $nurse = Nurse::where('id', Auth::id() )->first();
             $nurse_detail = Nurse::create([
                 'nurse_id' => Auth::id(),
-                'gender' => $request->input('gender'),
                 'dob' => $request->input('dob'),
                 'address' => $request->input('address'),
             ]);
@@ -261,6 +290,59 @@ class NurseController extends Controller
             'identification_document' => $this->imagePath('identification_document', 'nurse', $nurse_detail),
             'dbs_certificate' => $this->imagePath('dbs_certificate', 'nurse', $nurse_detail),
             'care_qualification_certificate' => $this->imagePath('care_qualification_certificate', 'nurse', $nurse_detail),
+        ]);
+    }
+
+    public function verifyEmail(Request $request){
+        $validator = Validator::make($request->all(),[
+            'email' => 'required|email|unique:users',
+        ]);
+        if($validator->fails()){
+            $message = $validator->errors();
+            return collect([
+                'status' => false,
+                'message' =>$message->first()
+            ]);
+        }
+        $token = random_int(1000, 9999);
+
+        $email = $request->input('email');
+
+        try {
+            DB::table('verify_emails')->insert([
+                'email' => $request->input('email'),
+                'token' => $token
+            ]);
+
+            Mail::send('Mails.verify', ['token' => $token], function (Message $message) use ($email){
+                $message->to($email);
+                $message->subject('Verify Your Email');
+            });
+
+            return response([
+                'status' => true,
+                'message' => 'Check your email'
+            ]);
+        }catch (\Exception $exception){
+            return response([
+                'status' => false,
+                'message' => $exception->getMessage()
+            ], 400);
+        }
+    }
+
+    public function verifyToken(Request $request){
+        $token = $request->input('token');
+        if(!$verifyEmail = DB::table('verify_emails')->where('token', $token)->first()){
+            return response([
+                'status' => false,
+                'message' => 'Invalid token!'
+            ], 400);
+        }
+
+        return response([
+            'status' => true,
+            'message' => 'Success'
         ]);
     }
 }
