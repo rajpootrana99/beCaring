@@ -64,6 +64,7 @@ class NurseController extends Controller
         /** @var User $nurse */
         $validator = tap(Validator::make($request->all(),[
             'token' => 'required',
+            'device_token' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
@@ -118,7 +119,7 @@ class NurseController extends Controller
             $this->storeImage($nurse);
             $device_token = Token::create([
                 'nurse_id' => $nurse->id,
-                'token' => $request->input('token'),
+                'token' => $request->input('device_token'),
             ]);
             $nurse_detail = Nurse::create([
                 'nurse_id' => $nurse->id,
