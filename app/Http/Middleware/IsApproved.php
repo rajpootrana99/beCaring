@@ -17,7 +17,7 @@ class IsApproved
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->check() && auth()->user()->is_approved == 1){
+        if(auth()->check() && auth()->user()->is_approved == 'Approved'){
             return $next($request);
         }
         Auth::guard('web')->logout();
