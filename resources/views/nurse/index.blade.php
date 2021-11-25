@@ -35,7 +35,13 @@
                                     <th width="20%">Name</th>
                                     <th width="15%">Phone</th>
                                     <th width="20%">Email</th>
+                                    <th width="10%">Interview Date</th>
+                                    <th width="20%">Identification Document</th>
+                                    <th width="10%">DBS Certificate</th>
+                                    <th width="7%">CQC</th>
+                                    <th width="8%">Status</th>
                                     <th width="3%"><i class="fa fa-trash"></i></th>
+                                    <th width="3%"><i class="fa fa-check-circle"></i></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -97,17 +103,43 @@
                     success: function (response) {
                         $('tbody').html("");
                         $.each(response.nurses, function (key, nurse) {
+                            var status;
+                            if (nurse.user.is_approved == 'Approved'){
+                                status = '<span class="badge badge-success">'+nurse.user.is_approved+'</span>';
+                            }
+                            else {
+                                status = '<span class="badge badge-primary">'+nurse.user.is_approved+'</span>';
+                            }
                             $('tbody').append('<tr>\
                             <td>'+nurse.id+'</td>\
-                            <td>'+nurse.name +'</td>\
-                            <td>'+nurse.phone+'</td>\
-                            <td>'+nurse.email+'</td>\
+                            <td>'+nurse.user.name +'</td>\
+                            <td>'+nurse.user.phone+'</td>\
+                            <td>'+nurse.user.email+'</td>\
+                            <td>'+nurse.date_of_interview+'</td>\
+                            <td><a target="_blank" href="storage/'+nurse.identification_document+'" title=""><span class="badge badge-info">Show Document</span></td>\
+                            <td><a target="_blank" href="storage/'+nurse.dbs_certificate+'" title=""><span class="badge badge-info">Show Certificate</span></td>\
+                            <td><a target="_blank" href="storage/'+nurse.care_qualification_certificate+'" title=""><span class="badge badge-info">Show CQC</span></td>\
+                            <td>'+status+'</td>\
                             <td><button value="'+nurse.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
+                            <td><button value="'+nurse.user.id+'" style="border: none; background-color: #fff" class="approve_btn"><i class="fa fa-check-circle"></i></button></td>\
                     </tr>');
                         });
                     }
                 });
             }
+
+            $(document).on('click', '.approve_btn', function (e) {
+                e.preventDefault();
+                var user_id = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: 'approveUser/'+user_id,
+                    dataType: "json",
+                    success: function (response) {
+                        fetchNurses();
+                    }
+                });
+            });
 
             $(document).on('click', '.delete_btn', function (e) {
                 e.preventDefault();

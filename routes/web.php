@@ -37,7 +37,7 @@ Route::get('fetchWishLists', 'Admin\WishListController@fetchWishLists')->middlew
 
 Route::resource('company', 'Admin\CompanyController')->middleware('permission:Manage Company');
 Route::get('fetchCompanies', 'Admin\CompanyController@fetchCompanies')->middleware('permission:Show Company');
-Route::get('approveUser/{user}', 'Auth\RegisteredUserController@approveUser')->middleware('permission:Manage Company');
+Route::get('approveUser/{user}', 'Auth\RegisteredUserController@approveUser')->middleware('permission:Manage Company|Manage Nurse');
 
 Route::resource('role', 'Admin\RoleController')->middleware('permission:Manage Role');
 Route::get('fetchRoles', 'Admin\RoleController@fetchRoles')->middleware('permission:Show Role');

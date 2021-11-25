@@ -20,6 +20,6 @@ class Nurse extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class, 'id', 'nurse_id');
+        return $this->belongsTo(User::class, 'nurse_id', 'id');
     }
 }

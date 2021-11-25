@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Nurse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -20,8 +21,7 @@ class NurseController extends Controller
     }
 
     public function fetchNurses(){
-        $role = Role::where('name', 'Nurse')->first();
-        $nurses = $role->users()->get();
+        $nurses = Nurse::with('user')->get();
         return response()->json([
             'nurses' => $nurses,
         ]);
@@ -90,7 +90,8 @@ class NurseController extends Controller
      */
     public function destroy($user)
     {
-        $nurse = User::find($user);
+        $nurse = Nurse::find($user);
+        $user = User::find($nurse->nurse_id);
         if (!$nurse){
             return response()->json([
                 'status' => 0,
@@ -98,6 +99,7 @@ class NurseController extends Controller
             ]);
         }
         $nurse->delete();
+        $user->delete();
         return response()->json([
             'status' => 1,
             'message' => 'Nurse Deleted Successfully'
