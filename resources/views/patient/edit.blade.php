@@ -30,35 +30,56 @@
                             @csrf
                             @method('patch')
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="first_name" class="col-form-label text-right">First Name</label>
-                                        <input class="form-control" type="text" name="first_name" value="{{ $patient->first_name }}" placeholder="Enter First Name" id="first_name" >
-                                        <span class="text-danger error-text">{{ $errors->first('first_name') }}</span>
+                                        <label for="name" class="col-form-label text-right">Name</label>
+                                        <input class="form-control" type="text" name="name" value="{{ $patient->user->name }}" id="name" >
+                                        <span class="text-danger error-text">{{ $errors->first('name') }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="last_name" class="col-form-label text-right">Last Name</label>
-                                        <input class="form-control" type="text" name="last_name" value="{{ $patient->last_name }}" placeholder="Enter Last Name" id="last_name" >
-                                        <span class="text-danger error-text">{{ $errors->first('last_name') }}</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="email" class="col-form-label text-right">Email</label>
-                                        <input class="form-control" type="email" name="email" readonly value="{{ $patient->email }}" placeholder="Enter Email Address" id="email">
+                                        <input class="form-control" type="email" name="email" readonly value="{{ $patient->user->email }}" id="email">
                                         <span class="text-danger error-text">{{ $errors->first('email') }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="phone" class="col-form-label text-right">Phone</label>
-                                        <input class="form-control" type="text" name="phone" placeholder="Enter Cell No" value="{{ $patient->phone }}" id="phone">
+                                        <input class="form-control" type="text" name="phone" value="{{ $patient->user->phone }}" id="phone">
                                         <span class="text-danger error-text">{{ $errors->first('phone') }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="dob" class="col-form-label text-right">Date of Birth</label>
+                                        <input class="form-control" type="date" name="dob" value="{{ $patient->dob }}" id="dob">
+                                        <span class="text-danger error-text">{{ $errors->first('dob') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="blood_group" class="col-form-label text-right">Blood Group</label>
+                                        <input class="form-control" type="text" name="blood_group" value="{{ $patient->blood_group }}" id="blood_group">
+                                        <span class="text-danger error-text">{{ $errors->first('blood_group') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="height" class="col-form-label text-right">Height</label>
+                                        <input class="form-control" type="text" name="height" value="{{ $patient->height }}" id="height">
+                                        <span class="text-danger error-text">{{ $errors->first('height') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="weight" class="col-form-label text-right">Weight</label>
+                                        <input class="form-control" type="text" name="weight" value="{{ $patient->weight }}" id="weight">
+                                        <span class="text-danger error-text">{{ $errors->first('weight') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
                                     <label for="image" class="col-form-label text-right">Image</label>
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" name="image" id="image">
@@ -66,18 +87,55 @@
                                     </div>
                                     <span class="text-danger error-text">{{ $errors->first('image') }}</span>
                                 </div>
+                            </div><!--end row-->
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="allergies" class="col-form-label text-right">Allergies</label>
+                                        <textarea class="form-control"  rows="3" name="allergies" id="allergies">{{ $patient->allergies }}</textarea>
+                                        <span class="text-danger error-text">{{ $errors->first('allergies') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="medications" class="col-form-label text-right">Medications</label>
+                                        <textarea class="form-control"  rows="3" name="medications" id="medications">{{ $patient->medications }}</textarea>
+                                        <span class="text-danger error-text">{{ $errors->first('medications') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="immunizations" class="col-form-label text-right">Immunizations</label>
+                                        <textarea class="form-control"  rows="3" name="immunizations" id="immunizations">{{ $patient->immunizations }}</textarea>
+                                        <span class="text-danger error-text">{{ $errors->first('immunizations') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="lab_results" class="col-form-label text-right">Lab Results</label>
+                                        <textarea class="form-control" rows="3" name="lab_results" id="lab_results">{{ $patient->lab_results }}</textarea>
+                                        <span class="text-danger error-text">{{ $errors->first('lab_results') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="additional_notes" class="col-form-label text-right">Additional Notes</label>
+                                        <textarea class="form-control"  rows="3" name="additional_notes" id="additional_notes">{{ $patient->additional_notes }}</textarea>
+                                        <span class="text-danger error-text">{{ $errors->first('additional_notes') }}</span>
+                                    </div>
+                                </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="address">Address</label>
-                                        <input type="text" id="address-input" name="address" value="{{ $patient->address }}" class="form-control map-input">
-                                        <input type="hidden" name="address_latitude" id="address-latitude" value="{{ $patient->address_latitude }}" />
-                                        <input type="hidden" name="address_longitude" id="address-longitude" value="{{ $patient->address_longitude }}" />
+                                        <input type="text" id="address-input" name="address" value="{{ $patient->user->address }}" class="form-control map-input">
+                                        <input type="hidden" name="address_latitude" id="address-latitude" value="{{ $patient->user->address_latitude }}" />
+                                        <input type="hidden" name="address_longitude" id="address-longitude" value="{{ $patient->user->address_longitude }}" />
                                     </div>
                                 </div>
                                 <div id="address-map-container" style="width:100%;height:400px; ">
                                     <div style="width: 100%; height: 100%" id="address-map"></div>
                                 </div>
-                            </div><!--end row-->
+                            </div>
                         </div><!--end card-body-->
                         <div class="card-footer float-right">
                             <button type="submit" class="btn btn-primary btn-sm">Save</button>

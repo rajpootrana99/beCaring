@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\GeneralTrait;
 use App\Models\Address;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +23,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $role = Role::where('name', 'Patient')->first();
-        $patients = $role->users()->get();
+        $patients = Patient::with('user')->get();
         return view('patient.index', [
             'patients' => $patients,
         ]);
@@ -63,6 +63,15 @@ class PatientController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed:password_confirmation',
             'address' => 'required',
+            'dob' => 'required',
+            'blood_group' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
+            'allergies' => 'nullable',
+            'medications' => 'nullable',
+            'immunizations' => 'nullable',
+            'lab_results' => 'nullable',
+            'additional_notes' => 'nullable',
         ]);
         $first_name = $request->input('first_name');
         $last_name = $request->input('last_name');
@@ -77,6 +86,18 @@ class PatientController extends Controller
         ]);
         $patient->assignRole('Patient');
         $this->storeImage($patient);
+        $patient_detail = Patient::create([
+            'patient_id' => $patient->id,
+            'dob' => $request->input('dob'),
+            'blood_group' => $request->input('blood_group'),
+            'height' => $request->input('height'),
+            'weight' => $request->input('weight'),
+            'allergies' => $request->input('allergies'),
+            'medications' => $request->input('medications'),
+            'immunizations' => $request->input('immunizations'),
+            'lab_results' => $request->input('lab_results'),
+            'additional_notes' => $request->input('additional_notes'),
+        ]);
         return redirect(route('patient.index'));
     }
 
@@ -99,7 +120,7 @@ class PatientController extends Controller
      */
     public function edit($user)
     {
-        $patient = User::find($user);
+        $patient = Patient::find($user);
         return view('patient.edit',[
             'patient' => $patient,
         ]);
@@ -112,27 +133,27 @@ class PatientController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $user)
+    public function update(Request $request, Patient $patient)
     {
         $data = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|exists:users',
             'address' => 'required',
+            'dob' => 'required',
+            'blood_group' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
+            'allergies' => 'nullable',
+            'medications' => 'nullable',
+            'immunizations' => 'nullable',
+            'lab_results' => 'nullable',
+            'additional_notes' => 'nullable',
         ]);
-        $patient = User::find($user);
-        $first_name = $request->input('first_name');
-        $last_name = $request->input('last_name');
-        $patient->update([
-            'name' => $first_name.' '.$last_name,
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone') ?? '',
-            'address' => $request->input('address'),
-            'address_latitude' => $request->input('address_latitude'),
-            'address_longitude' => $request->input('address_longitude'),
-        ]);
-        $this->storeImage($patient);
+        $user = User::find($patient->patient_id);
+        $user->update($request->all());
+        $this->storeImage($user);
+        $patient->update($request->all());
         return redirect(route('patient.index'));
     }
 
@@ -142,10 +163,11 @@ class PatientController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($user)
+    public function destroy(Patient $patient)
     {
-        $patient = User::find($user);
+        $user = User::find($patient->patient_id);
         $patient->delete();
+        $user->delete();
         return redirect(route('patient.index'));
     }
 
