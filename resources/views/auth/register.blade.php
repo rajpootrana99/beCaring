@@ -23,7 +23,7 @@
             <div class="form-group mb-2">
                 <label for="name">Your Name</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Your Name">
+                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" placeholder="Enter Your Name">
                 </div>
             </div>
             <span class="text-danger error-text">{{ $errors->first('name') }}</span>
@@ -31,7 +31,7 @@
             <div class="form-group mb-2">
                 <label for="company_name">Company Name</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Enter Company Name">
+                    <input type="text" class="form-control" name="company_name" value="{{ old('company_name') }}" id="company_name" placeholder="Enter Company Name">
                 </div>
             </div>
             <span class="text-danger error-text">{{ $errors->first('company_name') }}</span>
@@ -39,7 +39,7 @@
             <div class="form-group mb-2">
                 <label for="company_website">Company Website</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="company_website" id="company_website" placeholder="Enter Company Website">
+                    <input type="text" class="form-control" name="company_website" id="company_website" value="{{ old('company_website') }}" placeholder="Enter Company Website">
                 </div>
             </div>
             <span class="text-danger error-text">{{ $errors->first('company_website') }}</span>
@@ -47,7 +47,7 @@
             <div class="form-group mb-2">
                 <label for="phone">Telephone Number</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter Telephone Number">
+                    <input type="text" class="form-control" name="phone" id="phone" value="{{ old('phone') }}" placeholder="Enter Telephone Number">
                 </div>
             </div>
             <span class="text-danger error-text">{{ $errors->first('phone') }}</span>
@@ -55,7 +55,7 @@
             <div class="form-group mb-2">
                 <label for="name">Email</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email">
+                    <input type="text" class="form-control" name="email" id="email" value="{{ old('email') }}" placeholder="Enter Email">
                 </div>
             </div>
             <span class="text-danger error-text">{{ $errors->first('email') }}</span>
@@ -64,7 +64,7 @@
             <div class="form-group mb-2">
                 <label for="password">Password</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+                    <input type="password" class="form-control" name="password" id="password" value="{{ old('password') }}" placeholder="Enter Password">
                 </div>
             </div>
             <span class="text-danger error-text">{{ $errors->first('password') }}</span>
@@ -85,7 +85,7 @@
             <div class="form-group mb-2">
                 <label for="business_name">Your Business</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="business_name" id="business_name" placeholder="Enter Your Business">
+                    <input type="text" class="form-control" name="business_name" value="{{ old('business_name') }}" id="business_name" placeholder="Enter Your Business">
                 </div>
             </div>
             <!--end form-group-->
@@ -94,7 +94,7 @@
             <div class="form-group mb-2">
                 <label for="address">Address</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address">
+                    <input type="text" class="form-control" name="address" value="{{ old('address') }}" id="address" placeholder="Enter Address">
                 </div>
             </div>
             <!--end form-group-->
@@ -114,7 +114,7 @@
             <div class="form-group mb-2">
                 <label for="contact_name">Name</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="contact_name" id="contact_name" placeholder="Enter Name">
+                    <input type="text" class="form-control" name="contact_name" value="{{ old('contact_name') }}" id="contact_name" placeholder="Enter Name">
                 </div>
             </div>
             <!--end form-group-->
@@ -123,7 +123,7 @@
             <div class="form-group mb-2">
                 <label for="mobile_number">Mobile Number</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="mobile_number" id="mobile_number" placeholder="Enter Mobile Number">
+                    <input type="text" class="form-control" name="mobile_number" id="mobile_number" value="{{ old('mobile_number') }}" placeholder="Enter Mobile Number">
                 </div>
             </div>
             <!--end form-group-->
@@ -132,7 +132,7 @@
             <div class="form-group mb-2">
                 <label for="position">Position in Company</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="position" id="position" placeholder="Position in Company">
+                    <input type="text" class="form-control" name="position" id="position" value="{{ old('position') }}" placeholder="Position in Company">
                 </div>
             </div>
             <!--end form-group-->
@@ -164,7 +164,7 @@
             <div class="form-group mb-2">
                 <label for="your_needs">Your Needs</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="your_needs" id="your_needs" placeholder="Your Needs">
+                    <input type="text" class="form-control" name="your_needs" value="{{ old('your_needs') }}" id="your_needs" placeholder="Your Needs">
                 </div>
             </div>
             <!--end form-group-->
@@ -188,7 +188,7 @@
             <div class="form-group mb-2">
                 <label for="staff_type">Are you looking for temp staff to fill a staff holiday, sickness or cover regular full time shifts?</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="staff_type" id="staff_type">
+                    <input type="text" class="form-control" name="staff_type" value="{{ old('staff_type') }}" id="staff_type">
                 </div>
             </div>
             <!--end form-group-->
@@ -213,7 +213,7 @@
             <div class="form-group mb-2">
                 <label for="full_time_employees">How many full time employees do you currently have?</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="full_time_employees" id="full_time_employees">
+                    <input type="text" class="form-control" name="full_time_employees" value="{{ old('full_time_employees') }}" id="full_time_employees">
                 </div>
             </div>
             <!--end form-group-->
@@ -231,7 +231,7 @@
             <div class="form-group mb-2">
                 <label for="cqc" class="col-form-label text-right">Uplod CQC</label>
                 <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" name="cqc" id="cqc">
+                    <input type="file" class="custom-file-input" value="{{ old('cqc') }}" name="cqc" id="cqc">
                     <label class="custom-file-label" for="cqc">Choose file</label>
                 </div>
             </div>
@@ -241,7 +241,7 @@
             <div class="form-group mb-2">
                 <label for="insurance_proof" class="col-form-label text-right">Insurance Proof</label>
                 <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" name="insurance_proof" id="insurance_proof">
+                    <input type="file" class="custom-file-input" value="{{ old('insurance_proof') }}" name="insurance_proof" id="insurance_proof">
                     <label class="custom-file-label" for="insurance_proof">Choose file</label>
                 </div>
             </div>
