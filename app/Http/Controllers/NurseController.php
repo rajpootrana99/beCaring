@@ -127,7 +127,7 @@ class NurseController extends Controller
                 'address' => $request->input('address'),
             ]);
             $nurse->assignRole('Nurse');
-            $this->storeImage($nurse);
+//            $this->storeImage($nurse);
             $device_token = Token::create([
                 'nurse_id' => $nurse->id,
                 'token' => $request->input('device_token'),
@@ -234,7 +234,7 @@ class NurseController extends Controller
                 'phone' => $request->input('phone'),
                 'address' => $request->input('address'),
             ]);
-            $this->storeImage($nurse);
+//            $this->storeImage($nurse);
             $nurse_detail = Nurse::where('nurse_id', $nurse->id)->first();
             $nurse_detail->update([
                 'working_radius' => $request->input('working_radius'),
