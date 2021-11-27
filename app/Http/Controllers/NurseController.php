@@ -72,14 +72,25 @@ class NurseController extends Controller
             'dob' => 'required',
             'working_radius' => 'required',
             'postal_code' => 'required',
-            'date_of_interview' => 'required',
             'address' => 'required',
         ]), function (){
             if(request()->hasFile(request()->image)){
                 Validator::make(request()->all(),[
                     'image' => 'required|file|image',
+                ]);
+            }
+            if(request()->hasFile(request()->identification_document)){
+                Validator::make(request()->all(),[
                     'identification_document' => 'required|file|image',
+                ]);
+            }
+            if(request()->hasFile(request()->dbs_certificate)){
+                Validator::make(request()->all(),[
                     'dbs_certificate' => 'required|file|image',
+                ]);
+            }
+            if(request()->hasFile(request()->care_qualification_certificate)){
+                Validator::make(request()->all(),[
                     'care_qualification_certificate' => 'required|file|image',
                 ]);
             }
@@ -178,14 +189,25 @@ class NurseController extends Controller
             'dob' => 'required',
             'working_radius' => 'required',
             'postal_code' => 'required',
-            'date_of_interview' => 'required',
             'address' => 'required',
         ]), function (){
             if(request()->hasFile(request()->image)){
                 Validator::make(request()->all(),[
                     'image' => 'required|file|image',
+                ]);
+            }
+            if(request()->hasFile(request()->identification_document)){
+                Validator::make(request()->all(),[
                     'identification_document' => 'required|file|image',
+                ]);
+            }
+            if(request()->hasFile(request()->dbs_certificate)){
+                Validator::make(request()->all(),[
                     'dbs_certificate' => 'required|file|image',
+                ]);
+            }
+            if(request()->hasFile(request()->care_qualification_certificate)){
+                Validator::make(request()->all(),[
                     'care_qualification_certificate' => 'required|file|image',
                 ]);
             }
@@ -241,10 +263,18 @@ class NurseController extends Controller
         $validator = tap(Validator::make($request->all(),[
             'dob' => 'required',
         ]), function (){
-            if(request()->hasFile(request()->image)){
+            if(request()->hasFile(request()->identification_document)){
                 Validator::make(request()->all(),[
                     'identification_document' => 'required|file|image',
+                ]);
+            }
+            if(request()->hasFile(request()->dbs_certificate)){
+                Validator::make(request()->all(),[
                     'dbs_certificate' => 'required|file|image',
+                ]);
+            }
+            if(request()->hasFile(request()->care_qualification_certificate)){
+                Validator::make(request()->all(),[
                     'care_qualification_certificate' => 'required|file|image',
                 ]);
             }
