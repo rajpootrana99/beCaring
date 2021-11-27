@@ -103,19 +103,25 @@
                     success: function (response) {
                         $('tbody').html("");
                         $.each(response.nurses, function (key, nurse) {
-                            var status;
+                            var status, date_of_interview;
                             if (nurse.user.is_approved == 'Approved'){
                                 status = '<span class="badge badge-success">'+nurse.user.is_approved+'</span>';
                             }
                             else {
                                 status = '<span class="badge badge-primary">'+nurse.user.is_approved+'</span>';
                             }
+                            if (nurse.date_of_interview == null){
+                                date_of_interview = 'Not Assigned';
+                            }
+                            else {
+                                date_of_interview = nurse.date_of_interview;
+                            }
                             $('tbody').append('<tr>\
                             <td>'+nurse.id+'</td>\
                             <td>'+nurse.user.name +'</td>\
                             <td>'+nurse.user.phone+'</td>\
                             <td>'+nurse.user.email+'</td>\
-                            <td>'+nurse.date_of_interview+'</td>\
+                            <td>'+date_of_interview+'</td>\
                             <td><a target="_blank" href="storage/'+nurse.identification_document+'" title=""><span class="badge badge-info">Show Document</span></td>\
                             <td><a target="_blank" href="storage/'+nurse.dbs_certificate+'" title=""><span class="badge badge-info">Show Certificate</span></td>\
                             <td><a target="_blank" href="storage/'+nurse.care_qualification_certificate+'" title=""><span class="badge badge-info">Show CQC</span></td>\
