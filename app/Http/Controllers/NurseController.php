@@ -125,7 +125,7 @@ class NurseController extends Controller
                 'nurse_id' => $nurse->id,
                 'working_radius' => $request->input('working_radius'),
                 'postal_code' => $request->input('postal_code'),
-                'date_of_interview' => $request->input('date_of_interview'),
+                'promo_code' => $request->input('promo_code'),
                 'dob' => $request->input('dob'),
             ]);
             $this->storeDocument($nurse_detail);
@@ -218,6 +218,7 @@ class NurseController extends Controller
                 'working_radius' => $request->input('working_radius'),
                 'postal_code' => $request->input('postal_code'),
                 'date_of_interview' => $request->input('date_of_interview'),
+                'promo_code' => $request->input('promo_code'),
                 'dob' => $request->input('dob'),
             ]);
             $this->storeDocument($nurse_detail);
@@ -343,5 +344,27 @@ class NurseController extends Controller
             'status' => true,
             'message' => 'Success'
         ]);
+    }
+
+    public function setInterviewDate(Request $request){
+        $validator = Validator::make($request->all(),[
+            'date_of_interview' => 'required',
+        ]);
+        if($validator->fails()){
+            $message = $validator->errors();
+            return collect([
+                'status' => false,
+                'message' =>$message->first()
+            ]);
+        }
+
+        $nurse = Nurse::where('nurse_id', Auth::id())->first();
+        $nurse->update($request->all());
+        if ($nurse){
+            return response([
+                'status' => true,
+                'message' => 'Interview Date Set Successfully',
+            ]);
+        }
     }
 }

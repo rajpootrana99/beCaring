@@ -14,6 +14,7 @@ class Nurse extends Model
         'working_radius',
         'postal_code',
         'date_of_interview',
+        'promo_code',
         'identification_document',
         'dbs_certificate',
         'care_qualification_certificate',
