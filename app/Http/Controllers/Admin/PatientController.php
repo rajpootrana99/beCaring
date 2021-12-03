@@ -61,7 +61,6 @@ class PatientController extends Controller
             'last_name' => 'required',
             'phone' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed:password_confirmation',
             'address' => 'required',
             'dob' => 'required',
             'blood_group' => 'required',
@@ -78,7 +77,7 @@ class PatientController extends Controller
         $patient = User::create([
             'name' => $first_name.' '.$last_name,
             'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
+            'password' => Hash::make('password'),
             'phone' => $request->input('phone') ?? '',
             'address' => $request->input('address'),
             'address_latitude' => $request->input('address_latitude'),

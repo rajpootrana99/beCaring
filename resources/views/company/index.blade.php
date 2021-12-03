@@ -37,9 +37,9 @@
                                     <th width="15%">Phone</th>
                                     <th>Permissions</th>
                                     <th width="8%">Status</th>
-                                    <th width="3%"><i class="fa fa-edit"></i></th>
-                                    <th width="3%"><i class="fa fa-trash"></i></th>
-                                    <th width="3%"><i class="fa fa-check-circle"></i></th>
+                                    <th width="3%">Modify</th>
+                                    <th width="3%">Delete</th>
+                                    <th width="3%">Verified</th>
                                 </tr>
                                 </thead>
                                 <tbody>

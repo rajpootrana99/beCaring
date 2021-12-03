@@ -31,76 +31,62 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="first_name" class="col-form-label text-right">First Name</label>
+                                        <label for="first_name" class="col-form-label text-right">First Name<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="text" name="first_name" value="{{ old('first_name') }}" placeholder="Enter First Name" id="first_name" >
                                         <span class="text-danger error-text">{{ $errors->first('first_name') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="last_name" class="col-form-label text-right">Last Name</label>
+                                        <label for="last_name" class="col-form-label text-right">Last Name<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Enter Last Name" id="last_name" >
                                         <span class="text-danger error-text">{{ $errors->first('last_name') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="email" class="col-form-label text-right">Email</label>
+                                        <label for="email" class="col-form-label text-right">Email<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Enter Email Address" id="email">
                                         <span class="text-danger error-text">{{ $errors->first('email') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="password" class="col-form-label text-right">Password</label>
-                                        <input class="form-control" type="password" name="password" value="{{ old('password') }}" id="password">
-                                        <span class="text-danger error-text">{{ $errors->first('password') }}</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="password_confirmation" class="col-form-label text-right">Confirm Password</label>
-                                        <input class="form-control" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" id="password_confirmation">
-                                        <span class="text-danger error-text"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="phone" class="col-form-label text-right">Phone</label>
+                                        <label for="phone" class="col-form-label text-right">Phone<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="text" name="phone" placeholder="Enter Cell No" value="{{ old('phone') }}" id="phone">
                                         <span class="text-danger error-text">{{ $errors->first('phone') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="dob" class="col-form-label text-right">Date of Birth</label>
+                                        <label for="dob" class="col-form-label text-right">Date of Birth<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="date" name="dob" value="{{ old('dob') }}" id="dob">
                                         <span class="text-danger error-text">{{ $errors->first('dob') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="blood_group" class="col-form-label text-right">Blood Group</label>
+                                        <label for="blood_group" class="col-form-label text-right">Blood Group<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="text" name="blood_group" placeholder="Enter Blood Group" value="{{ old('blood_group') }}" id="blood_group">
                                         <span class="text-danger error-text">{{ $errors->first('blood_group') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="height" class="col-form-label text-right">Height</label>
+                                        <label for="height" class="col-form-label text-right">Height<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="text" name="height" placeholder="Enter Height" value="{{ old('height') }}" id="height">
                                         <span class="text-danger error-text">{{ $errors->first('height') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="weight" class="col-form-label text-right">Weight</label>
+                                        <label for="weight" class="col-form-label text-right">Weight<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="text" name="weight" placeholder="Enter Weight" value="{{ old('weight') }}" id="weight">
                                         <span class="text-danger error-text">{{ $errors->first('weight') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <label for="image" class="col-form-label text-right">Image</label>
+                                    <label for="image" class="col-form-label text-right">Care Plan</label>
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" name="image" id="image">
                                         <label class="custom-file-label" for="image">Choose file</label>
@@ -146,7 +132,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label for="address">Address</label>
+                                        <label for="address">Address<strong style="color: #ff0000"> *</strong></label>
                                         <input type="text" id="address-input" name="address" class="form-control map-input">
                                         <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
                                         <input type="hidden" name="address_longitude" id="address-longitude" value="0" />

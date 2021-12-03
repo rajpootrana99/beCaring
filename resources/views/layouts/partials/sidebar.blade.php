@@ -24,7 +24,7 @@
             @endif
             @can('Manage Nurse')
             <li class="{{ (request()->is('nurse')) ? 'active' : '' }}">
-                <a href="{{ route('nurse.index') }}" class="iq-waves-effect collapsed"><i class="las la-user"></i><span>Nurses</span></a>
+                <a href="{{ route('nurse.index') }}" class="iq-waves-effect collapsed"><i class="las la-user"></i><span>Carers</span></a>
             </li>
             @endcan
             @can('Manage Patient')

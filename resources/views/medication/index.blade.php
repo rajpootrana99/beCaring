@@ -37,7 +37,7 @@
                                     <th width="15%">Disease</th>
                                     <th width="25%">Precautions</th>
                                     <th width="20%">Medicine</th>
-                                    <th width="3%"><i class="fa fa-trash"></i></th>
+                                    <th width="3%">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>

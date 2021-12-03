@@ -36,8 +36,8 @@
                                     <th width="20%">Name</th>
                                     <th width="20%">Email</th>
                                     <th>Permissions</th>
-                                    <th width="3%"><i class="fa fa-edit"></i></th>
-                                    <th width="3%"><i class="fa fa-trash"></i></th>
+                                    <th width="3%">Modify</th>
+                                    <th width="3%">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>

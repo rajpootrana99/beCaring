@@ -8,9 +8,9 @@
                 <div class="page-title-box">
                     <div class="row">
                         <div class="col">
-                            <h4 class="page-title">Nurses</h4>
+                            <h4 class="page-title">Carer</h4>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Nurses</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Carer</a></li>
                                 <li class="breadcrumb-item active">List</li>
                             </ol>
                         </div><!--end col-->
@@ -23,7 +23,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title mt-4">Nurses
+                        <div class="card-title mt-4">Carer
                         </div>
                     </div><!--end card-header-->
                     <div class="card-body">
@@ -40,8 +40,8 @@
                                     <th width="10%">DBS Certificate</th>
                                     <th width="7%">CQC</th>
                                     <th width="8%">Status</th>
-                                    <th width="3%"><i class="fa fa-trash"></i></th>
-                                    <th width="3%"><i class="fa fa-check-circle"></i></th>
+                                    <th width="3%">Delete</th>
+                                    <th width="3%">Verified</th>
                                 </tr>
                                 </thead>
                                 <tbody>

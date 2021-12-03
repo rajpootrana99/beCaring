@@ -37,8 +37,8 @@
                                     <th width="15%">Phone</th>
                                     <th width="20%">Email</th>
                                     <th>Address</th>
-                                    <th width="3%"><i class="fa fa-edit"></i></th>
-                                    <th width="3%"><i class="fa fa-trash"></i></th>
+                                    <th width="3%">Modify</th>
+                                    <th width="3%">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>

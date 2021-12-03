@@ -36,7 +36,7 @@
                                     <th width="15%">Phone</th>
                                     <th width="20%">Email</th>
                                     <th width="20%">City</th>
-                                    <th width="3%"><i class="fa fa-trash"></i></th>
+                                    <th width="3%">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
