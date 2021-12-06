@@ -193,19 +193,19 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio12" name="customRadio" class="custom-control-input">
+                                                <input type="radio" id="customRadio12" name="visit_duration" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio12">30 min</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio13" name="customRadio" class="custom-control-input">
+                                                <input type="radio" id="customRadio13" name="visit_duration" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio13">45 min</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio14" name="customRadio" class="custom-control-input">
+                                                <input type="radio" id="customRadio14" name="visit_duration" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio14">60 min</label>
                                             </div>
                                         </div>
@@ -218,13 +218,13 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio15" name="customRadio" class="custom-control-input">
+                                                <input type="radio" id="customRadio15" name="no_of_carers" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio15">1</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio16" name="customRadio" class="custom-control-input">
+                                                <input type="radio" id="customRadio16" name="no_of_carers" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio16">2</label>
                                             </div>
                                         </div>
@@ -237,13 +237,13 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio17" name="customRadio" class="custom-control-input">
+                                                <input type="radio" id="customRadio17" name="hoist_required" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio17">Yes</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio18" name="customRadio" class="custom-control-input">
+                                                <input type="radio" id="customRadio18" name="hoist_required" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio18">No</label>
                                             </div>
                                         </div>
