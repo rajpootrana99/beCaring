@@ -9,10 +9,6 @@
                     <div class="row">
                         <div class="col">
                             <h4 class="page-title">Appointments</h4>
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Appointments</a></li>
-                                <li class="breadcrumb-item active">List</li>
-                            </ol>
                         </div><!--end col-->
                     </div><!--end row-->
                 </div><!--end page-title-box-->
@@ -32,19 +28,16 @@
                             <table class="table table-bordered mb-0 table-centered">
                                 <thead>
                                 <tr>
-                                    <th width="5%">#</th>
-                                    <th width="15%">Nurse Name</th>
-                                    <th width="15%">Patient Name</th>
-                                    <th width="10%">Date</th>
-                                    <th width="10%">Start Time</th>
-                                    <th width="10%">End Time</th>
-                                    <th width="10%">Max Price/ hour</th>
-                                    <th width="10%">Min Price/ hour</th>
-                                    <th width="10%">Bid Price/ hour</th>
-                                    <th width="10%">Status</th>
-                                    <th width="15%">Type</th>
-                                    <th width="3%"><i class="fa fa-edit"></i></th>
-                                    <th width="3%"><i class="fa fa-trash"></i></th>
+                                    <th>Visit ID</th>
+                                    <th>Carer ID</th>
+                                    <th>Company ID</th>
+                                    <th>Patient ID</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Max Price per hour</th>
+                                    <th>Status</th>
+                                    <th width="3%">Modify</th>
+                                    <th width="3%">Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -155,31 +148,31 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="time1" name="customRadio" class="custom-control-input time" value="0">
+                                                <input type="radio" id="time1" name="time" class="custom-control-input time" value="0">
                                                 <label class="custom-control-label" for="time1">Wake Up</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="time2" name="customRadio" class="custom-control-input time" value="1">
+                                                <input type="radio" id="time2" name="time" class="custom-control-input time" value="1">
                                                 <label class="custom-control-label" for="time2">Lunch</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="time3" name="customRadio" class="custom-control-input time" value="2">
+                                                <input type="radio" id="time3" name="time" class="custom-control-input time" value="2">
                                                 <label class="custom-control-label" for="time3">Dinner</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="time4" name="customRadio" class="custom-control-input time" value="3">
+                                                <input type="radio" id="time4" name="time" class="custom-control-input time" value="3">
                                                 <label class="custom-control-label" for="time4">Bed Time</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="time5" name="customRadio" class="custom-control-input time" value="4">
+                                                <input type="radio" id="time5" name="time" class="custom-control-input time" value="4">
                                                 <label class="custom-control-label" for="time5">Specific Time</label>
                                             </div>
                                         </div>
@@ -267,15 +260,12 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group row">
-                                    <label for="example-text-input" class="my-1 col-sm-3 control-label">Max Hourly Rate</label>
+                                    <label for="max_hourly_rate" class="my-1 col-sm-3 control-label">Max Hourly Rate</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" style="height: 30px;" type="text" id="example-text-input">
+                                        <input class="form-control" style="height: 30px;" name="max_hourly_rate" placeholder="£ / hr" type="text" id="max_hourly_rate">
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" name="max_price" id="max_price">
-                            <input type="hidden" name="min_price" id="min_price">
-                            <input type="hidden" name="bid_price" id="bid_price">
                         </div><!--end row-->
                     </div><!--end modal-body-->
                     <div class="modal-footer">
@@ -460,7 +450,7 @@
 
             })
 
-            $(document).on('change', '#price', function (e) {
+            /*$(document).on('change', '#price', function (e) {
                 e.preventDefault();
                 var price = $('#price').val();
                 var max_price = parseInt(price) - ((parseInt(price) /100)*2);
@@ -474,23 +464,7 @@
                 $('#max_price').val(max_price);
                 $('#min_price').val(min_price);
                 $('#bid_price').val(bid_price);
-            })
-
-            $(document).on('change', '#edit_price', function (e) {
-                e.preventDefault();
-                var price = $('#edit_price').val();
-                var max_price = parseInt(price) - ((parseInt(price) /100)*2);
-                var min_price = max_price - ((max_price /100)*30);
-                var date = $('#edit_date').val();
-                var current_date = new Date();
-                date = new Date(date);
-                var days_left = date.getDate()-current_date.getDate();
-                var per = 30/days_left;
-                var bid_price = min_price +((max_price /100)*per);
-                $('#edit_max_price').val(max_price);
-                $('#edit_min_price').val(min_price);
-                $('#edit_bid_price').val(bid_price);
-            })
+            })*/
 
             $(document).on('click', '#addAppointmentButton', function (e) {
                 e.preventDefault();
@@ -500,11 +474,12 @@
                     dataType: "json",
                     success: function (response) {
                         $('#addAppointment').modal('show');
-                        $('#addAppointmentLabel').text('Visit # '+response.visit_id)
+                        $('#addAppointmentLabel').text('Visit ID '+response.visit_id)
                     }
                 });
                 fetchPatients();
                 $(document).find('span.error-text').text('');
+                $('#select_specific_time').css('display', 'none');
             });
 
             $(document).on('click', '.delete_btn', function (e) {
