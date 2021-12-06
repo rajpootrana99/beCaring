@@ -37,7 +37,17 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        //
+        $appointment = Appointment::latest()->first();
+        if($appointment){
+            $visit_id = $appointment->id;
+        }
+        else{
+            $visit_id = 0;
+        }
+        return response()->json([
+            'status' => true,
+            'visit_id' => $visit_id+1,
+        ]);
     }
 
     /**

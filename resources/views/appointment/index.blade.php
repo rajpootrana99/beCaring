@@ -62,7 +62,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title m-0" id="addAppointmentLabel">Appointment</h6>
+                    <h6 class="modal-title m-0" id="addAppointmentLabel"></h6>
                     <button type="button" class="close " data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="la la-times"></i></span>
                     </button>
@@ -71,41 +71,206 @@
                     @csrf
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="patient_id" class="col-form-label text-right">Select Patient</label>
-                                    <select class="select2 mb-3 select2-multiple" name="patient_id[]" id="patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
+                                    <select class="mb-3 form-control" style="height: 30px;" name="patient_id" id="patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient">
 
                                     </select>
                                     <span class="text-danger error-text patient_id_error"></span>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="date" class="col-form-label text-right">Date</label>
-                                    <input class="form-control" type="date" name="date" id="date">
+                                    <label for="date" class="col-form-label text-right">Visit Start Date</label>
+                                    <input class="form-control" style="height: 30px;" type="date" name="date" id="date">
                                     <span class="text-danger error-text date_error"></span>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="start_time" class="col-form-label text-right">Start Time</label>
-                                    <input class="form-control" type="time" name="start_time" id="start_time">
-                                    <span class="text-danger error-text start_time_error"></span>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label for="days" class="col-md-3 my-1 control-label">Days : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck6" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="customCheck6">M</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck7" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="customCheck7">T</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck8" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="customCheck8">W</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck9" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="customCheck9">T</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck10" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="customCheck10">F</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customChec11" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="customChec11">S</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck12" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="customCheck12">S</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="end_time" class="col-form-label text-right">End Time</label>
-                                    <input class="form-control" type="time" name="end_time" id="end_time">
-                                    <span class="text-danger error-text end_time_error"></span>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label for="repeat" class="col-md-3 my-1 control-label">Repeat : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck13" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="customCheck13">Repeat Every Week</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="price" class="col-form-label text-right">Price</label>
-                                    <input class="form-control" type="text" name="price" id="price">
-                                    <span class="text-danger error-text price_error"></span>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label class="col-md-3 my-1 control-label">Time : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="time1" name="customRadio" class="custom-control-input time" value="0">
+                                                <label class="custom-control-label" for="time1">Wake Up</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="time2" name="customRadio" class="custom-control-input time" value="1">
+                                                <label class="custom-control-label" for="time2">Lunch</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="time3" name="customRadio" class="custom-control-input time" value="2">
+                                                <label class="custom-control-label" for="time3">Dinner</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="time4" name="customRadio" class="custom-control-input time" value="3">
+                                                <label class="custom-control-label" for="time4">Bed Time</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="time5" name="customRadio" class="custom-control-input time" value="4">
+                                                <label class="custom-control-label" for="time5">Specific Time</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" id="select_specific_time" style="display: none;">
+                                <div class="form-group row">
+                                    <label for="example-time-input" class="col-sm-3 my-1 control-label">Select Time</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" type="time" id="example-time-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label class="col-md-3 my-1 control-label">Visit Duration : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio12" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio12">30 min</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio13" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio13">45 min</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio14" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio14">60 min</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label class="col-md-3 my-1 control-label">No of Carers : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio15" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio15">1</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio16" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio16">2</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label class="col-md-3 my-1 control-label">Hoist Required : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio17" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio17">Yes</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio18" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadio18">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="my-1 col-sm-3 control-label">Visit Information</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" type="text" id="example-text-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="my-1 col-sm-3 control-label">Max Hourly Rate</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" type="text" id="example-text-input">
+                                    </div>
                                 </div>
                             </div>
                             <input type="hidden" name="max_price" id="max_price">
@@ -284,6 +449,17 @@
                 });
             }
 
+            $(document).on('change', '.time', function (e) {
+                e.preventDefault();
+                if ($("#time5").prop("checked")) {
+                    $('#select_specific_time').css('display', 'block');
+                }
+                else {
+                    $('#select_specific_time').css('display', 'none');
+                }
+
+            })
+
             $(document).on('change', '#price', function (e) {
                 e.preventDefault();
                 var price = $('#price').val();
@@ -318,7 +494,15 @@
 
             $(document).on('click', '#addAppointmentButton', function (e) {
                 e.preventDefault();
-                $('#addAppointment').modal('show');
+                $.ajax({
+                    type: "GET",
+                    url: "appointment/create",
+                    dataType: "json",
+                    success: function (response) {
+                        $('#addAppointment').modal('show');
+                        $('#addAppointmentLabel').text('Visit # '+response.visit_id)
+                    }
+                });
                 fetchPatients();
                 $(document).find('span.error-text').text('');
             });
