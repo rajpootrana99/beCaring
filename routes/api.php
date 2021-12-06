@@ -49,6 +49,7 @@ Route::post('wishList', 'WishListController@store');
 
 //TrainingController Route
 Route::post('markVideoComplete', 'TrainingController@markVideoComplete')->middleware('auth:api');
+Route::get('fetchTrainigVideos', 'TrainingController@fetchTrainigVideos')->middleware('auth:api');
 
 //PatientController Route
 Route::post('patientDetail', 'PatientController@patientDetail')->middleware('auth:api');

@@ -34,4 +34,12 @@ class TrainingController extends Controller
             'training' => $training,
         ]);
     }
+
+    public function fetchTrainigVideos(){
+        $trainings = Training::all();
+        return response([
+            'status' => true,
+            'trainings' => $trainings,
+        ]);
+    }
 }
