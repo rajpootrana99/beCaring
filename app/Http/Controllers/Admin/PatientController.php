@@ -148,6 +148,7 @@ class PatientController extends Controller
             'blood_group' => 'required',
             'height' => 'required',
             'weight' => 'required',
+            'parent_id' => 'required',
             'allergies' => 'nullable',
             'medications' => 'nullable',
             'immunizations' => 'nullable',
@@ -157,7 +158,26 @@ class PatientController extends Controller
         $user = User::find($patient->patient_id);
         $user->update($request->all());
         $this->storeImage($user);
-        $patient->update($request->all());
+        $dob = $request->input('dob');
+        $newDOB = new DateTime($dob);
+        $newDOB = $newDOB->format('d-m-Y');
+        $patient->update([
+            'patient_id' => $user->id,
+            'dob' => $newDOB,
+            'blood_group' => $request->input('blood_group'),
+            'height' => $request->input('height'),
+            'weight' => $request->input('weight'),
+            'toilet_assistance' => $request->input('toilet_assistance'),
+            'personal_care' => $request->input('personal_care'),
+            'fnd_information' => $request->input('fnd_information'),
+            'house_work' => $request->input('house_work'),
+            'access_information' => $request->input('access_information'),
+            'allergies' => $request->input('allergies'),
+            'medications' => $request->input('medications'),
+            'immunizations' => $request->input('immunizations'),
+            'lab_results' => $request->input('lab_results'),
+            'additional_notes' => $request->input('additional_notes'),
+        ]);
         return redirect(route('patient.index'));
     }
 
