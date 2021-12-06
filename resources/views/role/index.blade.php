@@ -9,10 +9,6 @@
                 <div class="row">
                     <div class="col">
                         <h4 class="page-title">Roles</h4>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Roles</a></li>
-                            <li class="breadcrumb-item active">List</li>
-                        </ol>
                     </div>
                     <!--end col-->
                 </div>

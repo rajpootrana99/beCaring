@@ -67,62 +67,104 @@
                                         <span class="text-danger error-text">{{ $errors->first('blood_group') }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-2">
                                     <div class="form-group">
                                         <label for="height" class="col-form-label text-right">Height<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="text" name="height" placeholder="Enter Height" value="{{ old('height') }}" id="height">
                                         <span class="text-danger error-text">{{ $errors->first('height') }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-2">
                                     <div class="form-group">
                                         <label for="weight" class="col-form-label text-right">Weight<strong style="color: #ff0000"> *</strong></label>
                                         <input class="form-control" type="text" name="weight" placeholder="Enter Weight" value="{{ old('weight') }}" id="weight">
                                         <span class="text-danger error-text">{{ $errors->first('weight') }}</span>
                                     </div>
                                 </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label for="parent_id" class="col-form-label text-right">Company ID<strong style="color: #ff0000"> *</strong></label>
+                                        <input class="form-control" type="text" name="parent_id" readonly value="{{ Auth()->id() }}" id="parent_id">
+                                        <span class="text-danger error-text">{{ $errors->first('parent_id') }}</span>
+                                    </div>
+                                </div>
                                 <div class="col-lg-3">
-                                    <label for="image" class="col-form-label text-right">Care Plan</label>
+                                    <div class="form-group">
+                                        <label for="toilet_assistance" class="col-form-label text-right">Toilet Assistance</label>
+                                        <input class="form-control" type="text" name="toilet_assistance" placeholder="Enter Toilet Assistance" value="{{ old('toilet_assistance') }}" id="toilet_assistance">
+                                        <span class="text-danger error-text">{{ $errors->first('toilet_assistance') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="personal_care" class="col-form-label text-right">Personal Care</label>
+                                        <input class="form-control" type="text" name="personal_care" placeholder="Enter Personal Care" value="{{ old('personal_care') }}" id="personal_care">
+                                        <span class="text-danger error-text">{{ $errors->first('personal_care') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="fnd_information" class="col-form-label text-right">Food and Drink Information</label>
+                                        <input class="form-control" type="text" name="fnd_information" placeholder="Enter Food and Drink Information" value="{{ old('fnd_information') }}" id="fnd_information">
+                                        <span class="text-danger error-text">{{ $errors->first('fnd_information') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="house_work" class="col-form-label text-right">House Work</label>
+                                        <input class="form-control" type="text" name="house_work" placeholder="Enter House Work" value="{{ old('house_work') }}" id="house_work">
+                                        <span class="text-danger error-text">{{ $errors->first('house_work') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="access_information" class="col-form-label text-right">Access Information</label>
+                                        <input class="form-control" type="text" name="access_information" placeholder="Enter Access Information" value="{{ old('access_information') }}" id="access_information">
+                                        <span class="text-danger error-text">{{ $errors->first('access_information') }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="care_plan" class="col-form-label text-right">Care Plan</label>
                                     <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" name="image" id="image">
-                                        <label class="custom-file-label" for="image">Choose file</label>
+                                        <input type="file" class="custom-file-input" name="care_plan" id="care_plan">
+                                        <label class="custom-file-label" for="care_plan">Choose file</label>
                                     </div>
                                     <span class="text-danger error-text">{{ $errors->first('image') }}</span>
                                 </div>
                             </div><!--end row-->
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-2">
                                     <div class="form-group">
                                         <label for="allergies" class="col-form-label text-right">Allergies</label>
-                                        <textarea class="form-control"  rows="3" name="allergies" id="allergies"></textarea>
+                                        <textarea class="form-control"  rows="2" name="allergies" id="allergies"></textarea>
                                         <span class="text-danger error-text">{{ $errors->first('allergies') }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-2">
                                     <div class="form-group">
                                         <label for="medications" class="col-form-label text-right">Medications</label>
-                                        <textarea class="form-control"  rows="3" name="medications" id="medications"></textarea>
+                                        <textarea class="form-control"  rows="2" name="medications" id="medications"></textarea>
                                         <span class="text-danger error-text">{{ $errors->first('medications') }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-2">
                                     <div class="form-group">
                                         <label for="immunizations" class="col-form-label text-right">Immunizations</label>
-                                        <textarea class="form-control"  rows="3" name="immunizations" id="immunizations"></textarea>
+                                        <textarea class="form-control"  rows="2" name="immunizations" id="immunizations"></textarea>
                                         <span class="text-danger error-text">{{ $errors->first('immunizations') }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-2">
                                     <div class="form-group">
                                         <label for="lab_results" class="col-form-label text-right">Lab Results</label>
-                                        <textarea class="form-control" rows="3" name="lab_results" id="lab_results"></textarea>
+                                        <textarea class="form-control" rows="2" name="lab_results" id="lab_results"></textarea>
                                         <span class="text-danger error-text">{{ $errors->first('lab_results') }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-2">
                                     <div class="form-group">
                                         <label for="additional_notes" class="col-form-label text-right">Additional Notes</label>
-                                            <textarea class="form-control"  rows="3" name="additional_notes" id="additional_notes"></textarea>
+                                            <textarea class="form-control"  rows="2" name="additional_notes" id="additional_notes"></textarea>
                                         <span class="text-danger error-text">{{ $errors->first('additional_notes') }}</span>
                                     </div>
                                 </div>

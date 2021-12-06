@@ -9,10 +9,6 @@
                 <div class="row">
                     <div class="col">
                         <h4 class="page-title">Notifications</h4>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Notifications</a></li>
-                            <li class="breadcrumb-item active">List</li>
-                        </ol>
                     </div>
                     <!--end col-->
                 </div>
@@ -103,7 +99,7 @@
     </div>
     <!--end modal-dialog-->
 </div>
-<!-- 
+<!--
 <div class="modal fade" id="editPatientDetail" tabindex="-1" role="dialog" aria-labelledby="editPatientDetailLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -144,7 +140,7 @@
         </div>
     </div>
 </div> -->
-<!-- 
+<!--
 <div class="modal fade" id="deletePatientDetail" tabindex="-1" role="dialog" aria-labelledby="deletePatientDetailLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

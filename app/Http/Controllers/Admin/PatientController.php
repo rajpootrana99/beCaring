@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\GeneralTrait;
-use App\Models\Address;
 use App\Models\Patient;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -66,12 +66,11 @@ class PatientController extends Controller
             'blood_group' => 'required',
             'height' => 'required',
             'weight' => 'required',
-            'allergies' => 'nullable',
-            'medications' => 'nullable',
-            'immunizations' => 'nullable',
-            'lab_results' => 'nullable',
-            'additional_notes' => 'nullable',
+            'parent_id' => 'required'
         ]);
+        $dob = $request->input('dob');
+        $newDOB = new DateTime($dob);
+        $newDOB = $newDOB->format('d-m-Y');
         $first_name = $request->input('first_name');
         $last_name = $request->input('last_name');
         $patient = User::create([
@@ -79,6 +78,7 @@ class PatientController extends Controller
             'email' => $request->input('email'),
             'password' => Hash::make('password'),
             'phone' => $request->input('phone') ?? '',
+            'parent_id' => $request->input('parent_id'),
             'address' => $request->input('address'),
             'address_latitude' => $request->input('address_latitude'),
             'address_longitude' => $request->input('address_longitude'),
@@ -87,10 +87,15 @@ class PatientController extends Controller
         $this->storeImage($patient);
         $patient_detail = Patient::create([
             'patient_id' => $patient->id,
-            'dob' => $request->input('dob'),
+            'dob' => $newDOB,
             'blood_group' => $request->input('blood_group'),
             'height' => $request->input('height'),
             'weight' => $request->input('weight'),
+            'toilet_assistance' => $request->input('toilet_assistance'),
+            'personal_care' => $request->input('personal_care'),
+            'fnd_information' => $request->input('fnd_information'),
+            'house_work' => $request->input('house_work'),
+            'access_information' => $request->input('access_information'),
             'allergies' => $request->input('allergies'),
             'medications' => $request->input('medications'),
             'immunizations' => $request->input('immunizations'),
@@ -173,7 +178,7 @@ class PatientController extends Controller
     public function storeImage($patient)
     {
         $patient->update([
-            'image' => $this->imagePath('image', 'patient', $patient),
+            'care_plan' => $this->imagePath('care_plan', 'patient', $patient),
         ]);
     }
 }

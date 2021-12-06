@@ -233,6 +233,12 @@ class AppointmentController extends Controller
             'lab_results' => $request->input('lab_results'),
             'additional_notes' => $request->input('additional_notes'),
         ]);
+        if ($patient){
+            return response()->json([
+                'status' => 1,
+                'message' => 'Patient Created Successfully'
+            ]);
+        }
     }
 
     public function storeImage($patient)
