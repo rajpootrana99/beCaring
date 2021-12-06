@@ -20,6 +20,12 @@ class CreatePatientsTable extends Migration
             $table->string('blood_group');
             $table->string('height');
             $table->string('weight');
+            $table->string('toilet_assistance')->nullable();
+            $table->string('personal_care')->nullable();
+            $table->string('fnd_information')->nullable();
+            $table->string('house_work')->nullable();
+            $table->string('access_information')->nullable();
+            $table->string('care_plan')->nullable();
             $table->string('allergies')->nullable();
             $table->string('medications')->nullable();
             $table->string('immunizations')->nullable();

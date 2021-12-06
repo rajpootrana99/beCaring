@@ -384,112 +384,180 @@
                     @csrf
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="first_name" class="col-form-label text-right">First Name<strong style="color: #ff0000"> *</strong></label>
-                                    <input class="form-control" type="text" style="height: 30px;" name="first_name" value="{{ old('first_name') }}" placeholder="Enter First Name" id="first_name" >
-                                    <span class="text-danger error-text">{{ $errors->first('first_name') }}</span>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="first_name" class="my-1 col-sm-3 control-label">First Name<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" name="first_name" placeholder="Enter First Name" type="text" id="first_name">
+                                        <span class="text-danger error-text first_name_error"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="last_name" class="col-form-label text-right">Last Name<strong style="color: #ff0000"> *</strong></label>
-                                    <input class="form-control" type="text" style="height: 30px;" name="last_name" value="{{ old('last_name') }}" placeholder="Enter Last Name" id="last_name" >
-                                    <span class="text-danger error-text">{{ $errors->first('last_name') }}</span>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="last_name" class="my-1 col-sm-3 control-label">Last Name<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" name="last_name" placeholder="Enter Last Name" type="text" id="last_name">
+                                        <span class="text-danger error-text last_name_error"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="email" class="col-form-label text-right">Email<strong style="color: #ff0000"> *</strong></label>
-                                    <input class="form-control" type="email" style="height: 30px;" name="email" value="{{ old('email') }}" placeholder="Enter Email Address" id="email">
-                                    <span class="text-danger error-text">{{ $errors->first('email') }}</span>
+                            <div class="col-lg-2">
+                                <div class="form-group row">
+                                    <label for="height" class="my-1 col-sm-5 control-label">Height<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" style="height: 30px;" name="height" placeholder="Height" type="text" id="height">
+                                    </div>
+                                    <span class="text-danger error-text height_error"></span>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="phone" class="col-form-label text-right">Phone<strong style="color: #ff0000"> *</strong></label>
-                                    <input class="form-control" type="text" style="height: 30px;" name="phone" placeholder="Enter Cell No" value="{{ old('phone') }}" id="phone">
-                                    <span class="text-danger error-text">{{ $errors->first('phone') }}</span>
+                            <div class="col-lg-2">
+                                <div class="form-group row">
+                                    <label for="weight" class="my-1 col-sm-5 control-label">Weight<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" style="height: 30px;" name="weight" placeholder="Weight" type="text" id="weight">
+                                    </div>
+                                    <span class="text-danger error-text weight_error"></span>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="dob" class="col-form-label text-right">Date of Birth<strong style="color: #ff0000"> *</strong></label>
-                                    <input class="form-control" type="date" style="height: 30px;" name="dob" value="{{ old('dob') }}" id="dob">
-                                    <span class="text-danger error-text">{{ $errors->first('dob') }}</span>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="email" class="my-1 col-sm-3 control-label">Email<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" name="email" placeholder="Enter Email" type="email" id="email">
+                                        <span class="text-danger error-text email_error"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="blood_group" class="col-form-label text-right">Blood Group<strong style="color: #ff0000"> *</strong></label>
-                                    <input class="form-control" type="text" style="height: 30px;" name="blood_group" placeholder="Enter Blood Group" value="{{ old('blood_group') }}" id="blood_group">
-                                    <span class="text-danger error-text">{{ $errors->first('blood_group') }}</span>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="phone" class="my-1 col-sm-3 control-label">Phone<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" name="phone" placeholder="Enter Phone" type="text" id="phone">
+                                        <span class="text-danger error-text phone_error"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="height" class="col-form-label text-right">Height<strong style="color: #ff0000"> *</strong></label>
-                                    <input class="form-control" type="text" style="height: 30px;" name="height" placeholder="Enter Height" value="{{ old('height') }}" id="height">
-                                    <span class="text-danger error-text">{{ $errors->first('height') }}</span>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="dob" class="my-1 col-sm-4 control-label">Date of Birth<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" style="height: 30px;" name="dob" type="date" id="dob">
+                                        <span class="text-danger error-text dob_error"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="weight" class="col-form-label text-right">Weight<strong style="color: #ff0000"> *</strong></label>
-                                    <input class="form-control" type="text" style="height: 30px;" name="weight" placeholder="Enter Weight" value="{{ old('weight') }}" id="weight">
-                                    <span class="text-danger error-text">{{ $errors->first('weight') }}</span>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="blood_group" class="my-1 col-sm-4 control-label">Blood Group<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" style="height: 30px;" name="blood_group" placeholder="Enter Blood Group" type="text" id="blood_group">
+                                        <span class="text-danger error-text blood_group_error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group row">
+                                    <label for="parent_id" class="my-1 col-sm-7 control-label">Company ID<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" style="height: 30px;" readonly name="parent_id" value="{{ Auth()->id() }}" type="text" id="parent_id">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="address">Address<strong style="color: #ff0000"> *</strong></label>
-                                    <input type="text" id="address-input" style="height: 30px;" name="address" class="form-control map-input">
+                                <div class="form-group row">
+                                    <label for="address" class="my-1 col-sm-2 control-label">Address<strong style="color: #ff0000"> *</strong></label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" style="height: 30px;" name="address" placeholder="Enter Address" type="text" id="address">
+                                        <span class="text-danger error-text address_error"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="image" class="col-form-label text-right">Care Plan</label>
-                                    <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" style="height: 30px;" name="image" id="image">
-                                        <label class="custom-file-label" for="image">Choose file</label>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="toilet_assistance" class="my-1 col-sm-5 control-label">Toilet Assistance</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" style="height: 30px;" name="toilet_assistance" placeholder="Enter Toilet Assistance" type="text" id="toilet_assistance">
                                     </div>
-                                    <span class="text-danger error-text">{{ $errors->first('image') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="personal_care" class="my-1 col-sm-4 control-label">Personal Care</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" style="height: 30px;" name="personal_care" placeholder="Enter Personal Care" type="text" id="personal_care">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="fnd_information" class="my-1 col-sm-6 control-label">Food and Drink Information</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" style="height: 30px;" name="fnd_information" placeholder="Enter F&D Information" type="text" id="fnd_information">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="house_work" class="my-1 col-sm-4 control-label">House Work</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" style="height: 30px;" name="house_work" placeholder="Enter House Work" type="text" id="house_work">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="access_information" class="my-1 col-sm-5 control-label">Access Information</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" style="height: 30px;" name="access_information" placeholder="Enter Access Information" type="text" id="access_information">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="care_plan" class="my-1 col-sm-3 control-label">Care Plan</label>
+                                    <div class="col-sm-9">
+                                        <div class="custom-file mb-3">
+                                            <input type="file" class="custom-file-input" style="height: 30px;" name="care_plan" id="care_plan">
+                                            <label class="custom-file-label" for="care_plan">Choose file</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div><!--end row-->
                         <div class="row">
                             <div class="col-lg-2">
                                 <div class="form-group">
-                                    <label for="allergies" class="col-form-label text-right">Allergies</label>
-                                    <textarea class="form-control"  rows="3" name="allergies" id="allergies"></textarea>
-                                    <span class="text-danger error-text">{{ $errors->first('allergies') }}</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
-                                    <label for="medications" class="col-form-label text-right">Medications</label>
-                                    <textarea class="form-control"  rows="3" name="medications" id="medications"></textarea>
+                                    <label for="medications" class="col-form-label text-right">Allergies</label>
+                                    <textarea class="form-control" rows="1" name="medications" id="medications"></textarea>
                                     <span class="text-danger error-text">{{ $errors->first('medications') }}</span>
                                 </div>
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
+                                    <label for="lab_results" class="col-form-label text-right">Medications</label>
+                                    <textarea class="form-control" rows="1" name="lab_results" id="lab_results"></textarea>
+                                    <span class="text-danger error-text">{{ $errors->first('lab_results') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
                                     <label for="immunizations" class="col-form-label text-right">Immunizations</label>
-                                    <textarea class="form-control"  rows="3" name="immunizations" id="immunizations"></textarea>
+                                    <textarea class="form-control" rows="1" name="immunizations" id="immunizations"></textarea>
                                     <span class="text-danger error-text">{{ $errors->first('immunizations') }}</span>
                                 </div>
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
                                     <label for="lab_results" class="col-form-label text-right">Lab Results</label>
-                                    <textarea class="form-control" rows="3" name="lab_results" id="lab_results"></textarea>
+                                    <textarea class="form-control" rows="1" name="lab_results" id="lab_results"></textarea>
                                     <span class="text-danger error-text">{{ $errors->first('lab_results') }}</span>
                                 </div>
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
                                     <label for="additional_notes" class="col-form-label text-right">Additional Notes</label>
-                                    <textarea class="form-control"  rows="3" name="additional_notes" id="additional_notes"></textarea>
+                                    <textarea class="form-control"  rows="1" name="additional_notes" id="additional_notes"></textarea>
                                     <span class="text-danger error-text">{{ $errors->first('additional_notes') }}</span>
                                 </div>
                             </div>
@@ -746,6 +814,48 @@
                     }
                 });
             });
+
+            $(document).on('submit', '#addPatientForm', function (e){
+                e.preventDefault();
+                let formDate = new FormData($('#addPatientForm')[0]);
+                $.ajax({
+                    type: "post",
+                    url: "createPatient",
+                    data: formDate,
+                    contentType: false,
+                    processData: false,
+                    beforeSend:function (){
+                        $(document).find('span.error-text').text('');
+                    },
+                    success: function (response) {
+                        if (response.status == 0){
+                            $('#addPatient').modal('show')
+                            $.each(response.error, function (prefix, val){
+                                $('span.'+prefix+'_error').text(val[0]);
+                            });
+                        }else {
+                            $('#addPatientForm')[0].reset();
+                            $('#addPatient').modal('hide');
+                            $.ajax({
+                                type: "GET",
+                                url: "appointment/create",
+                                dataType: "json",
+                                success: function (response) {
+                                    $('#addAppointment').modal('show');
+                                    $('#addAppointmentLabel').text('Visit ID '+response.visit_id);
+                                    fetchPatients();
+                                    $(document).find('span.error-text').text('');
+                                    $('#select_specific_time').css('display', 'none');
+                                }
+                            });
+                        }
+                    },
+                    error: function (error){
+                        $('#addPatient').modal('show')
+                    }
+                });
+            });
+
         });
     </script>
 @endsection

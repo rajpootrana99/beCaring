@@ -25,6 +25,7 @@ Route::get('fetchPatients', 'Admin\PatientController@fetchPatients')->middleware
 
 Route::resource('appointment', 'Admin\AppointmentController')->middleware('permission:Manage Appointments');
 Route::get('fetchAppointments', 'Admin\AppointmentController@fetchAppointments')->middleware('permission:Show Appointments');
+Route::post('createPatient', 'Admin\AppointmentController@createPatient')->middleware('permission:Manage Appointments');
 
 Route::resource('notification', 'Admin\NotificationController')->middleware('permission:Manage Notification');
 Route::get('fetchNotifications', 'Admin\NotificationController@fetchNotifications')->middleware('permission:Show Notification');

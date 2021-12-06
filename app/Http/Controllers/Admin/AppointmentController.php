@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\GeneralTrait;
 use App\Models\Appointment;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
 class AppointmentController extends Controller
 {
+    use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
@@ -182,6 +186,59 @@ class AppointmentController extends Controller
         return response()->json([
             'status' => 1,
             'message' => 'Appointment Deleted Successfully'
+        ]);
+    }
+
+    public function createPatient(Request $request){
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email|unique:users',
+            'address' => 'required',
+            'dob' => 'required',
+            'blood_group' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
+        ]);
+        if (!$validator->passes()){
+            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
+        }
+        $first_name = $request->input('first_name');
+        $last_name = $request->input('last_name');
+        $patient = User::create([
+            'name' => $first_name.' '.$last_name,
+            'email' => $request->input('email'),
+            'password' => Hash::make('password'),
+            'phone' => $request->input('phone') ?? '',
+            'address' => $request->input('address'),
+            'parent_id' => $request->input('parent_id'),
+        ]);
+        $patient->assignRole('Patient');
+        $this->storeImage($patient);
+        $patient_detail = Patient::create([
+            'patient_id' => $patient->id,
+            'dob' => $request->input('dob'),
+            'blood_group' => $request->input('blood_group'),
+            'height' => $request->input('height'),
+            'weight' => $request->input('weight'),
+            'toilet_assistance' => $request->input('toilet_assistance'),
+            'personal_care' => $request->input('personal_care'),
+            'fnd_information' => $request->input('fnd_information'),
+            'house_work' => $request->input('house_work'),
+            'access_information' => $request->input('access_information'),
+            'allergies' => $request->input('allergies'),
+            'medications' => $request->input('medications'),
+            'immunizations' => $request->input('immunizations'),
+            'lab_results' => $request->input('lab_results'),
+            'additional_notes' => $request->input('additional_notes'),
+        ]);
+    }
+
+    public function storeImage($patient)
+    {
+        $patient->update([
+            'care_plan' => $this->imagePath('care_plan', 'patient', $patient),
         ]);
     }
 }
