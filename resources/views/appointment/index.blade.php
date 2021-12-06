@@ -66,8 +66,8 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="patient_id" class="col-form-label text-right">Select Patient</label>
-                                    <select class="mb-3 form-control" style="height: 30px;" name="patient_id" id="patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient">
+                                    <div class="row"><label for="patient_id" class="text-left col-form-label col-lg-8">Select Patient</label><a href="#" style="color: #024DEC" class="col-lg-4 col-form-label">+ patient</a></div>
+                                    <select class="select2 mb-3 form-control custom-select" name="patient_id" id="patient_id" style="width: 100%; height:30px;">
 
                                     </select>
                                     <span class="text-danger error-text patient_id_error"></span>
@@ -431,9 +431,9 @@
                     dataType: "json",
                     success: function (response) {
                         var patient_id = $('#patient_id');
-                        $('#patient_id').children().remove().end()
+                        $('#patient_id').children().remove().end();
                         $.each(response.patients, function (patient) {
-                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].name));
+                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].id+' '+response.patients[patient].name));
                         });
                     }
                 });
