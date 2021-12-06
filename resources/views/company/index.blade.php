@@ -26,11 +26,11 @@
                             <table class="table table-bordered mb-0 table-centered">
                                 <thead>
                                 <tr>
-                                    <th width="5%">#</th>
+                                    <th width="9%">Company ID</th>
                                     <th width="15%">Company Name</th>
-                                    <th width="15%">Company Website</th>
-                                    <th width="15%">Business Name</th>
-                                    <th width="15%">Phone</th>
+                                    <th width="15%">Contact</th>
+                                    <th width="15%">Telephone</th>
+                                    <th width="15%">Email</th>
                                     <th>Permissions</th>
                                     <th width="8%">Status</th>
                                     <th width="3%">Modify</th>
@@ -165,9 +165,9 @@
                             $('tbody').append('<tr>\
                             <td>'+company.id+'</td>\
                             <td>'+company.company_name +'</td>\
-                            <td>'+company.company_website +'</td>\
-                            <td>'+company.business_name +'</td>\
-                            <td>'+company.user.phone+'</td>\
+                            <td>'+company.contact +'</td>\
+                            <td>'+company.user.phone +'</td>\
+                            <td>'+company.user.email+'</td>\
                             <td>'+options.join(' ')+'</td>\
                             <td>'+status+'</td>\
                             <td><button value="'+company.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
