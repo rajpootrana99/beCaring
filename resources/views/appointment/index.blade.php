@@ -66,7 +66,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <div class="row"><label for="patient_id" class="text-left col-form-label col-lg-8">Select Patient</label><a href="#" style="color: #024DEC" class="col-lg-4 col-form-label">+ patient</a></div>
+                                    <div class="row"><label for="patient_id" class="text-left col-form-label col-lg-8">Select Patient</label><a href="" id="addPatientButton" style="color: #024DEC" class="col-lg-4 col-form-label">+ patient</a></div>
                                     <select class="select2 mb-3 form-control custom-select" name="patient_id" id="patient_id" style="width: 100%; height:30px;">
 
                                     </select>
@@ -371,6 +371,139 @@
         </div><!--end modal-dialog-->
     </div>
 
+    <div class="modal fade bd-example-modal-xl" id="addPatient" tabindex="-1" role="dialog" aria-labelledby="addPatientLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title m-0" id="addPatientLabel">Patient</h6>
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="la la-times"></i></span>
+                    </button>
+                </div><!--end modal-header-->
+                <form method="post" id="addPatientForm">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="first_name" class="col-form-label text-right">First Name<strong style="color: #ff0000"> *</strong></label>
+                                    <input class="form-control" type="text" style="height: 30px;" name="first_name" value="{{ old('first_name') }}" placeholder="Enter First Name" id="first_name" >
+                                    <span class="text-danger error-text">{{ $errors->first('first_name') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="last_name" class="col-form-label text-right">Last Name<strong style="color: #ff0000"> *</strong></label>
+                                    <input class="form-control" type="text" style="height: 30px;" name="last_name" value="{{ old('last_name') }}" placeholder="Enter Last Name" id="last_name" >
+                                    <span class="text-danger error-text">{{ $errors->first('last_name') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="email" class="col-form-label text-right">Email<strong style="color: #ff0000"> *</strong></label>
+                                    <input class="form-control" type="email" style="height: 30px;" name="email" value="{{ old('email') }}" placeholder="Enter Email Address" id="email">
+                                    <span class="text-danger error-text">{{ $errors->first('email') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="phone" class="col-form-label text-right">Phone<strong style="color: #ff0000"> *</strong></label>
+                                    <input class="form-control" type="text" style="height: 30px;" name="phone" placeholder="Enter Cell No" value="{{ old('phone') }}" id="phone">
+                                    <span class="text-danger error-text">{{ $errors->first('phone') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="dob" class="col-form-label text-right">Date of Birth<strong style="color: #ff0000"> *</strong></label>
+                                    <input class="form-control" type="date" style="height: 30px;" name="dob" value="{{ old('dob') }}" id="dob">
+                                    <span class="text-danger error-text">{{ $errors->first('dob') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="blood_group" class="col-form-label text-right">Blood Group<strong style="color: #ff0000"> *</strong></label>
+                                    <input class="form-control" type="text" style="height: 30px;" name="blood_group" placeholder="Enter Blood Group" value="{{ old('blood_group') }}" id="blood_group">
+                                    <span class="text-danger error-text">{{ $errors->first('blood_group') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="height" class="col-form-label text-right">Height<strong style="color: #ff0000"> *</strong></label>
+                                    <input class="form-control" type="text" style="height: 30px;" name="height" placeholder="Enter Height" value="{{ old('height') }}" id="height">
+                                    <span class="text-danger error-text">{{ $errors->first('height') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="weight" class="col-form-label text-right">Weight<strong style="color: #ff0000"> *</strong></label>
+                                    <input class="form-control" type="text" style="height: 30px;" name="weight" placeholder="Enter Weight" value="{{ old('weight') }}" id="weight">
+                                    <span class="text-danger error-text">{{ $errors->first('weight') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="address">Address<strong style="color: #ff0000"> *</strong></label>
+                                    <input type="text" id="address-input" style="height: 30px;" name="address" class="form-control map-input">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="image" class="col-form-label text-right">Care Plan</label>
+                                    <div class="custom-file mb-3">
+                                        <input type="file" class="custom-file-input" style="height: 30px;" name="image" id="image">
+                                        <label class="custom-file-label" for="image">Choose file</label>
+                                    </div>
+                                    <span class="text-danger error-text">{{ $errors->first('image') }}</span>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="allergies" class="col-form-label text-right">Allergies</label>
+                                    <textarea class="form-control"  rows="3" name="allergies" id="allergies"></textarea>
+                                    <span class="text-danger error-text">{{ $errors->first('allergies') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="medications" class="col-form-label text-right">Medications</label>
+                                    <textarea class="form-control"  rows="3" name="medications" id="medications"></textarea>
+                                    <span class="text-danger error-text">{{ $errors->first('medications') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="immunizations" class="col-form-label text-right">Immunizations</label>
+                                    <textarea class="form-control"  rows="3" name="immunizations" id="immunizations"></textarea>
+                                    <span class="text-danger error-text">{{ $errors->first('immunizations') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="lab_results" class="col-form-label text-right">Lab Results</label>
+                                    <textarea class="form-control" rows="3" name="lab_results" id="lab_results"></textarea>
+                                    <span class="text-danger error-text">{{ $errors->first('lab_results') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="additional_notes" class="col-form-label text-right">Additional Notes</label>
+                                    <textarea class="form-control"  rows="3" name="additional_notes" id="additional_notes"></textarea>
+                                    <span class="text-danger error-text">{{ $errors->first('additional_notes') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end modal-body-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                    </div><!--end modal-footer-->
+                </form>
+            </div><!--end modal-content-->
+        </div><!--end modal-dialog-->
+    </div>
+
     <script>
         $(document).ready(function (){
 
@@ -433,7 +566,7 @@
                         var patient_id = $('#patient_id');
                         $('#patient_id').children().remove().end();
                         $.each(response.patients, function (patient) {
-                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].id+' '+response.patients[patient].name));
+                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].id+' - '+response.patients[patient].name));
                         });
                     }
                 });
@@ -466,6 +599,11 @@
                 $('#bid_price').val(bid_price);
             })*/
 
+            $(document).on('click', '#addPatientButton', function (e) {
+                e.preventDefault();
+                $('#addAppointment').modal('hide');
+                $('#addPatient').modal('show');
+            })
             $(document).on('click', '#addAppointmentButton', function (e) {
                 e.preventDefault();
                 $.ajax({
@@ -474,12 +612,12 @@
                     dataType: "json",
                     success: function (response) {
                         $('#addAppointment').modal('show');
-                        $('#addAppointmentLabel').text('Visit ID '+response.visit_id)
+                        $('#addAppointmentLabel').text('Visit ID '+response.visit_id);
+                        fetchPatients();
+                        $(document).find('span.error-text').text('');
+                        $('#select_specific_time').css('display', 'none');
                     }
                 });
-                fetchPatients();
-                $(document).find('span.error-text').text('');
-                $('#select_specific_time').css('display', 'none');
             });
 
             $(document).on('click', '.delete_btn', function (e) {
