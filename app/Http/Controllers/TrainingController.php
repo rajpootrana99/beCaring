@@ -37,9 +37,6 @@ class TrainingController extends Controller
 
     public function fetchTrainingVideos(){
         $trainings = Training::all();
-        return response([
-            'status' => true,
-            'trainings' => $trainings,
-        ]);
+        return response()->json($trainings);
     }
 }
