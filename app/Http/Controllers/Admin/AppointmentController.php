@@ -194,12 +194,12 @@ class AppointmentController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'nullable|email|unique:users',
             'address' => 'required',
             'dob' => 'required',
-            'blood_group' => 'required',
-            'height' => 'required',
-            'weight' => 'required',
+            'blood_group' => 'nullable',
+            'height' => 'nullable',
+            'weight' => 'nullable',
         ]);
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);

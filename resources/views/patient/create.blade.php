@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="email" class="col-form-label text-right">Email<strong style="color: #ff0000"> *</strong></label>
+                                        <label for="email" class="col-form-label text-right">Email</label>
                                         <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Enter Email Address" id="email">
                                         <span class="text-danger error-text">{{ $errors->first('email') }}</span>
                                     </div>
@@ -62,21 +62,21 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="blood_group" class="col-form-label text-right">Blood Group<strong style="color: #ff0000"> *</strong></label>
+                                        <label for="blood_group" class="col-form-label text-right">Blood Group</label>
                                         <input class="form-control" type="text" name="blood_group" placeholder="Enter Blood Group" value="{{ old('blood_group') }}" id="blood_group">
                                         <span class="text-danger error-text">{{ $errors->first('blood_group') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
-                                        <label for="height" class="col-form-label text-right">Height<strong style="color: #ff0000"> *</strong></label>
+                                        <label for="height" class="col-form-label text-right">Height</label>
                                         <input class="form-control" type="text" name="height" placeholder="Enter Height" value="{{ old('height') }}" id="height">
                                         <span class="text-danger error-text">{{ $errors->first('height') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
-                                        <label for="weight" class="col-form-label text-right">Weight<strong style="color: #ff0000"> *</strong></label>
+                                        <label for="weight" class="col-form-label text-right">Weight</label>
                                         <input class="form-control" type="text" name="weight" placeholder="Enter Weight" value="{{ old('weight') }}" id="weight">
                                         <span class="text-danger error-text">{{ $errors->first('weight') }}</span>
                                     </div>

@@ -60,12 +60,12 @@ class PatientController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'nullable|email|unique:users',
             'address' => 'required',
             'dob' => 'required',
-            'blood_group' => 'required',
-            'height' => 'required',
-            'weight' => 'required',
+            'blood_group' => 'nullable',
+            'height' => 'nullable',
+            'weight' => 'nullable',
             'parent_id' => 'required'
         ]);
         $dob = $request->input('dob');
@@ -142,12 +142,12 @@ class PatientController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required|email|exists:users',
+            'email' => 'nullable|email|exists:users',
             'address' => 'required',
             'dob' => 'required',
-            'blood_group' => 'required',
-            'height' => 'required',
-            'weight' => 'required',
+            'blood_group' => 'nullable',
+            'height' => 'nullable',
+            'weight' => 'nullable',
             'parent_id' => 'required',
             'allergies' => 'nullable',
             'medications' => 'nullable',

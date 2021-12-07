@@ -404,7 +404,7 @@
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group row">
-                                    <label for="height" class="my-1 col-sm-5 control-label">Height<strong style="color: #ff0000"> *</strong></label>
+                                    <label for="height" class="my-1 col-sm-5 control-label">Height</label>
                                     <div class="col-sm-7">
                                         <input class="form-control" style="height: 30px;" name="height" placeholder="Height" type="text" id="height">
                                     </div>
@@ -413,7 +413,7 @@
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group row">
-                                    <label for="weight" class="my-1 col-sm-5 control-label">Weight<strong style="color: #ff0000"> *</strong></label>
+                                    <label for="weight" class="my-1 col-sm-5 control-label">Weight</label>
                                     <div class="col-sm-7">
                                         <input class="form-control" style="height: 30px;" name="weight" placeholder="Weight" type="text" id="weight">
                                     </div>
@@ -422,7 +422,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group row">
-                                    <label for="email" class="my-1 col-sm-3 control-label">Email<strong style="color: #ff0000"> *</strong></label>
+                                    <label for="email" class="my-1 col-sm-3 control-label">Email</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" style="height: 30px;" name="email" placeholder="Enter Email" type="email" id="email">
                                         <span class="text-danger error-text email_error"></span>
@@ -449,7 +449,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group row">
-                                    <label for="blood_group" class="my-1 col-sm-4 control-label">Blood Group<strong style="color: #ff0000"> *</strong></label>
+                                    <label for="blood_group" class="my-1 col-sm-4 control-label">Blood Group</label>
                                     <div class="col-sm-8">
                                         <input class="form-control" style="height: 30px;" name="blood_group" placeholder="Enter Blood Group" type="text" id="blood_group">
                                         <span class="text-danger error-text blood_group_error"></span>
