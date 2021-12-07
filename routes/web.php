@@ -49,4 +49,7 @@ Route::get('fetchTrainings', 'Admin\TrainingController@fetchTrainings')->middlew
 Route::resource('employee', 'Admin\EmployeeController')->middleware('permission:Manage Employee');
 Route::get('fetchEmployees', 'Admin\EmployeeController@fetchEmployees')->middleware('permission:Show Employee');
 
+Route::resource('help', 'Admin\HelpController')->middleware('permission:Manage Help');
+Route::get('fetchHelps', 'Admin\HelpController@fetchHelps')->middleware('permission:Show Help');
+
 require __DIR__ . '/auth.php';

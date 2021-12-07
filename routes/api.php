@@ -54,4 +54,8 @@ Route::get('fetchTrainingVideos', 'TrainingController@fetchTrainingVideos')->mid
 //PatientController Route
 Route::post('patientDetail', 'PatientController@patientDetail')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 
+//FeedbackController Route
 Route::post('sendFeedback', 'FeedbackController@sendFeedback')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+
+//HelpController Route
+Route::get('fetchHelps', 'HelpController@fetchHelps')->middleware(['auth:api', 'role:Nurse', 'is_approved']);

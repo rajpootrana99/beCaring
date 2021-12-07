@@ -72,6 +72,11 @@
                 <a href="{{ route('employee.index') }}" class="iq-waves-effect collapsed"><i class="las la-users"></i><span>Employee</span></a>
             </li>
             @endcan
+            @can('Manage Help')
+                <li class="{{ (request()->is('help')) ? 'active' : '' }}">
+                    <a href="{{ route('help.index') }}" class="iq-waves-effect collapsed"><i class="las la-users"></i><span>Help</span></a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>
