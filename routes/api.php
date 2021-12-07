@@ -53,3 +53,5 @@ Route::get('fetchTrainigVideos', 'TrainingController@fetchTrainigVideos')->middl
 
 //PatientController Route
 Route::post('patientDetail', 'PatientController@patientDetail')->middleware('auth:api');
+
+Route::post('sendFeedback', 'FeedbackController@sendFeedback')->middleware('auth:api');

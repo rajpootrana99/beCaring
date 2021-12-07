@@ -40,13 +40,22 @@ class NurseController extends Controller
             }
             /** @var User $nurse */
             $nurse = Auth::user();
-            $token = $nurse->createToken('app')->accessToken;
-            return response([
-                'status' => true,
-                'message' => 'Success',
-                'token' => $token,
-                'nurse' => $nurse
-            ]);
+            if ($nurse->getRoleNames()->first() == 'Nurse'){
+                $token = $nurse->createToken('app')->accessToken;
+                return response([
+                    'status' => true,
+                    'message' => 'Success',
+                    'token' => $token,
+                    'nurse' => $nurse
+                ]);
+            }
+            else {
+                return response([
+                    'status' => false,
+                    'message' => 'Invalid User',
+                ]);
+            }
+
 
         }catch (\Exception $exception){
             return response([
