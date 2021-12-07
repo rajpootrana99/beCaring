@@ -39,8 +39,9 @@ class NurseController extends Controller
                 ],401);
             }
             /** @var User $nurse */
-            $nurse = Auth::user();
-            if ($nurse->getRoleNames()->first() == 'Nurse'){
+//            $nurse = Auth::user();
+            if (Auth::user()->getRoleNames()->first() == 'Nurse'){
+                $nurse = Auth::user();
                 $token = $nurse->createToken('app')->accessToken;
                 return response([
                     'status' => true,
@@ -53,6 +54,7 @@ class NurseController extends Controller
                 return response([
                     'status' => false,
                     'message' => 'Invalid User',
+                    'role' => Auth::user()->getRoleNames()->first(),
                 ]);
             }
 
