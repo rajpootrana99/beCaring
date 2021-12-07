@@ -74,7 +74,12 @@
             @endcan
             @can('Manage Help')
                 <li class="{{ (request()->is('help')) ? 'active' : '' }}">
-                    <a href="{{ route('help.index') }}" class="iq-waves-effect collapsed"><i class="las la-users"></i><span>Help</span></a>
+                    <a href="{{ route('help.index') }}" class="iq-waves-effect collapsed"><i class="far fa-question-circle"></i><span>Help</span></a>
+                </li>
+            @endcan
+            @can('Manage Feedback')
+                <li class="{{ (request()->is('feedback')) ? 'active' : '' }}">
+                    <a href="{{ route('feedback.index') }}" class="iq-waves-effect collapsed"><i class="far fa-comment-alt"></i><span>Feedback</span></a>
                 </li>
             @endcan
         </ul>

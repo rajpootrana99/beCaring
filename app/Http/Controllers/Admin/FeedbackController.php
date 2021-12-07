@@ -15,7 +15,15 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        return view('feedback.index');
+    }
+
+    public function fetchFeedbacks(){
+        $feedbacks = Feedback::all();
+        return response()->json([
+            'status' => true,
+            'feedbacks' => $feedbacks,
+        ]);
     }
 
     /**
@@ -79,8 +87,21 @@ class FeedbackController extends Controller
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feedback $feedback)
+    public function destroy($feedback)
     {
-        //
+        $feedback = Feedback::find($feedback);
+        if (!$feedback){
+            return response()->json([
+                'status' => 0,
+                'message' => 'Feedback Not Exist',
+            ]);
+        }
+        else{
+            $feedback->delete();
+            return response()->json([
+                'status' => 1,
+                'message' => 'Feedback Deleted Successfully',
+            ]);
+        }
     }
 }

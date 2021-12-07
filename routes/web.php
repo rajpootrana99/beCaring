@@ -52,4 +52,7 @@ Route::get('fetchEmployees', 'Admin\EmployeeController@fetchEmployees')->middlew
 Route::resource('help', 'Admin\HelpController')->middleware('permission:Manage Help');
 Route::get('fetchHelps', 'Admin\HelpController@fetchHelps')->middleware('permission:Show Help');
 
+Route::resource('feedback', 'Admin\FeedbackController')->middleware('permission:Manage Feedback');
+Route::get('fetchFeedbacks', 'Admin\FeedbackController@fetchFeedbacks')->middleware('permission:Show Feedback');
+
 require __DIR__ . '/auth.php';
