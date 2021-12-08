@@ -68,8 +68,8 @@ class NurseController extends Controller
     }
 
     public function nurse(){
-        $nurse =  Auth::user();
-        return $nurse;
+        $nurse =  User::where('id', Auth::id())->get();
+        return response()->json($nurse);
     }
 
     public function register(Request $request){
