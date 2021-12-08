@@ -16,7 +16,7 @@ class CreateTokensTable extends Migration
         Schema::create('tokens', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nurse_id');
-            $table->string('token');
+            $table->longText('token');
             $table->foreign('nurse_id')->references('id')->on('users');
             $table->timestamps();
         });
