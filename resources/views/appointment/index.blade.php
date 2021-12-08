@@ -76,8 +76,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="date" class="col-form-label text-right">Visit Start Date</label>
-                                    <input class="form-control" style="height: 30px;" type="date" name="date" id="date">
-                                    <span class="text-danger error-text date_error"></span>
+                                    <input class="form-control" style="height: 30px;" type="date" name="start_date" id="start_date">
+                                    <span class="text-danger error-text start_date_error"></span>
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -86,46 +86,47 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck6" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="custom-control-label" for="customCheck6">M</label>
+                                                <input type="checkbox" class="custom-control-input" name="day[]" value="0" id="day1" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="day1">M</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck7" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="custom-control-label" for="customCheck7">T</label>
+                                                <input type="checkbox" class="custom-control-input" id="day2" name="day[]" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="day2">T</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck8" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="custom-control-label" for="customCheck8">W</label>
+                                                <input type="checkbox" class="custom-control-input" id="day3" name="day[]" value="2" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="day3">W</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck9" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="custom-control-label" for="customCheck9">T</label>
+                                                <input type="checkbox" class="custom-control-input" id="day4" name="day[]" value="3" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="day4">T</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck10" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="custom-control-label" for="customCheck10">F</label>
+                                                <input type="checkbox" class="custom-control-input" id="day5" name="day[]" value="4" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="day5">F</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customChec11" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="custom-control-label" for="customChec11">S</label>
+                                                <input type="checkbox" class="custom-control-input" id="day6" name="day[]" value="5" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="day6">S</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck12" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="custom-control-label" for="customCheck12">S</label>
+                                                <input type="checkbox" class="custom-control-input" id="day7" name="day[]" value="6" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="day7">S</label>
                                             </div>
                                         </div>
+                                        <span class="text-danger error-text day_error"></span>
                                     </div>
                                 </div>
                             </div>
@@ -135,10 +136,11 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck13" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="custom-control-label" for="customCheck13">Repeat Every Week</label>
+                                                <input type="checkbox" class="custom-control-input" value="1" name="repeat" id="repeat" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="repeat">Repeat Every Week</label>
                                             </div>
                                         </div>
+                                        <span class="text-danger error-text repeat_error"></span>
                                     </div>
                                 </div>
                             </div>
@@ -176,14 +178,15 @@
                                                 <label class="custom-control-label" for="time5">Specific Time</label>
                                             </div>
                                         </div>
+                                        <span class="text-danger error-text time_error"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12" id="select_specific_time" style="display: none;">
                                 <div class="form-group row">
-                                    <label for="example-time-input" class="col-sm-3 my-1 control-label">Select Time</label>
+                                    <label for="specific_time" class="col-sm-3 my-1 control-label">Select Time</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" style="height: 30px;" type="time" id="example-time-input">
+                                        <input class="form-control" style="height: 30px;" name="specific_time" type="time" id="specific_time">
                                     </div>
                                 </div>
                             </div>
@@ -193,22 +196,23 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio12" name="visit_duration" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio12">30 min</label>
+                                                <input type="radio" id="visit_duration1" name="visit_duration" value="0" class="custom-control-input">
+                                                <label class="custom-control-label" for="visit_duration1">30 min</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio13" name="visit_duration" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio13">45 min</label>
+                                                <input type="radio" id="visit_duration2" name="visit_duration" value="1" class="custom-control-input">
+                                                <label class="custom-control-label" for="visit_duration2">45 min</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio14" name="visit_duration" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio14">60 min</label>
+                                                <input type="radio" id="visit_duration3" name="visit_duration" value="2" class="custom-control-input">
+                                                <label class="custom-control-label" for="visit_duration3">60 min</label>
                                             </div>
                                         </div>
+                                        <span class="text-danger error-text visit_duration_error"></span>
                                     </div>
                                 </div>
                             </div>
@@ -218,15 +222,18 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio15" name="no_of_carers" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio15">1</label>
+                                                <input type="radio" id="no_of_carers1" name="no_of_carers" value="1" class="custom-control-input">
+                                                <label class="custom-control-label" for="no_of_carers1">1</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio16" name="no_of_carers" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio16">2</label>
+                                                <input type="radio" id="no_of_carers2" name="no_of_carers" value="2" class="custom-control-input">
+                                                <label class="custom-control-label" for="no_of_carers2">2</label>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <span class="text-danger error-text no_of_carers_error"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -237,24 +244,25 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio17" name="hoist_required" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio17">Yes</label>
+                                                <input type="radio" id="hoist_required1" name="hoist_required" value="1" class="custom-control-input">
+                                                <label class="custom-control-label" for="hoist_required1">Yes</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="customRadio18" name="hoist_required" class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio18">No</label>
+                                                <input type="radio" id="hoist_required2" name="hoist_required" value="0" class="custom-control-input">
+                                                <label class="custom-control-label" for="hoist_required2">No</label>
                                             </div>
                                         </div>
+                                        <span class="text-danger error-text hoist_required_error"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group row">
-                                    <label for="example-text-input" class="my-1 col-sm-3 control-label">Visit Information</label>
+                                    <label for="visit_information" class="my-1 col-sm-3 control-label">Visit Information</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" style="height: 30px;" type="text" id="example-text-input">
+                                        <input class="form-control" style="height: 30px;" type="text" name="visit_information" id="visit_information">
                                     </div>
                                 </div>
                             </div>
@@ -263,9 +271,11 @@
                                     <label for="max_hourly_rate" class="my-1 col-sm-3 control-label">Max Hourly Rate</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" style="height: 30px;" name="max_hourly_rate" placeholder="£ / hr" type="text" id="max_hourly_rate">
+                                        <span class="text-danger error-text max_hourly_rate_error"></span>
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="min_hourly_rate" id="min_hourly_rate">
                         </div><!--end row-->
                     </div><!--end modal-body-->
                     <div class="modal-footer">

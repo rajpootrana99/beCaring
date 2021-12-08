@@ -13,7 +13,6 @@ class Appointment extends Model
         'patient_id',
         'company_id',
         'start_date',
-        'start_time',
         'day',
         'repeat',
         'time',
@@ -113,7 +112,7 @@ class Appointment extends Model
     }
 
     public function company(){
-        return $this->belongsTo(Company::class, 'id', 'company_id');
+        return $this->belongsTo(User::class, 'id', 'company_id');
     }
 
 }

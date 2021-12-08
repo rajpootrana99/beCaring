@@ -18,11 +18,10 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
             $table->string('start_date');
-            $table->string('start_time');
             $table->string('day');
             $table->string('repeat')->default(0);
             $table->string('time');
-            $table->string('specific_time');
+            $table->string('specific_time')->nullable();
             $table->string('visit_duration');
             $table->string('no_of_carers');
             $table->string('hoist_required');
