@@ -34,6 +34,10 @@ class CreatePatientsTable extends Migration
             $table->foreign('patient_id')->references('id')->on('users');
             $table->timestamps();
         });
+
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->foreign('patient_id')->references('id')->on('patients');
+        });
     }
 
     /**

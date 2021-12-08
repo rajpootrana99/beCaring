@@ -10,17 +10,86 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nurse_id',
-        'date',
+        'patient_id',
+        'company_id',
+        'start_date',
         'start_time',
-        'end_time',
-        'price',
-        'max_price',
-        'min_price',
-        'bid_price',
+        'day',
+        'repeat',
+        'time',
+        'specific_time',
+        'visit_duration',
+        'no_of_carers',
+        'hoist_required',
+        'visit_information',
+        'max_hourly_rate',
+        'min_hourly_rate',
         'status',
-        'is_complete',
     ];
+
+    public function getDayAttribute($attribute){
+        return $this->dayOptions()[$attribute] ?? 0;
+    }
+
+    public function dayOptions(){
+        return [
+            6 => 'Sunday',
+            5 => 'Saturday',
+            4 => 'Friday',
+            3 => 'Thursday',
+            2 => 'Wednesday',
+            1 => 'Tuesday',
+            0 => 'Monday',
+        ];
+    }
+
+    public function getRepeatAttribute($attribute){
+        return $this->repeatOptions()[$attribute] ?? 0;
+    }
+
+    public function repeatOptions(){
+        return [
+            1 => 'Repeat Every Week',
+            0 => 'No Repeat',
+        ];
+    }
+
+    public function getTimeAttribute($attribute){
+        return $this->timeOptions()[$attribute] ?? 0;
+    }
+
+    public function timeOptions(){
+        return [
+            4 => 'Specific Time',
+            3 => 'Bed Time',
+            2 => 'Dinner',
+            1 => 'Lunch',
+            0 => 'Wake Up',
+        ];
+    }
+
+    public function getVisitDurationAttribute($attribute){
+        return $this->visitDurationOptions()[$attribute] ?? 0;
+    }
+
+    public function visitDurationOptions(){
+        return [
+            2 => '60 min',
+            1 => '45 min',
+            0 => '30 min',
+        ];
+    }
+
+    public function getHoistRequiredAttribute($attribute){
+        return $this->hoistRequiredOptions()[$attribute] ?? 0;
+    }
+
+    public function hoistRequiredOptions(){
+        return [
+            1 => 'Yes',
+            0 => 'No',
+        ];
+    }
 
     public function getStatusAttribute($attribute){
         return $this->statusOptions()[$attribute] ?? 0;
@@ -28,29 +97,23 @@ class Appointment extends Model
 
     public function statusOptions(){
         return [
+            3 => 'Complete',
             2 => 'Reject',
             1 => 'Booked',
             0 => 'Pending',
         ];
     }
 
-    public function getIsCompleteAttribute($attribute){
-        return $this->isCompleteOptions()[$attribute] ?? 0;
+    public function nurses(){
+        return $this->belongsToMany(Nurse::class);
     }
 
-    public function isCompleteOptions(){
-        return [
-            1 => 'Complete',
-            0 => 'In Complete',
-        ];
+    public function patient(){
+        return $this->belongsTo(Patient::class);
     }
 
-    public function patients(){
-        return $this->belongsToMany(User::class);
-    }
-
-    public function nurse(){
-        return $this->hasOne(User::class, 'id', 'nurse_id');
+    public function company(){
+        return $this->belongsTo(Company::class, 'id', 'company_id');
     }
 
 }

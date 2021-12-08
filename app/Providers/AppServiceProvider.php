@@ -28,9 +28,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(125);
-        $appointments = Appointment::all();
+        /*$appointments = Appointment::all();
         View::share([
             'appointments' => $appointments,
-        ]);
+        ]);*/
     }
 }

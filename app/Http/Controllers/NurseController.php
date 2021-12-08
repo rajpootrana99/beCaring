@@ -68,7 +68,8 @@ class NurseController extends Controller
     }
 
     public function nurse(){
-        return Auth::user();
+        $nurse =  Auth::user();
+        return response()->json($nurse);
     }
 
     public function register(Request $request){
@@ -174,22 +175,6 @@ class NurseController extends Controller
             'status' => true,
             'message' => 'Successfully logged out'
         ]);
-    }
-
-    public function index(){
-        try {
-            $nurse = User::all();
-            return response([
-                'status' => 'true',
-                'nurse' => $nurse
-            ]);
-        }catch (\Exception $exception){
-            return response([
-                'status' => false,
-                'message' => $exception->getMessage()
-            ], 400);
-        }
-
     }
 
     public function update(Request $request, User $nurse){

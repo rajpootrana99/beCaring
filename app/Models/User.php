@@ -79,14 +79,6 @@ class User extends Authenticatable
         return $this->hasMany(Appointment::class);
     }
 
-    public function nurse(){
-        return $this->hasOne(Nurse::class);
-    }
-
-    public function patient(){
-        return $this->hasOne(Patient::class);
-    }
-
     public function token(){
         return $this->hasOne(Token::class);
     }

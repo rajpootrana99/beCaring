@@ -23,4 +23,8 @@ class Nurse extends Model
     public function user(){
         return $this->belongsTo(User::class, 'nurse_id', 'id');
     }
+
+    public function appointments(){
+        return $this->hasMany(Appointment::class);
+    }
 }
