@@ -29,7 +29,7 @@ class AppointmentController extends Controller
     }
 
     public function fetchAppointments(){
-        $appointments = Appointment::with('nurse', 'patients')->get();
+        $appointments = Appointment::with('patient','nurses','company')->get();
         return response()->json([
             'status' => true,
             'appointments' => $appointments,
@@ -42,7 +42,7 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        $appointment = Appointment::latest()->first();
+        $appointment = Appointment::latest()->orderBy('id', 'desc')->first();
         if (Auth::user()->company_id == null){
             $company_id = Auth::id();
         }
@@ -88,7 +88,24 @@ class AppointmentController extends Controller
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
-        $appointment = Appointment::create($request->all());
+        $day = $request->input('day');
+        for ($count=0; $count < count($day); $count++){
+            $appointment = Appointment::create([
+                'patient_id' => $request->input('patient_id'),
+                'company_id' => $request->input('company_id'),
+                'start_date' => $request->input('start_date'),
+                'day' => $day[$count],
+                'repeat' => $request->input('repeat'),
+                'time' => $request->input('time'),
+                'specific_time' => $request->input('specific_time'),
+                'visit_duration' => $request->input('visit_duration'),
+                'no_of_carers' => $request->input('no_of_carers'),
+                'hoist_required' => $request->input('hoist_required'),
+                'visit_information' => $request->input('visit_information'),
+                'max_hourly_rate' => $request->input('max_hourly_rate'),
+                'min_hourly_rate' => $request->input('min_hourly_rate'),
+            ]);
+        }
         if ($appointment){
             return response()->json(['status' => 1, 'message' => 'Appointment Added Successfully']);
         }
@@ -201,9 +218,6 @@ class AppointmentController extends Controller
             'email' => 'nullable|email|unique:users',
             'address' => 'required',
             'dob' => 'required',
-            'blood_group' => 'nullable',
-            'height' => 'nullable',
-            'weight' => 'nullable',
         ]);
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);

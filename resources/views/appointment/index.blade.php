@@ -611,32 +611,18 @@
                     url: "fetchAppointments",
                     dataType: "json",
                     success: function (response) {
-                        var options = new Array();
-                        let i = 0;
+                        console.log(response);
                         $('tbody').html("");
                         $.each(response.appointments, function (key, appointment) {
-                            if (appointment.nurse != null){
-                                var nurse = appointment.nurse.name;
-                            }
-                            else {
-                                nurse = 'Not Assigned yet';
-                            }
-                            appointment.patients.forEach(function (p){
-                                options[i] = p.name;
-                                i = i+1;
-                            })
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
-                            <td>'+nurse+'</td>\
-                            <td>'+options+'</td>\
-                            <td>'+appointment.date+'</td>\
-                            <td>'+appointment.start_time+'</td>\
-                            <td>'+appointment.end_time+'</td>\
-                            <td>'+parseFloat(appointment.max_price).toFixed(2)+'</td>\
-                            <td>'+parseFloat(appointment.min_price).toFixed(2)+'</td>\
-                            <td>'+parseFloat(appointment.bid_price).toFixed(2)+'</td>\
+                            <td>'+appointment.nurses+'</td>\
+                            <td>'+appointment.company_id+'</td>\
+                            <td>'+appointment.patient_id+'</td>\
+                            <td>'+appointment.start_date+'</td>\
+                            <td>'+appointment.time+'</td>\
+                            <td>'+parseFloat(appointment.max_hourly_rate).toFixed(2)+'</td>\
                             <td>'+appointment.status+'</td>\
-                            <td>'+appointment.is_complete+'</td>\
                             <td><button value="'+appointment.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
                             <td><button value="'+appointment.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                     </tr>');
@@ -652,10 +638,11 @@
                     url: "fetchPatients",
                     dataType: "json",
                     success: function (response) {
+                        console.log(response)
                         var patient_id = $('#patient_id');
                         $('#patient_id').children().remove().end();
                         $.each(response.patients, function (patient) {
-                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].id+' - '+response.patients[patient].name));
+                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].user.id+' - '+response.patients[patient].user.name));
                         });
                     }
                 });
@@ -672,20 +659,17 @@
 
             })
 
-            $(document).on('change', '#price', function (e) {
+            $(document).on('change', '#max_hourly_rate', function (e) {
                 e.preventDefault();
-                var price = $('#price').val();
-                var max_price = parseInt(price) - ((parseInt(price) /100)*2);
-                var min_price = max_price - ((max_price /100)*30);
+                var max_hourly_rate = $('#max_hourly_rate').val();
+                var min_hourly_rate = max_hourly_rate - ((max_hourly_rate /100)*30);
                 var date = $('#start_date').val();
                 var current_date = new Date();
                 date = new Date(date);
                 var days_left = date.getDate()-current_date.getDate();
                 var per = 30/days_left;
-                var bid_price = min_price +((max_price /100)*per);
-                $('#max_price').val(max_price);
-                $('#min_price').val(min_price);
-                $('#bid_price').val(bid_price);
+                min_hourly_rate = min_hourly_rate +((max_hourly_rate /100)*per);
+                $('#min_hourly_rate').val(min_hourly_rate);
             })
 
             $(document).on('click', '#addPatientButton', function (e) {

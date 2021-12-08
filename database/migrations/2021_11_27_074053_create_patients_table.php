@@ -17,9 +17,9 @@ class CreatePatientsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('patient_id');
             $table->string('dob');
-            $table->string('blood_group');
-            $table->string('height');
-            $table->string('weight');
+            $table->string('blood_group')->nullable();
+            $table->string('height')->nullable();
+            $table->string('weight')->nullable();
             $table->string('toilet_assistance')->nullable();
             $table->string('personal_care')->nullable();
             $table->string('fnd_information')->nullable();

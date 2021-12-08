@@ -25,7 +25,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('visit_duration');
             $table->string('no_of_carers');
             $table->string('hoist_required');
-            $table->string('visit_information');
+            $table->string('visit_information')->nullable();
             $table->string('max_hourly_rate');
             $table->string('min_hourly_rate');
             $table->integer('status')->default(0);

@@ -30,8 +30,7 @@ class PatientController extends Controller
     }
 
     public function fetchPatients(){
-        $role = Role::where('name', 'Patient')->first();
-        $patients = $role->users()->get();
+        $patients = Patient::with('user')->get();
         return response()->json([
             'status' => true,
             'patients' => $patients,
