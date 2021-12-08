@@ -59,3 +59,7 @@ Route::post('sendFeedback', 'FeedbackController@sendFeedback')->middleware(['aut
 
 //HelpController Route
 Route::get('fetchHelps', 'HelpController@fetchHelps')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+
+//NotificationController Route
+Route::get('fetchNotifications', 'NotificationController@fetchNotifications')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+

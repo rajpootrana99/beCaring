@@ -70,14 +70,14 @@
                 @csrf
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="title" class="col-form-label text-right">Title</label>
                                 <input class="form-control" type="text" name="title" id="title">
                                 <span class="text-danger error-text name_error"></span>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="body" class="col-form-label text-right">Description</label>
                                 <input class="form-control" type="text" name="body" id="body">
