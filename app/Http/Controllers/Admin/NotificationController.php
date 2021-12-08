@@ -100,13 +100,12 @@ class NotificationController extends Controller
         }
 
         if ($response) {
+            Notification::create([
+                'title' => $request->input('title'),
+                'body' => $request->input('body'),
+            ]);
             return response()->json(['status' => 1, 'message' => 'Notification Send Successfully']);
         }
-
-        Notification::create([
-            'title' => $request->input('title'),
-            'body' => $request->input('body'),
-        ]);
     }
 
     /**
