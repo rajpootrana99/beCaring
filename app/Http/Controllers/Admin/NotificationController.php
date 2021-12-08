@@ -48,7 +48,7 @@ class NotificationController extends Controller
     {
         $response = '';
 
-        $SERVER_API_KEY = 'AAAAH13Wawo:APA91bE61OXDrCbPrhfsXw91djC-QKAfgqVBfFaL3ta9pexkMuTmOTfa_xgryZwN45KrFgM-G_VVN8zpbdAfWrIXEEKClwMY3eImdYGUzsx7hFo_HXUxTlDJ0GhXShOxW9y-D5SB4kFI';
+        $SERVER_API_KEY = 'AAAALiDuRoo:APA91bG9vg88duBhYDWTgfRSlkFBwDbUVipBk61XolqZMZePc-6bcB0jZ9GZXufX0Dq0H0nIZW0m27ihhMXgzqEPfc2juNFuW-PNbaIkKXjqHDlut3JvTSsNYLeOaqcsI6ZRHdWHsSK4';
 
         $tokens = Token::all();
         foreach ($tokens as $token){

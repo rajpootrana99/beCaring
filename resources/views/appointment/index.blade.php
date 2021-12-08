@@ -126,7 +126,9 @@
                                                 <label class="custom-control-label" for="day7">S</label>
                                             </div>
                                         </div>
-                                        <span class="text-danger error-text day_error"></span>
+                                        <div class="row">
+                                            <span class="text-danger error-text day_error"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +142,9 @@
                                                 <label class="custom-control-label" for="repeat">Repeat Every Week</label>
                                             </div>
                                         </div>
-                                        <span class="text-danger error-text repeat_error"></span>
+                                        <div class="row">
+                                            <span class="text-danger error-text repeat_error"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +182,9 @@
                                                 <label class="custom-control-label" for="time5">Specific Time</label>
                                             </div>
                                         </div>
-                                        <span class="text-danger error-text time_error"></span>
+                                        <div class="row">
+                                            <span class="text-danger error-text time_error"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +218,9 @@
                                                 <label class="custom-control-label" for="visit_duration3">60 min</label>
                                             </div>
                                         </div>
-                                        <span class="text-danger error-text visit_duration_error"></span>
+                                        <div class="row">
+                                            <span class="text-danger error-text visit_duration_error"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -254,7 +262,9 @@
                                                 <label class="custom-control-label" for="hoist_required2">No</label>
                                             </div>
                                         </div>
-                                        <span class="text-danger error-text hoist_required_error"></span>
+                                        <div class="row">
+                                            <span class="text-danger error-text hoist_required_error"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -276,6 +286,7 @@
                                 </div>
                             </div>
                             <input type="hidden" name="min_hourly_rate" id="min_hourly_rate">
+                            <input type="hidden" name="company_id" id="company_id">
                         </div><!--end row-->
                     </div><!--end modal-body-->
                     <div class="modal-footer">
@@ -661,12 +672,12 @@
 
             })
 
-            /*$(document).on('change', '#price', function (e) {
+            $(document).on('change', '#price', function (e) {
                 e.preventDefault();
                 var price = $('#price').val();
                 var max_price = parseInt(price) - ((parseInt(price) /100)*2);
                 var min_price = max_price - ((max_price /100)*30);
-                var date = $('#date').val();
+                var date = $('#start_date').val();
                 var current_date = new Date();
                 date = new Date(date);
                 var days_left = date.getDate()-current_date.getDate();
@@ -675,7 +686,7 @@
                 $('#max_price').val(max_price);
                 $('#min_price').val(min_price);
                 $('#bid_price').val(bid_price);
-            })*/
+            })
 
             $(document).on('click', '#addPatientButton', function (e) {
                 e.preventDefault();
@@ -691,6 +702,7 @@
                     success: function (response) {
                         $('#addAppointment').modal('show');
                         $('#addAppointmentLabel').text('Visit ID '+response.visit_id);
+                        $('#company_id').val(response.company_id);
                         fetchPatients();
                         $(document).find('span.error-text').text('');
                         $('#select_specific_time').css('display', 'none');

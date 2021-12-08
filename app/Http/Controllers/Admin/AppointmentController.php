@@ -9,6 +9,7 @@ use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -42,6 +43,12 @@ class AppointmentController extends Controller
     public function create()
     {
         $appointment = Appointment::latest()->first();
+        if (Auth::user()->company_id == null){
+            $company_id = Auth::id();
+        }
+        else{
+            $company_id = Auth::user()->parent_id;
+        }
         if($appointment){
             $visit_id = $appointment->id;
         }
@@ -51,6 +58,7 @@ class AppointmentController extends Controller
         return response()->json([
             'status' => true,
             'visit_id' => $visit_id+1,
+            'company_id' => $company_id,
         ]);
     }
 
