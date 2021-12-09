@@ -241,12 +241,7 @@ class NurseController extends Controller
             ]);
             $this->storeDocument($nurse_detail);
 //            $token = $nurse->createToken('app')->accessToken;
-            return response([
-                'status' => true,
-                'message' => 'Success',
-//                'token' => $token,
-                'nurse' => $nurse,
-            ]);
+            return response()->json($nurse);
         }catch (\Exception $exception){
             return response([
                 'status' => false,
