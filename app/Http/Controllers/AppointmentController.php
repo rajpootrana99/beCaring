@@ -11,8 +11,24 @@ use Illuminate\Support\Facades\Validator;
 class AppointmentController extends Controller
 {
     public function fetchAppointments(){
-        $appointments = Appointment::select('patient_id','start_date','min_hourly_rate','time')->where('status',0)->distinct()->get();
+        $appointments = Appointment::select('patient_id','start_date','min_hourly_rate','time','duration')->where('status',0)->distinct()->get();
         return response()->json($appointments);
+    }
+
+    public function fetchAppointmentDetails(Request $request){
+        $validator = Validator::make($request->all(),[
+            'patient_id' => 'required',
+        ]);
+        if($validator->fails()){
+            $message = $validator->errors();
+            return response([
+                'status' => false,
+                'message' =>$message->first()
+            ],401);
+        }
+        $appointments = Appointment::where([
+            'patient_id' => $request->patient_id,
+            'status' => ])
     }
 
     public function fetchBookings(){
