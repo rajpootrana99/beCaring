@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class AppointmentController extends Controller
 {
     public function fetchAppointments(){
-        $appointments = Appointment::with('patient.user')->select('patient_id','start_date','min_hourly_rate','time','duration')->where('status',0)->distinct()->get();
+        $appointments = Appointment::with('patient.user')->select('patient_id','start_date','min_hourly_rate','time','visit_duration')->where('status',0)->distinct()->get();
         return response()->json($appointments);
     }
 
