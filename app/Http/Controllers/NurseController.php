@@ -153,13 +153,6 @@ class NurseController extends Controller
                 'dob' => $request->input('dob'),
             ]);
             $this->storeDocument($nurse_detail);
-            if (!is_null($nurse_detail->promo_code)){
-                $match = Reward::where('referal_code', $nurse_detail->promo_code)->first();
-                $points = $match->points + 5;
-                $match->update([
-                    'points' => $points
-                ]);
-            }
             $referal_code = $this->generateRandomString(9);
             $reward = Reward::create([
                 'nurse_id' => $nurse->id,

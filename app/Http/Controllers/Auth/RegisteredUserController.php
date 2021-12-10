@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\GeneralTrait;
 use App\Models\Company;
+use App\Models\Nurse;
+use App\Models\Reward;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -98,6 +100,7 @@ class RegisteredUserController extends Controller
 
     public function approveUser($user){
         $user = User::find($user);
+        $role = $user->getRoleNames()->first();
         if ($user->is_approved == 'Not Approved'){
             $value = 1;
         }
@@ -107,6 +110,18 @@ class RegisteredUserController extends Controller
         $user->update([
             'is_approved' => $value,
         ]);
+        if ($role == 'Nurse'){
+            if ($value == 1){
+                $nurse = Nurse::where('nurse_id', $user->id)->first();
+                if ($nurse->promo_code != null){
+                    $reward = Reward::where('referal_code', $nurse->promo_code)->first();
+                    $points = $reward->points + 5;
+                    $reward->update([
+                        'points' => $points,
+                    ]);
+                }
+            }
+        }
         if ($user){
             return response()->json([
                 'status' => true,
