@@ -394,7 +394,7 @@ class NurseController extends Controller
     }
 
     public function fetchReward(){
-        $reward = Reward::where('nurse_id', Auth::id())->first();
+        $reward = Reward::where('nurse_id', Auth::id())->get();
         if ($reward){
             return response()->json($reward);
         }
