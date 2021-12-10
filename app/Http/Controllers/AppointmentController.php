@@ -28,7 +28,7 @@ class AppointmentController extends Controller
                 'message' =>$message->first()
             ],401);
         }
-        $appointment = Appointment::with('patient')->where('id', $request->appointment_id)->first();
+        $appointment = Appointment::with('patient')->where('id', $request->appointment_id)->get();
         return response()->json($appointment);
     }
 
