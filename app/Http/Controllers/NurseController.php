@@ -361,19 +361,20 @@ class NurseController extends Controller
             'email' => 'required|email',
         ]);
         $token = $request->input('token');
-        if(!$verifyEmail = DB::table('verify_emails')->where([
+        if(DB::table('verify_emails')->where([
             'token' => $token,
             'email' => $request->email])->latest()){
             return response([
-                'status' => false,
-                'message' => 'Invalid token!'
-            ], 400);
+                'status' => true,
+                'message' => 'Success'
+            ], 200);
         }
-
-        return response([
-            'status' => true,
-            'message' => 'Success'
-        ]);
+        else{
+            return response([
+                'status' => false,
+                'message' => 'Invalid Token!'
+            ]);
+        }
     }
 
     public function setInterviewDate(Request $request){
