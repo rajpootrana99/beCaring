@@ -64,7 +64,6 @@ class AppointmentController extends Controller
             'patient_id' => $request->patient_id,
             'status' => 0,
         ])->get();
-        return response()->json($appointment);
         for ($count=0; $count < count($appointment); $count++){
             $appointment[$count]->update([
                 'nurse_id' => Auth::id(),
@@ -72,9 +71,10 @@ class AppointmentController extends Controller
             ]);
         }
 
-        $appointment = Appointment::with('patients', 'nurse')->where('id', $appointment->id)->first();
-
-        return response($appointment);
+        return response()->json([
+            'status' => true,
+            'message' => 'Appointment Booked'
+        ]);
     }
 
     public function fetchPastBookings(){
