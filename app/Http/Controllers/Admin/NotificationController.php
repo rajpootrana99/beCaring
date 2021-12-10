@@ -104,8 +104,8 @@ class NotificationController extends Controller
                 'title' => $request->input('title'),
                 'body' => $request->input('body'),
             ]);
-            return response()->json(['status' => 1, 'message' => 'Notification Send Successfully']);
         }
+        return response()->json(['status' => 1, 'message' => 'Notification Send Successfully']);
     }
 
     /**
