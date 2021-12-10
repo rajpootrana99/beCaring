@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class AppointmentController extends Controller
 {
     public function fetchAppointments(){
-        $appointments = Appointment::select('id','start_date','min_price','time')->where('status',0)->distinct()->get();
+        $appointments = Appointment::select('id','start_date','min_hourly_rate','time')->where('status',0)->distinct()->get();
         return response()->json($appointments);
     }
 
