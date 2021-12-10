@@ -29,6 +29,7 @@ Route::post('setInterviewDate', 'NurseController@setInterviewDate')->middleware(
 Route::get('nurse', 'NurseController@nurse')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 Route::get('nurseLogout', 'NurseController@logout')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 Route::post('nurseUpdate/{nurse}', 'NurseController@update')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+Route::get('fetchPromoCode', 'NurseController@fetchPromoCode')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 
 //AppointmentController Routes
 Route::get('fetchAppointments', 'AppointmentController@fetchAppointments')->middleware(['auth:api', 'role:Nurse', 'is_approved']);

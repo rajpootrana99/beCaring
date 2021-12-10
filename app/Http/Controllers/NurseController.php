@@ -402,6 +402,19 @@ class NurseController extends Controller
         }
     }
 
+    public function fetchPromoCode(){
+        $reward = Reward::where('nurse_id', Auth::id())->first();
+        if ($reward){
+            return response()->json($reward);
+        }
+        else{
+            return response()->json([
+                'status' => false,
+                'message' => 'No Promo Code Exist'
+            ]);
+        }
+    }
+
     public function generateRandomString($length = 10) {
         return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
     }
