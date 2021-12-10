@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class AppointmentController extends Controller
 {
     public function fetchAppointments(){
-        $appointments = Appointment::select('patient_id','start_date','min_hourly_rate','time','duration')->where('status',0)->distinct()->get();
+        $appointments = Appointment::with('patient.patient')->select('patient_id','start_date','min_hourly_rate','time','duration')->where('status',0)->distinct()->get();
         return response()->json($appointments);
     }
 
@@ -28,14 +28,13 @@ class AppointmentController extends Controller
         }
         $appointments = Appointment::where([
             'patient_id' => $request->patient_id,
-            'status' => ])
+            'status' => '1'])->get();
     }
 
     public function fetchBookings(){
         $bookings = Appointment::where([
             'nurse_id' => Auth::id(),
             'status' => 1,
-            'is_complete' => 0,
         ])->get();
         return response([
             'status' => true,
@@ -49,7 +48,7 @@ class AppointmentController extends Controller
 
     public function bookAppointment(Request $request){
         $validator = Validator::make($request->all(),[
-            'appointment_id' => 'required',
+            'patient_id' => 'required',
         ]);
 
 
@@ -61,7 +60,10 @@ class AppointmentController extends Controller
             ],401);
         }
 
-        $appointment = Appointment::find($request->appointment_id);
+        $appointment = Appointment::where([
+            'patient_id' => $request->patient_id,
+            'status' => 0,
+        ])->get();
         $appointment->update([
             'nurse_id' => Auth::id(),
             'status' => 1,
