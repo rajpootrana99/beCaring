@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\GeneralTrait;
 use App\Models\Nurse;
+use App\Models\Reward;
 use App\Models\Token;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -152,6 +153,18 @@ class NurseController extends Controller
                 'dob' => $request->input('dob'),
             ]);
             $this->storeDocument($nurse_detail);
+            if ($nurse_detail->promo_code){
+                $match = Reward::where('referal_code', $nurse_detail->promo_code)->first();
+                $points = $match->points + 5;
+                $match->update([
+                    'points' => $points
+                ]);
+            }
+            $referal_code = $this->generateRandomString(9);
+            $reward = Reward::create([
+                'nurse_id' => $nurse->id,
+                'referal_code' => $referal_code,
+            ]);
             $token = $nurse->createToken('app')->accessToken;
             return response([
                 'status' => true,
@@ -387,5 +400,9 @@ class NurseController extends Controller
                 'message' => 'Interview Date Set Successfully',
             ]);
         }
+    }
+
+    public function generateRandomString($length = 10) {
+        return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
     }
 }
