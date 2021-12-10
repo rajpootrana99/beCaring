@@ -102,10 +102,10 @@ class NurseController extends Controller
                 'message' => 'Nurse not exist'
             ]);
         }
-        $user->delete();
         $reward->delete();
         $token->delete();
         $nurse->delete();
+        $user->delete();
         return response()->json([
             'status' => 1,
             'message' => 'Nurse Deleted Successfully'
