@@ -36,10 +36,7 @@ class AppointmentController extends Controller
             'nurse_id' => Auth::id(),
             'status' => 1,
         ])->get();
-        return response([
-            'status' => true,
-            'bookings' => $bookings,
-        ]);
+        return response()->json($bookings);
     }
 
     public function getBidAmount(){
