@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Nurse;
+use App\Models\Reward;
+use App\Models\Token;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -91,15 +93,19 @@ class NurseController extends Controller
     public function destroy($user)
     {
         $nurse = Nurse::find($user);
-        $user = User::find($nurse->nurse_id);
+        $user = User::where('id', $nurse->nurse_id)->first();
+        $reward = Reward::where('nurse_id', $nurse->nurse_id)->first();
+        $token = Token::where('nurse_id', $nurse->nurse_id)->first();
         if (!$nurse){
             return response()->json([
                 'status' => 0,
                 'message' => 'Nurse not exist'
             ]);
         }
-        $nurse->delete();
         $user->delete();
+        $reward->delete();
+        $token->delete();
+        $nurse->delete();
         return response()->json([
             'status' => 1,
             'message' => 'Nurse Deleted Successfully'
