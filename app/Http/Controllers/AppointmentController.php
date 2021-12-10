@@ -59,16 +59,16 @@ class AppointmentController extends Controller
                 'message' =>$message->first()
             ],401);
         }
-
+        $nurse = Nurse::where('nurse_id', Auth::id())->first();
         $appointment = Appointment::where([
             'patient_id' => $request->patient_id,
             'status' => 0,
         ])->get();
         for ($count=0; $count < count($appointment); $count++){
             $appointment[$count]->update([
-                'nurse_id' => Auth::id(),
                 'status' => 1,
             ]);
+            $appointment[$count]->nurses()->attach($nurse->id);
         }
 
         return response()->json([
