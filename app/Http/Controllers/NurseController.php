@@ -185,8 +185,7 @@ class NurseController extends Controller
 
     public function update(Request $request, User $nurse){
         $validator = tap(Validator::make($request->all(),[
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required',
             'email' => 'required|email|exists:users',
             'dob' => 'required',
             'working_radius' => 'required',
@@ -230,8 +229,7 @@ class NurseController extends Controller
         }
         try {
             $nurse->update([
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
+                'name' => $request->input('name'),
                 'password' => Hash::make($request->input('password')),
                 'phone' => $request->input('phone'),
                 'address' => $request->input('address'),
