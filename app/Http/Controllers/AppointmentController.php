@@ -38,7 +38,7 @@ class AppointmentController extends Controller
         $nurse_id = $nurse->id;
         $bookings = Appointment::whereHas('nurses', function($query) use($nurse_id) {
             $query->where('nurses.id', $nurse_id);
-        })->get();
+        })->where('status', 1)->get();
         return response()->json($bookings);
     }
 
