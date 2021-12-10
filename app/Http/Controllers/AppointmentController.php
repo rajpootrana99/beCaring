@@ -36,8 +36,8 @@ class AppointmentController extends Controller
     public function fetchBookings(){
         $nurse = Nurse::where('nurse_id', Auth::id())->first();
         $nurse_id = $nurse->id;
-        $bookings = Appointment::whereHas('nurses', function(Builder $query) use($nurse_id) {
-            $query->where('id', $nurse_id);
+        $bookings = Appointment::whereHas('nurses', function($query) use($nurse_id) {
+            $query->where('nurses.id', $nurse_id);
         })->get();
         return response()->json($bookings);
     }

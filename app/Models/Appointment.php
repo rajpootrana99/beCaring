@@ -104,7 +104,7 @@ class Appointment extends Model
     }
 
     public function nurses(){
-        return $this->belongsToMany(Nurse::class);
+        return $this->belongsToMany(Nurse::class, 'appointment_nurse', 'appointment_id', 'nurse_id');
     }
 
     public function patient(){
