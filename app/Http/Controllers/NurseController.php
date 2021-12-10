@@ -375,7 +375,7 @@ class NurseController extends Controller
         if($verify){
             return response([
                 'status' => true,
-                'message' => 'Success'
+                'message' => $verify,
             ], 200);
         }
         else{
