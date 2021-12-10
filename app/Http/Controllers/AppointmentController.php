@@ -19,7 +19,7 @@ class AppointmentController extends Controller
 
     public function fetchAppointmentDetails(Request $request){
         $validator = Validator::make($request->all(),[
-            'patient_id' => 'required',
+            'appointment_id' => 'required',
         ]);
         if($validator->fails()){
             $message = $validator->errors();
@@ -28,9 +28,8 @@ class AppointmentController extends Controller
                 'message' =>$message->first()
             ],401);
         }
-        $appointments = Appointment::where([
-            'patient_id' => $request->patient_id,
-            'status' => '1'])->get();
+        $appointment = Appointment::with('patient')->where('id', $request->appointment_id)->first();
+        return response()->json($appointment);
     }
 
     public function fetchBookings(){
@@ -78,15 +77,12 @@ class AppointmentController extends Controller
     }
 
     public function fetchPastBookings(){
-        $bookings = Appointment::where([
-            'nurse_id' => Auth::id(),
-            'status' => 1,
-            'is_complete' => 1,
-        ])->get();
-        return response([
-            'status' => true,
-            'bookings' => $bookings,
-        ]);
+        $nurse = Nurse::where('nurse_id', Auth::id())->first();
+        $nurse_id = $nurse->id;
+        $bookings = Appointment::whereHas('nurses', function($query) use($nurse_id) {
+            $query->where('nurses.id', $nurse_id);
+        })->where('status', 4)->get();
+        return response()->json($bookings);
     }
 
     public function completeAppointment(Request $request){
@@ -105,12 +101,12 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::find($request->appointment_id);
         $appointment->update([
-            'is_complete' => 1,
+            'status' => 4,
         ]);
 
         return response([
             'status' => true,
-            'appointment' => $appointment,
+            'appointment' => 'Appointment Completed Successfully',
         ]);
     }
 }
