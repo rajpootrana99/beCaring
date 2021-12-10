@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Nurse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Builder;
 
 class AppointmentController extends Controller
 {
@@ -32,8 +34,10 @@ class AppointmentController extends Controller
     }
 
     public function fetchBookings(){
-        $bookings = Appointment::whereHas('nurses', function($query) {
-            $query->where('id', Auth::id());
+        $nurse = Nurse::where('nurse_id', Auth::id())->first();
+        $nurse_id = $nurse->id;
+        $bookings = Appointment::whereHas('nurses', function(Builder $query) use($nurse_id) {
+            $query->where('id', $nurse_id);
         })->get();
         return response()->json($bookings);
     }
