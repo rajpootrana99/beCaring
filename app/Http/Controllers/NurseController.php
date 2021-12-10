@@ -191,6 +191,7 @@ class NurseController extends Controller
             'working_radius' => 'required',
             'postal_code' => 'required',
             'address' => 'required',
+            'phone' => 'required',
         ]), function (){
             if(request()->hasFile(request()->image)){
                 Validator::make(request()->all(),[
@@ -210,11 +211,6 @@ class NurseController extends Controller
             if(request()->hasFile(request()->care_qualification_certificate)){
                 Validator::make(request()->all(),[
                     'care_qualification_certificate' => 'required|file|image',
-                ]);
-            }
-            if (request()->phone){
-                Validator::make(\request()->all(),[
-                    'phone' => 'required'
                 ]);
             }
         });
