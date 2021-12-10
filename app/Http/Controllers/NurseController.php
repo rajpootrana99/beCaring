@@ -369,9 +369,10 @@ class NurseController extends Controller
             ]);
         }
         $token = $request->input('token');
-        if(DB::table('verify_emails')->where([
+        $verify = DB::table('verify_emails')->where([
             'token' => $token,
-            'email' => $request->email])->latest()){
+            'email' => $request->email])->latest();
+        if($verify){
             return response([
                 'status' => true,
                 'message' => 'Success'
