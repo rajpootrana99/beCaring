@@ -359,7 +359,15 @@ class NurseController extends Controller
     public function verifyToken(Request $request){
         $validator = Validator::make($request->all(),[
             'email' => 'required|email',
+            'token' => 'required',
         ]);
+        if($validator->fails()){
+            $message = $validator->errors();
+            return collect([
+                'status' => false,
+                'message' =>$message->first()
+            ]);
+        }
         $token = $request->input('token');
         if(DB::table('verify_emails')->where([
             'token' => $token,
