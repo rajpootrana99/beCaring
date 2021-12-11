@@ -38,6 +38,7 @@ Route::get('fetchPastBookings', 'AppointmentController@fetchPastBookings')->midd
 Route::post('bookAppointment', 'AppointmentController@bookAppointment')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 Route::post('completeAppointment', 'AppointmentController@completeAppointment')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 Route::post('fetchAppointmentDetails', 'AppointmentController@fetchAppointmentDetails')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+Route::post('fetchEarnings', 'AppointmentController@fetchEarnings')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 
 //MedicationController Route
 Route::get('fetchPatients', 'MedicationController@fetchPatients')->middleware(['auth:api', 'role:Nurse', 'is_approved']);

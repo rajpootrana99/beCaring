@@ -41,6 +41,15 @@ class AppointmentController extends Controller
         return response()->json($bookings);
     }
 
+    public function fetchEarnings(){
+        $nurse = Nurse::where('nurse_id', Auth::id())->first();
+        $nurse_id = $nurse->id;
+        $appointments = Appointment::whereHas('nurses', function($query) use($nurse_id) {
+            $query->where('nurses.id', $nurse_id);
+        })->where('status', 3)->get();
+        return response()->json($appointments);
+    }
+
     public function getBidAmount(){
 
     }
