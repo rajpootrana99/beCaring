@@ -174,6 +174,7 @@
                                         <input type="text" id="address-input" name="address" class="form-control map-input">
                                         <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
                                         <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                                        <span class="text-danger error-text">{{ $errors->first('address') }}</span>
                                     </div>
                                 </div>
                                 <div id="address-map-container" style="width:100%;height:400px; ">
