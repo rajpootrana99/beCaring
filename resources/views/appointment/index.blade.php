@@ -661,15 +661,20 @@
 
             $(document).on('change', '#max_hourly_rate', function (e) {
                 e.preventDefault();
+                var bid_hourly_rate = 0;
                 var max_hourly_rate = $('#max_hourly_rate').val();
                 var min_hourly_rate = max_hourly_rate - ((max_hourly_rate /100)*30);
                 var date = $('#start_date').val();
                 var current_date = new Date();
                 date = new Date(date);
                 var days_left = date.getDate()-current_date.getDate();
-                var per = 30/days_left;
-                var bid_hourly_rate = min_hourly_rate +((max_hourly_rate /100)*per);
-                console.log(bid_hourly_rate);
+                if (days_left > 0){
+                    var per = 30/days_left;
+                    bid_hourly_rate = min_hourly_rate +((max_hourly_rate /100)*per);
+                }
+                else {
+                    bid_hourly_rate = max_hourly_rate;
+                }
                 $('#min_hourly_rate').val(min_hourly_rate);
                 $('#bid_hourly_rate').val(bid_hourly_rate);
             })

@@ -34,15 +34,7 @@ class Kernel extends ConsoleKernel
                 $start_date = Carbon::parse($appointments[$count]->start_date);
                 $current_date = Carbon::now();
                 $days_left = $start_date->diffInDays($current_date);
-                $appointments[$count]->update([
-                    'status' => 4,
-                ]);
-                /*if ($days_left < 0){
-                    $appointments[$count]->update([
-                        'status' => 4,
-                    ]);
-                }
-                else if ($days_left = 0){
+                if ($days_left == 0){
                     $bid_hourly_rate = $appointments[$count]->max_hourly_rate;
                     $appointments[$count]->update([
                         'bid_hourly_rate' => $bid_hourly_rate,
@@ -54,7 +46,7 @@ class Kernel extends ConsoleKernel
                     $appointments[$count]->update([
                         'bid_hourly_rate' => $bid_hourly_rate,
                     ]);
-                }*/
+                }
             }
         })->everyMinute();
     }
