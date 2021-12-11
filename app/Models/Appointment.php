@@ -23,6 +23,7 @@ class Appointment extends Model
         'visit_information',
         'max_hourly_rate',
         'min_hourly_rate',
+        'bid_hourly_rate',
         'status',
     ];
 
@@ -96,6 +97,7 @@ class Appointment extends Model
 
     public function statusOptions(){
         return [
+            4 => 'Expire',
             3 => 'Complete',
             2 => 'Reject',
             1 => 'Booked',

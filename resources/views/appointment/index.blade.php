@@ -286,6 +286,7 @@
                                 </div>
                             </div>
                             <input type="hidden" name="min_hourly_rate" id="min_hourly_rate">
+                            <input type="hidden" name="bid_hourly_rate" id="bid_hourly_rate">
                             <input type="hidden" name="company_id" id="company_id">
                         </div><!--end row-->
                     </div><!--end modal-body-->
@@ -611,7 +612,6 @@
                     url: "fetchAppointments",
                     dataType: "json",
                     success: function (response) {
-                        console.log(response);
                         $('tbody').html("");
                         $.each(response.appointments, function (key, appointment) {
                             $('tbody').append('<tr>\
@@ -668,8 +668,10 @@
                 date = new Date(date);
                 var days_left = date.getDate()-current_date.getDate();
                 var per = 30/days_left;
-                min_hourly_rate = min_hourly_rate +((max_hourly_rate /100)*per);
+                var bid_hourly_rate = min_hourly_rate +((max_hourly_rate /100)*per);
+                console.log(bid_hourly_rate);
                 $('#min_hourly_rate').val(min_hourly_rate);
+                $('#bid_hourly_rate').val(bid_hourly_rate);
             })
 
             $(document).on('click', '#addPatientButton', function (e) {

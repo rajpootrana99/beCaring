@@ -84,6 +84,7 @@ class AppointmentController extends Controller
             'visit_information' => 'nullable',
             'max_hourly_rate' => 'required',
             'min_hourly_rate' => 'required',
+            'bid_hourly_rate' => 'required',
         ]);
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
@@ -104,6 +105,7 @@ class AppointmentController extends Controller
                 'visit_information' => $request->input('visit_information'),
                 'max_hourly_rate' => $request->input('max_hourly_rate'),
                 'min_hourly_rate' => $request->input('min_hourly_rate'),
+                'bid_hourly_rate' => $request->input('bid_hourly_rate'),
             ]);
         }
         if ($appointment){
@@ -196,14 +198,20 @@ class AppointmentController extends Controller
     public function destroy($appointment)
     {
         $appointment = Appointment::find($appointment);
+        $appointment = Appointment::where([
+            'patient_id' => $appointment->patient_id,
+            'status' => 0
+        ])->get();
         if (!$appointment){
             return response()->json([
                 'status' => 0,
                 'message' => 'Appointment not exist'
             ]);
         }
-        $appointment->patients()->detach();
-        $appointment->delete();
+        for ($count=0; $count<count($appointment); $count++){
+            $appointment[$count]->nurses()->detach();
+            $appointment[$count]->delete();
+        }
         return response()->json([
             'status' => 1,
             'message' => 'Appointment Deleted Successfully'

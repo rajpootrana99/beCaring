@@ -28,6 +28,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('visit_information')->nullable();
             $table->string('max_hourly_rate');
             $table->string('min_hourly_rate');
+            $table->string('bid_hourly_rate');
             $table->integer('status')->default(0);
 
             $table->foreign('company_id')->references('id')->on('users');
