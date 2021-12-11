@@ -22,6 +22,11 @@
                 <a href="{{ route('index') }}"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
             </li>
             @endif
+            @can('Manage Chat')
+                <li class="{{ (request()->is('chat')) ? 'active' : '' }}">
+                    <a href="{{ route('chat.index') }}" class="iq-waves-effect collapsed"><i data-feather="message-circle" class="align-self-center menu-icon"></i><span>Chat</span></a>
+                </li>
+            @endcan
             @can('Manage Nurse')
             <li class="{{ (request()->is('nurse')) ? 'active' : '' }}">
                 <a href="{{ route('nurse.index') }}" class="iq-waves-effect collapsed"><i class="las la-user"></i><span>Carers</span></a>

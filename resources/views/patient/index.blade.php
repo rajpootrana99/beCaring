@@ -46,15 +46,7 @@
                                         <td>{{ $patient->user->email }}</td>
                                         <td>{{ $patient->user->address }}</td>
                                         <td><a href="{{ route('patient.edit', ['patient' => $patient]) }}"><i class="fa fa-edit"></i></a></td>
-                                        <td>
-                                            <form id="{{ 'delete_'.$patient->id }}" method="post" action="{{ route('patient.destroy', ['patient' => $patient]) }}">
-                                                @method('DELETE')
-                                                @csrf
-                                                <a onclick="document.getElementById('{{ 'delete_'.$patient->id }}').submit()" style="cursor: pointer">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                            </form>
-                                        </td>
+                                        <td><button value="{{ $patient->id }}" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -65,4 +57,71 @@
             </div> <!-- end col -->
         </div> <!-- end row -->
     </div>
+
+    <div class="modal fade" id="deletePatient" tabindex="-1" role="dialog" aria-labelledby="deletePatientLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title m-0" id="deletePatientLabel">Delete</h6>
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="la la-times"></i></span>
+                    </button>
+                </div><!--end modal-header-->
+                <form method="post" id="deletePatientForm">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        <div class="row">
+                            <input type="hidden" id="user_id" name="user_id">
+                            <p class="mb-4">Are you sure want to delete?</p>
+                        </div><!--end row-->
+                    </div><!--end modal-body-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Yes</button>
+                    </div><!--end modal-footer-->
+                </form>
+            </div><!--end modal-content-->
+        </div><!--end modal-dialog-->
+    </div>
+
+    <script>
+        $(document).ready(function (){
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).on('click', '.delete_btn', function (e) {
+                e.preventDefault();
+                var user_id = $(this).val();
+                $('#deletePatient').modal('show');
+                $('#user_id').val(user_id)
+            });
+
+            $(document).on('submit', '#deletePatientForm', function (e) {
+                e.preventDefault();
+                var user_id = $('#user_id').val();
+
+                $.ajax({
+                    type: 'delete',
+                    url: 'patient/'+user_id,
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.status == 0) {
+                            alert(response.message);
+                            $('#deletePatient').modal('hide');
+                        }
+                        else {
+                            $('#deletePatient').modal('hide');
+                            location.reload();
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
 @endsection

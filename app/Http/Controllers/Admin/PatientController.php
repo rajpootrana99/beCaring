@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\GeneralTrait;
+use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\User;
 use DateTime;
@@ -67,9 +68,6 @@ class PatientController extends Controller
             'weight' => 'nullable',
             'parent_id' => 'required'
         ]);
-        $dob = $request->input('dob');
-        $newDOB = new DateTime($dob);
-        $newDOB = $newDOB->format('d-m-Y');
         $first_name = $request->input('first_name');
         $last_name = $request->input('last_name');
         $patient = User::create([
@@ -86,7 +84,7 @@ class PatientController extends Controller
         $this->storeImage($patient);
         $patient_detail = Patient::create([
             'patient_id' => $patient->id,
-            'dob' => $newDOB,
+            'dob' => $request->input('dob'),
             'blood_group' => $request->input('blood_group'),
             'height' => $request->input('height'),
             'weight' => $request->input('weight'),
@@ -157,12 +155,9 @@ class PatientController extends Controller
         $user = User::find($patient->patient_id);
         $user->update($request->all());
         $this->storeImage($user);
-        $dob = $request->input('dob');
-        $newDOB = new DateTime($dob);
-        $newDOB = $newDOB->format('d-m-Y');
         $patient->update([
             'patient_id' => $user->id,
-            'dob' => $newDOB,
+            'dob' => $request->input('dob'),
             'blood_group' => $request->input('blood_group'),
             'height' => $request->input('height'),
             'weight' => $request->input('weight'),
@@ -186,12 +181,25 @@ class PatientController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patient $patient)
+    public function destroy($patient)
     {
+        $patient = Patient::find($patient);
         $user = User::find($patient->patient_id);
-        $patient->delete();
-        $user->delete();
-        return redirect(route('patient.index'));
+        $appointment = Appointment::where('patient_id', $patient->id)->get();
+        if (count($appointment)>0){
+            return response()->json([
+                'status' => 0,
+                'message' => 'Appointment Exist against this Patient',
+            ]);
+        }
+        else{
+            $patient->delete();
+            $user->delete();
+            return response()->json([
+                'status' => 1,
+                'message' => 'Patient Deleted Successfully',
+            ]);
+        }
     }
 
     public function storeImage($patient)

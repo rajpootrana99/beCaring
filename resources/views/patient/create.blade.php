@@ -164,7 +164,7 @@
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <label for="additional_notes" class="col-form-label text-right">Additional Notes</label>
-                                            <textarea class="form-control"  rows="2" name="additional_notes" id="additional_notes"></textarea>
+                                        <textarea class="form-control"  rows="2" name="additional_notes" id="additional_notes"></textarea>
                                         <span class="text-danger error-text">{{ $errors->first('additional_notes') }}</span>
                                     </div>
                                 </div>
@@ -174,6 +174,7 @@
                                         <input type="text" id="address-input" name="address" class="form-control map-input">
                                         <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
                                         <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                                        <span class="text-danger error-text">{{ $errors->first('address') }}</span>
                                     </div>
                                 </div>
                                 <div id="address-map-container" style="width:100%;height:400px; ">

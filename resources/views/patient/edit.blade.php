@@ -168,6 +168,7 @@
                                         <input type="text" id="address-input" name="address" value="{{ $patient->user->address }}" class="form-control map-input">
                                         <input type="hidden" name="address_latitude" id="address-latitude" value="{{ $patient->user->address_latitude }}" />
                                         <input type="hidden" name="address_longitude" id="address-longitude" value="{{ $patient->user->address_longitude }}" />
+                                        <span class="text-danger error-text">{{ $errors->first('address') }}</span>
                                     </div>
                                 </div>
                                 <div id="address-map-container" style="width:100%;height:400px; ">

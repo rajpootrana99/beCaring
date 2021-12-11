@@ -37,6 +37,7 @@ class PermissionCommand extends Command
             ['name' => 'Manage Employee'],
             ['name' => 'Manage Help'],
             ['name' => 'Manage Feedback'],
+            ['name' => 'Manage Chat'],
             ['name' => 'Show Company'],
             ['name' => 'Show Nurse'],
             ['name' => 'Show Patient'],
