@@ -183,38 +183,12 @@ class NurseController extends Controller
         ]);
     }
 
-    public function update(Request $request, User $nurse){
-        $validator = tap(Validator::make($request->all(),[
-            'name' => 'required',
-            'email' => 'required|email|exists:users',
-            'dob' => 'required',
+    public function update(Request $request, $nurse){
+        $validator = Validator::make($request->all(),[
             'working_radius' => 'required',
-            'postal_code' => 'required',
             'address' => 'required',
             'phone' => 'required',
-        ]), function (){
-            if(request()->hasFile(request()->image)){
-                Validator::make(request()->all(),[
-                    'image' => 'required|file|image',
-                ]);
-            }
-            if(request()->hasFile(request()->identification_document)){
-                Validator::make(request()->all(),[
-                    'identification_document' => 'required|file|image',
-                ]);
-            }
-            if(request()->hasFile(request()->dbs_certificate)){
-                Validator::make(request()->all(),[
-                    'dbs_certificate' => 'required|file|image',
-                ]);
-            }
-            if(request()->hasFile(request()->care_qualification_certificate)){
-                Validator::make(request()->all(),[
-                    'care_qualification_certificate' => 'required|file|image',
-                ]);
-            }
-        });
-
+        ]);
 
         if($validator->fails()){
             $message = $validator->errors();
@@ -223,25 +197,20 @@ class NurseController extends Controller
                 'message' =>$message->first()
             ]);
         }
+        $nurse = User::find($nurse);
         try {
             $nurse->update([
-                'name' => $request->input('name'),
-                'password' => Hash::make($request->input('password')),
-                'phone' => $request->input('phone'),
                 'address' => $request->input('address'),
+                'phone' => $request->input('phone'),
             ]);
-//            $this->storeImage($nurse);
             $nurse_detail = Nurse::where('nurse_id', $nurse->id)->first();
             $nurse_detail->update([
                 'working_radius' => $request->input('working_radius'),
-                'postal_code' => $request->input('postal_code'),
-                'date_of_interview' => $request->input('date_of_interview'),
-                'promo_code' => $request->input('promo_code'),
-                'dob' => $request->input('dob'),
             ]);
-            $this->storeDocument($nurse_detail);
-//            $token = $nurse->createToken('app')->accessToken;
-            return response()->json($nurse);
+            return response()->json([
+                'status' => true,
+                'message' => 'Nurse Detail Updated Successfully'
+            ]);
         }catch (\Exception $exception){
             return response([
                 'status' => false,
