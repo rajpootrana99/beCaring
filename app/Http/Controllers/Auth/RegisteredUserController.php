@@ -115,11 +115,12 @@ class RegisteredUserController extends Controller
                 $nurse = Nurse::where('nurse_id', $user->id)->first();
                 if ($nurse->promo_code != null){
                     $reward = Reward::where('referal_code', $nurse->promo_code)->first();
-                    $points = $reward->points ?? 0;
-                    $points = $points + 5;
-                    $reward->update([
-                        'points' => $points,
-                    ]);
+                    if ($reward){
+                        $points = $reward->points + 5;
+                        $reward->update([
+                            'points' => $points,
+                        ]);
+                    }
                 }
             }
         }
