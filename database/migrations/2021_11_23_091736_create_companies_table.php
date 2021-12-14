@@ -20,17 +20,17 @@ class CreateCompaniesTable extends Migration
             $table->string('company_website');
             $table->string('business_name');
             $table->integer('contact')->default(0);
-            $table->string('contact_name')->nullable();
-            $table->string('mobile_number')->nullable();
-            $table->string('position')->nullable();
+            $table->string('contact_name')->nullable()->default(' ');
+            $table->string('mobile_number')->nullable()->default(' ');
+            $table->string('position')->nullable()->default(' ');
             $table->string('current_cqc_rating');
             $table->string('your_needs');
             $table->string('provide_staff');
             $table->string('staff_type');
             $table->string('hours_per_week');
             $table->string('full_time_employees');
-            $table->string('cqc')->nullable();
-            $table->string('insurance_proof')->nullable();
+            $table->string('cqc')->nullable()->default(' ');
+            $table->string('insurance_proof')->nullable()->default(' ');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

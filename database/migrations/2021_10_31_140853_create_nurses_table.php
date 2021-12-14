@@ -19,11 +19,11 @@ class CreateNursesTable extends Migration
             $table->string('dob');
             $table->string('working_radius');
             $table->string('postal_code');
-            $table->string('date_of_interview')->nullable();
-            $table->string('promo_code')->nullable();
-            $table->string('identification_document')->nullable();
-            $table->string('dbs_certificate')->nullable();
-            $table->string('care_qualification_certificate')->nullable();
+            $table->string('date_of_interview')->nullable()->default(' ');
+            $table->string('promo_code')->nullable()->default(' ');
+            $table->string('identification_document')->nullable()->default(' ');
+            $table->string('dbs_certificate')->nullable()->default(' ');
+            $table->string('care_qualification_certificate')->nullable()->default(' ');
             $table->foreign('nurse_id')->references('id')->on('users');
             $table->timestamps();
         });

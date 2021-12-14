@@ -21,11 +21,11 @@ class CreateAppointmentsTable extends Migration
             $table->string('day');
             $table->string('repeat')->default(0);
             $table->string('time');
-            $table->string('specific_time')->nullable();
+            $table->string('specific_time')->nullable()->default(' ');
             $table->string('visit_duration');
             $table->string('no_of_carers');
             $table->string('hoist_required');
-            $table->string('visit_information')->nullable();
+            $table->string('visit_information')->nullable()->default(' ');
             $table->string('max_hourly_rate');
             $table->string('min_hourly_rate');
             $table->string('bid_hourly_rate');
