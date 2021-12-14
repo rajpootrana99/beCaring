@@ -119,12 +119,16 @@ class RegisteredUserController extends Controller
                     $reward->update([
                         'points' => $points,
                     ]);
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Status changed successfully',
+                    ]);
                 }
             }
         }
         if ($user){
             return response()->json([
-                'status' => true,
+                'status' => 1,
                 'message' => 'Status changed successfully',
             ]);
         }
