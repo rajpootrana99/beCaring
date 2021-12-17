@@ -24,15 +24,15 @@ Route::post('nurseLogin', 'NurseController@login');
 Route::post('nurseRegister', 'NurseController@register');
 Route::post('verifyToken', 'NurseController@verifyToken');
 Route::post('verifyEmail', 'NurseController@verifyEmail');
-Route::post('completeProfile', 'NurseController@completeProfile')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
-Route::post('setInterviewDate', 'NurseController@setInterviewDate')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
-Route::get('nurse', 'NurseController@nurse')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
-Route::get('nurseLogout', 'NurseController@logout')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
-Route::post('nurseUpdate/{nurse}', 'NurseController@update')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
-Route::get('fetchReward', 'NurseController@fetchReward')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+Route::post('completeProfile', 'NurseController@completeProfile')->middleware(['auth:api', 'role:Nurse']);
+Route::post('setInterviewDate', 'NurseController@setInterviewDate')->middleware(['auth:api', 'role:Nurse']);
+Route::get('nurse', 'NurseController@nurse')->middleware(['auth:api', 'role:Nurse']);
+Route::get('nurseLogout', 'NurseController@logout')->middleware(['auth:api', 'role:Nurse']);
+Route::post('nurseUpdate/{nurse}', 'NurseController@update')->middleware(['auth:api', 'role:Nurse']);
+Route::get('fetchReward', 'NurseController@fetchReward')->middleware(['auth:api', 'role:Nurse']);
 
 //AppointmentController Routes
-Route::get('fetchAppointments', 'AppointmentController@fetchAppointments')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+Route::get('fetchAppointments', 'AppointmentController@fetchAppointments')->middleware(['auth:api', 'role:Nurse']);
 Route::get('fetchBookings', 'AppointmentController@fetchBookings')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 Route::get('fetchPastBookings', 'AppointmentController@fetchPastBookings')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 Route::post('bookAppointment', 'AppointmentController@bookAppointment')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
@@ -50,18 +50,18 @@ Route::post('createMedication', 'MedicationController@createMedication')->middle
 Route::post('wishList', 'WishListController@store');
 
 //TrainingController Route
-Route::post('markVideoComplete', 'TrainingController@markVideoComplete')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
-Route::get('fetchTrainingVideos', 'TrainingController@fetchTrainingVideos')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+Route::post('markVideoComplete', 'TrainingController@markVideoComplete')->middleware(['auth:api', 'role:Nurse']);
+Route::get('fetchTrainingVideos', 'TrainingController@fetchTrainingVideos')->middleware(['auth:api', 'role:Nurse']);
 
 //PatientController Route
 Route::post('patientDetail', 'PatientController@patientDetail')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
 
 //FeedbackController Route
-Route::post('sendFeedback', 'FeedbackController@sendFeedback')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+Route::post('sendFeedback', 'FeedbackController@sendFeedback')->middleware(['auth:api', 'role:Nurse']);
 
 //HelpController Route
-Route::get('fetchHelps', 'HelpController@fetchHelps')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+Route::get('fetchHelps', 'HelpController@fetchHelps')->middleware(['auth:api', 'role:Nurse']);
 
 //NotificationController Route
-Route::get('fetchNotifications', 'NotificationController@fetchNotifications')->middleware(['auth:api', 'role:Nurse', 'is_approved']);
+Route::get('fetchNotifications', 'NotificationController@fetchNotifications')->middleware(['auth:api', 'role:Nurse']);
 

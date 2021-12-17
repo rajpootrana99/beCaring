@@ -105,95 +105,8 @@
                     <div class="chat-body" data-simplebar>
                         <div class="chat-detail">
                             <div class="media">
-                                <div class="media-img">
-                                    <img src="assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-md">
-                                </div>
-                                <div class="media-body">
-                                    <div class="chat-msg">
-                                        <p>Good Morning !</p>
-                                    </div>
-                                    <div class="chat-msg">
-                                        <p>There are many variations of passages of Lorem Ipsum available.</p>
-                                    </div>
-                                    <div class="chat-time">9:02am</div>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-
-                            <div class="media">
                                 <div class="media-body reverse">
-                                    <div class="chat-msg">
-                                        <p>Good Morning !</p>
-                                    </div>
-                                    <div class="chat-msg">
-                                        <p>There are many variations of passages of Lorem Ipsum available.</p>
-                                    </div>
-                                </div><!--end media-body-->
-                                <div class="media-img">
-                                    <img src="assets/images/users/user-8.jpg" alt="user" class="rounded-circle thumb-md">
-                                </div>
-                            </div><!--end media-->
 
-                            <div class="media">
-                                <div class="media-img">
-                                    <img src="assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-md">
-                                </div>
-                                <div class="media-body">
-                                    <div class="chat-msg">
-                                        <p>There are many variations of passages of Lorem Ipsum available.</p>
-                                    </div>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-
-                            <div class="media">
-                                <div class="media-body reverse">
-                                    <div class="chat-msg">
-                                        <p>Good Morning !</p>
-                                    </div>
-                                    <div class="chat-msg">
-                                        <p>It is a long established fact that a reader will be distracted by
-                                            the readable content of a page when looking at its layout.
-                                            The point of using Lorem Ipsum is that it has a more-or-less normal
-                                            distribution of letters, as opposed to using 'Content here.
-                                        </p>
-                                    </div>
-                                </div><!--end media-body-->
-                                <div class="media-img">
-                                    <img src="assets/images/users/user-8.jpg" alt="user" class="rounded-circle thumb-md">
-                                </div>
-                            </div><!--end media-->
-
-                            <div class="media">
-                                <div class="media-img">
-                                    <img src="assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-md">
-                                </div>
-                                <div class="media-body">
-                                    <div class="chat-msg">
-                                        <p>Good Morning !</p>
-                                    </div>
-                                    <div class="chat-msg">
-                                        <p>It is a long established fact that a reader will be distracted by
-                                            the readable content of a page when looking at its layout.
-                                            The point of using Lorem Ipsum is that it has a more-or-less normal
-                                            distribution of letters, as opposed to using 'Content here.
-                                        </p>
-                                    </div>
-                                    <div class="chat-msg">
-                                        <p>Ok</p>
-                                    </div>
-                                </div><!--end media-body-->
-                            </div> <!--end media-->
-
-                            <div class="media">
-                                <div class="media-body reverse">
-                                    <div class="chat-msg">
-                                        <p>Good Morning !</p>
-                                    </div>
-                                    <div class="chat-msg">
-                                        <p>There are many variations of passages of Lorem Ipsum available.</p>
-                                    </div>
-                                    <div class="chat-msg">
-                                        <p>By</p>
-                                    </div>
                                 </div><!--end media-body-->
                                 <div class="media-img">
                                     <img src="assets/images/users/user-8.jpg" alt="user" class="rounded-circle thumb-md">
@@ -205,7 +118,7 @@
                         <div class="row">
                             <div class="col-12 col-md-9">
                                 <span class="chat-admin"><img src="assets/images/users/user-8.jpg" alt="user" class="rounded-circle thumb-sm"></span>
-                                <input type="text" class="form-control" placeholder="Type something here...">
+                                <input type="text" class="form-control" id="chatInput" placeholder="Type something here...">
                             </div><!-- col-8 -->
                             <div class="col-3 text-right">
                                 <div class="d-none d-sm-inline-block chat-features">
@@ -236,7 +149,19 @@
             let ip_address = '127.0.0.1';
             let socket_port = '3000';
             let socket = io(ip_address + ':' + socket_port);
-            socket.on('connection')
+            let chatInput = $('#chatInput');
+            chatInput.keypress(function (e){
+                let message = $(this).val();
+                console.log(message);
+                if (e.which === 13 && !e.shiftKey) {
+                    socket.emit('sendChatToServer', message);
+                    chatInput.val('');
+                    return false;
+                }
+            });
+            socket.on('sendChatToClient', (message) => {
+                $('.chat-detail .media .media-body').append('<div class="chat-msg"><p>'+message+'</p></div>');
+            })
         })
     </script>
 @endsection

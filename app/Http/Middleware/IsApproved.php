@@ -20,9 +20,10 @@ class IsApproved
         if(auth()->check() && auth()->user()->is_approved == 'Approved'){
             return $next($request);
         }
-        Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return response()->view('dashboard');
+        $response = [
+            'status' => false,
+            'message' => 'Your profile is not approved yet'
+        ];
+        return response()->json($response);
     }
 }
