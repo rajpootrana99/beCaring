@@ -68,7 +68,7 @@
     <script src="{{ asset('plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js')}}"></script>
     <script src="{{ asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
     <script src="{{ asset('assets/pages/jquery.forms-advanced.js')}}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHYjQfwU69wcrmv3zKXtx1FooC3THeXNo&libraries=places&callback=initialize" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUan3-abHNhvaItsv0gCemR5DzDJjJXFQ&libraries=places&callback=initialize" async defer></script>
 
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
