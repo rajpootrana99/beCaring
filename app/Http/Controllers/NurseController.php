@@ -220,9 +220,12 @@ class NurseController extends Controller
     }
 
     public function completeProfile(Request $request){
-        $validator = tap(Validator::make($request->all(),[
-            'dob' => 'required',
-        ]), function (){
+        $validator = tap(Validator::make($request->all()), function (){
+            if(request()->hasFile(request()->image)){
+                Validator::make(request()->all(),[
+                    'image' => 'required|file|image',
+                ]);
+            }
             if(request()->hasFile(request()->identification_document)){
                 Validator::make(request()->all(),[
                     'identification_document' => 'required|file|image',
@@ -250,16 +253,14 @@ class NurseController extends Controller
         }
         try {
             $nurse = Nurse::where('id', Auth::id() )->first();
-            $nurse_detail = Nurse::create([
-                'nurse_id' => Auth::id(),
-                'dob' => $request->input('dob'),
-            ]);
-            $this->storeDocument($nurse_detail);
+            $user = User::where('id', $nurse->nurse_id)->first();
+            $this->storeImage($user);
+            $this->storeDocument($nurse);
             return response([
                 'status' => true,
                 'message' => 'Success',
                 'nurse' => $nurse,
-                'nurse_detail' => $nurse_detail,
+                'user' => $user,
             ]);
         }catch (\Exception $exception){
             return response([
