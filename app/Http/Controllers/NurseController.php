@@ -235,8 +235,8 @@ class NurseController extends Controller
             ]);
         }
         try {
-            $nurse = Nurse::where('id', Auth::id())->first();
-            $user = User::where('id', $nurse->nurse_id)->first();
+            $nurse = Nurse::where('nurse_id', Auth::id())->first();
+            $user = User::find(Auth::id());
             $this->storeImage($user);
             $this->storeDocument($nurse);
             return response([
