@@ -220,29 +220,12 @@ class NurseController extends Controller
     }
 
     public function completeProfile(Request $request){
-        $validator = tap(Validator::make($request->all()), function (){
-            if(request()->hasFile(request()->image)){
-                Validator::make(request()->all(),[
-                    'image' => 'required|file|image',
-                ]);
-            }
-            if(request()->hasFile(request()->identification_document)){
-                Validator::make(request()->all(),[
-                    'identification_document' => 'required|file|image',
-                ]);
-            }
-            if(request()->hasFile(request()->dbs_certificate)){
-                Validator::make(request()->all(),[
-                    'dbs_certificate' => 'required|file|image',
-                ]);
-            }
-            if(request()->hasFile(request()->care_qualification_certificate)){
-                Validator::make(request()->all(),[
-                    'care_qualification_certificate' => 'required|file|image',
-                ]);
-            }
-        });
-
+        $validator = Validator::make($request->all(),[
+            'image' => 'nullable|file|image',
+            'identification_document' => 'nullable|file|image',
+            'care_qualification_certificate' => 'nullable|file|image',
+            'dbs_certificate' => 'nullable|file|image',
+        ]);
 
         if($validator->fails()){
             $message = $validator->errors();
@@ -252,7 +235,7 @@ class NurseController extends Controller
             ]);
         }
         try {
-            $nurse = Nurse::where('id', Auth::id() )->first();
+            $nurse = Nurse::where('id', Auth::id())->first();
             $user = User::where('id', $nurse->nurse_id)->first();
             $this->storeImage($user);
             $this->storeDocument($nurse);
