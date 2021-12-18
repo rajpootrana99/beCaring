@@ -158,6 +158,7 @@ class NurseController extends Controller
                 'nurse_id' => $nurse->id,
                 'referal_code' => $referal_code,
             ]);
+            $nurse = Auth::user();
             $token = $nurse->createToken('app')->accessToken;
             return response([
                 'status' => true,
