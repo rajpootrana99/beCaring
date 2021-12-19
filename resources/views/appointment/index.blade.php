@@ -614,9 +614,15 @@
                     success: function (response) {
                         $('tbody').html("");
                         $.each(response.appointments, function (key, appointment) {
+                            var options = new Array();
+                            let i = 0;
+                            appointment.nurses.forEach(function (n){
+                                options[i] = n.name;
+                                i++;
+                            })
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
-                            <td>'+appointment.nurses+'</td>\
+                            <td>'+options.join(' ')+'</td>\
                             <td>'+appointment.company_id+'</td>\
                             <td>'+appointment.patient_id+'</td>\
                             <td>'+appointment.start_date+'</td>\
