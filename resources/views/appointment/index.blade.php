@@ -618,9 +618,9 @@
                             let i = 0;
                             appointment.nurses.forEach(function (n){
                                 options[i] = n.name;
+                                console.log(n);
                                 i++;
                             })
-                            console.log(options)
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
                             <td>'+options.join(' ')+'</td>\
