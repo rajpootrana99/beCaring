@@ -175,9 +175,9 @@ class NurseController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->user()->tokens()->delete();
+        auth()->user()->tokens()->delete();
         return response([
             'status' => true,
             'message' => 'Successfully logged out'
