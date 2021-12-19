@@ -620,6 +620,7 @@
                                 options[i] = n.name;
                                 i++;
                             })
+                            console.log(options)
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
                             <td>'+options.join(' ')+'</td>\
