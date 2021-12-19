@@ -110,7 +110,7 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::find($request->appointment_id);
         $appointment->update([
-            'status' => 4,
+            'status' => 3,
         ]);
 
         return response([
