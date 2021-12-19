@@ -30,6 +30,7 @@ Route::get('nurse', 'NurseController@nurse')->middleware(['auth:api', 'role:Nurs
 Route::get('nurseLogout', 'NurseController@logout')->middleware(['auth:api', 'role:Nurse']);
 Route::post('nurseUpdate/{nurse}', 'NurseController@update')->middleware(['auth:api', 'role:Nurse']);
 Route::get('fetchReward', 'NurseController@fetchReward')->middleware(['auth:api', 'role:Nurse']);
+Route::get('checkApprove', 'NurseController@checkApprove')->middleware(['auth:api', 'role:Nurse']);
 
 //AppointmentController Routes
 Route::get('fetchAppointments', 'AppointmentController@fetchAppointments')->middleware(['auth:api', 'role:Nurse']);

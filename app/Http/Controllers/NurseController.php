@@ -177,7 +177,7 @@ class NurseController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
+        $request->user()->tokens()->delete();
         return response([
             'status' => true,
             'message' => 'Successfully logged out'
@@ -371,5 +371,22 @@ class NurseController extends Controller
 
     public function generateRandomString($length = 10) {
         return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+    }
+
+    public function checkApprove(){
+        $nurse = User::find(Auth::id());
+        if ($nurse->is_approved == 1){
+            $response = [
+                'status' => true,
+                'message' => 'Nurse is Approved'
+            ];
+        }
+        else{
+            $response = [
+                'status' => false,
+                'message' => 'Nurse is Not Approved'
+            ];
+        }
+        return response()->json($response);
     }
 }
