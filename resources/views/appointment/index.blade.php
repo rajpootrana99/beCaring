@@ -617,8 +617,8 @@
                             var options = new Array();
                             let i = 0;
                             appointment.nurses.forEach(function (n){
-                                options[i] = n.user.name;
-                                console.log(n);
+                                options[i] = n.name;
+                                console.log(n.user);
                                 i++;
                             })
                             $('tbody').append('<tr>\
