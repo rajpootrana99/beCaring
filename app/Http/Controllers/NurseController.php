@@ -375,7 +375,7 @@ class NurseController extends Controller
 
     public function checkApprove(){
         $nurse = User::find(Auth::id());
-        if ($nurse->is_approved == 1){
+        if ($nurse->is_approved == 'Approved'){
             $response = [
                 'status' => true,
                 'message' => 'Nurse is Approved'
