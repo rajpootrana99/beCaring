@@ -34,7 +34,8 @@
                                     <th>Patient ID</th>
                                     <th>Date</th>
                                     <th>Time</th>
-                                    <th>Max Price per hour</th>
+                                    <th>Max Price/ hour</th>
+                                    <th>Proof of Work</th>
                                     <th>Status</th>
                                     <th width="3%">Modify</th>
                                     <th width="3%">Delete</th>
@@ -616,10 +617,14 @@
                         $.each(response.appointments, function (key, appointment) {
                             var options = new Array();
                             let i = 0;
+                            var status = ' '
                             appointment.nurses.forEach(function (n){
                                 options[i] = n.user.name;
                                 i++;
                             })
+                            if(appointment.status === 'Complete'){
+                                status = '<a target="_blank" href="storage/'+appointment.signature+'" title=""><span class="badge badge-info">Signature</span><br><a target="_blank" href="storage/'+appointment.photo+'" title=""><span class="badge badge-info">Photo</span>';
+                            }
                             $('tbody').append('<tr>\
                             <td>'+appointment.id+'</td>\
                             <td>'+options.join(' ')+'</td>\
@@ -628,6 +633,7 @@
                             <td>'+appointment.start_date+'</td>\
                             <td>'+appointment.time+'</td>\
                             <td>'+parseFloat(appointment.max_hourly_rate).toFixed(2)+'</td>\
+                            <td>'+status+'</td>\
                             <td>'+appointment.status+'</td>\
                             <td><button value="'+appointment.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
                             <td><button value="'+appointment.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\

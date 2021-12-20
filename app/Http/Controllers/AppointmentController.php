@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\GeneralTrait;
 use App\Models\Appointment;
 use App\Models\Nurse;
 use Illuminate\Http\Request;
@@ -12,6 +13,8 @@ use PhpParser\Builder;
 
 class AppointmentController extends Controller
 {
+    use GeneralTrait;
+
     public function fetchAppointments(){
         $appointments = Appointment::with('patient.user')->select('patient_id','start_date','min_hourly_rate','time','visit_duration')->where('status',0)->distinct()->get();
         return response()->json($appointments);
@@ -97,6 +100,9 @@ class AppointmentController extends Controller
     public function completeAppointment(Request $request){
         $validator = Validator::make($request->all(),[
             'appointment_id' => 'required',
+            'note' => 'required',
+            'signature' => 'required',
+            'photo' => 'required',
         ]);
 
 
@@ -111,11 +117,20 @@ class AppointmentController extends Controller
         $appointment = Appointment::find($request->appointment_id);
         $appointment->update([
             'status' => 3,
+            'note' => $request->input('note'),
         ]);
-
-        return response([
+        $this->storeImage($appointment);
+        $response = [
             'status' => true,
             'appointment' => 'Appointment Completed Successfully',
+        ];
+        return response()->json($response);
+    }
+
+    public function storeImage($appointment){
+        $appointment->update([
+            'signature' => $this->imagePath('signature', 'appointment', $appointment),
+            'photo' => $this->imagePath('photo', 'appointment', $appointment),
         ]);
     }
 }

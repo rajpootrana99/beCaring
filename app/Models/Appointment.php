@@ -25,6 +25,9 @@ class Appointment extends Model
         'min_hourly_rate',
         'bid_hourly_rate',
         'status',
+        'note',
+        'signature',
+        'photo',
     ];
 
     public function getDayAttribute($attribute){
@@ -74,9 +77,9 @@ class Appointment extends Model
 
     public function visitDurationOptions(){
         return [
-            2 => '60 min',
-            1 => '45 min',
-            0 => '30 min',
+            2 => '60',
+            1 => '45',
+            0 => '30',
         ];
     }
 
