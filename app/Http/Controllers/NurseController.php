@@ -378,12 +378,14 @@ class NurseController extends Controller
         if ($nurse->is_approved == 'Approved'){
             $response = [
                 'status' => true,
+                'nurse' => $nurse,
                 'message' => 'Nurse is Approved'
             ];
         }
         else{
             $response = [
                 'status' => false,
+                'nurse' => $nurse,
                 'message' => 'Nurse is Not Approved'
             ];
         }
