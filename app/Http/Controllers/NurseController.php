@@ -375,10 +375,12 @@ class NurseController extends Controller
 
     public function checkApprove(){
         $nurse = User::find(Auth::id());
+        $nurse_detail = Nurse::where('nurse_id', Auth::id())->first();
         if ($nurse->is_approved == 'Approved'){
             $response = [
                 'status' => true,
                 'nurse' => $nurse,
+                'nurse_detail' => $nurse_detail,
                 'message' => 'Nurse is Approved'
             ];
         }
@@ -386,6 +388,7 @@ class NurseController extends Controller
             $response = [
                 'status' => false,
                 'nurse' => $nurse,
+                'nurse_detail' => $nurse_detail,
                 'message' => 'Nurse is Not Approved'
             ];
         }
