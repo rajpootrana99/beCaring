@@ -144,7 +144,7 @@
 
                 $.ajax({
                     type: 'delete',
-                    url: 'nurse/'+earning_id,
+                    url: 'earning/'+earning_id,
                     dataType: 'json',
                     success: function (response) {
                         if (response.status == 0) {
