@@ -88,9 +88,9 @@ class EarningsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($earning)
+    public function destroy($id)
     {
-        $earning = Earnings::find($earning);
+        $earning = Earnings::find($id);
         if (!$earning){
             return response()->json([
                 'status' => 0,
