@@ -112,8 +112,9 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::find($request->appointment_id);
         $current_date = Carbon::now()->format('Y-m-d');
+        $nurse = Nurse::where('nurse_id', Auth::id())->first();
         $earning = Earnings::create([
-            'nurse_id' => Auth::id(),
+            'nurse_id' => $nurse->id,
             'appointment_id' => $appointment->id,
             'earning' => $appointment->bid_hourly_rate,
             'date' => $current_date,
