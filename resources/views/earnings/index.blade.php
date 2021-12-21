@@ -108,7 +108,7 @@
                             <td>'+earning.nurse_id+' : '+earning.nurse.user.name+'</td>\
                             <td>'+earning.appointment_id+'</td>\
                             <td>'+earning.date+'</td>\
-                            <td>'+earning.earning.toFixed(2)+'</td>\
+                            <td>'+parseFloat(earning.earning).toFixed(2)+'</td>\
                             <td>'+status+'</td>\
                             <td><button value="'+earning.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                             <td><button value="'+earning.id+'" style="border: none; background-color: #fff" class="approve_btn"><i class="fa fa-check-circle"></i></button></td>\
