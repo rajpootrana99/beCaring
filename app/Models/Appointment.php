@@ -120,4 +120,8 @@ class Appointment extends Model
         return $this->belongsTo(User::class, 'company_id', 'id');
     }
 
+    public function earnings(){
+        return $this->hasOne(Earnings::class);
+    }
+
 }

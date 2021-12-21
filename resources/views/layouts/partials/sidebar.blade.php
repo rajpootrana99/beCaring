@@ -42,6 +42,11 @@
                 <a href="{{ route('appointment.index') }}" class="iq-waves-effect collapsed"><i class="las la-clipboard"></i><span>Appointments</span></a>
             </li>
             @endcan
+            @can('Manage Earnings')
+                <li class="{{ (request()->is('earnings')) ? 'active' : '' }}">
+                    <a href="{{ route('earnings.index') }}" class="iq-waves-effect collapsed"><i class="las la-cash-register"></i><span>Earnings</span></a>
+                </li>
+            @endcan
             @can('Manage Medication')
             <li class="{{ (request()->is('medication')) ? 'active' : '' }}">
                 <a href="{{ route('medication.index') }}" class="iq-waves-effect collapsed"><i class="las la-clipboard"></i><span>Medications</span></a>

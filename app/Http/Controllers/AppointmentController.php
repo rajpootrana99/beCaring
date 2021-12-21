@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\GeneralTrait;
 use App\Models\Appointment;
+use App\Models\Earnings;
 use App\Models\Nurse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -47,10 +49,8 @@ class AppointmentController extends Controller
     public function fetchEarnings(){
         $nurse = Nurse::where('nurse_id', Auth::id())->first();
         $nurse_id = $nurse->id;
-        $appointments = Appointment::whereHas('nurses', function($query) use($nurse_id) {
-            $query->where('nurses.id', $nurse_id);
-        })->where('status', 3)->get();
-        return response()->json($appointments);
+        $earnings = Earnings::where('nurse_id', $nurse_id)->get();
+        return response()->json($earnings);
     }
 
     public function bookAppointment(Request $request){
@@ -111,6 +111,14 @@ class AppointmentController extends Controller
         }
 
         $appointment = Appointment::find($request->appointment_id);
+        $current_date = Carbon::now()->format('Y-m-d');
+        $earning = Earnings::create([
+            'nurse_id' => Auth::id(),
+            'appointment_id' => $appointment->id,
+            'earning' => $appointment->bid_hourly_rate,
+            'date' => $current_date,
+            'status' => 0,
+        ]);
         $appointment->update([
             'status' => 3,
             'note' => $request->input('note'),

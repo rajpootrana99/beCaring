@@ -55,5 +55,9 @@ Route::get('fetchHelps', 'Admin\HelpController@fetchHelps')->middleware('permiss
 Route::resource('feedback', 'Admin\FeedbackController')->middleware('permission:Manage Feedback');
 Route::get('fetchFeedbacks', 'Admin\FeedbackController@fetchFeedbacks')->middleware('permission:Show Feedback');
 
+Route::resource('earnings', 'Admin\EarningsController')->middleware('permission:Manage Earnings');
+Route::get('fetchEarnings', 'Admin\EarningsController@fetchEarnings')->middleware('permission:Show Earnings');
+Route::get('approveEarning/{earning}', 'Admin\EarningsController@approveEarning')->middleware('permission:Manage Earnings');
+
 Route::resource('chat', 'Admin\ChatController')->middleware('permission:Manage Chat');
 require __DIR__ . '/auth.php';

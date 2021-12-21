@@ -27,4 +27,8 @@ class Nurse extends Model
     public function appointments(){
         return $this->hasMany(Appointment::class);
     }
+
+    public function earnings(){
+        return $this->hasMany(Earnings::class);
+    }
 }
