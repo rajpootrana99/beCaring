@@ -144,7 +144,7 @@
 
                 $.ajax({
                     type: 'delete',
-                    url: 'earning/'+earning_id,
+                    url: 'earnings/'+earning_id,
                     dataType: 'json',
                     success: function (response) {
                         if (response.status == 0) {
