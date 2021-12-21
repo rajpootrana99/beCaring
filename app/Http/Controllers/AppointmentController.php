@@ -16,7 +16,7 @@ class AppointmentController extends Controller
     use GeneralTrait;
 
     public function fetchAppointments(){
-        $appointments = Appointment::with('patient.user')->select('patient_id','start_date','min_hourly_rate','time','visit_duration')->where('status',0)->distinct()->get();
+        $appointments = Appointment::with('patient.user')->select('patient_id','start_date','bid_hourly_rate','time','visit_duration')->where('status',0)->distinct()->get();
         return response()->json($appointments);
     }
 
@@ -51,10 +51,6 @@ class AppointmentController extends Controller
             $query->where('nurses.id', $nurse_id);
         })->where('status', 3)->get();
         return response()->json($appointments);
-    }
-
-    public function getBidAmount(){
-
     }
 
     public function bookAppointment(Request $request){
