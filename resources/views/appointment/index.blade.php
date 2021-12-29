@@ -983,6 +983,36 @@
                                 $('#edit_select_specific_time').css('display', 'none');
                                 $('#edit_specific_time').val('');
                             }
+                            if (response.appointment.visit_duration === '30') {
+                                $('#edit_visit_duration1').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_visit_duration1').prop('checked', false);
+                            }
+                            if (response.appointment.visit_duration === '45') {
+                                $('#edit_visit_duration2').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_visit_duration2').prop('checked', false);
+                            }
+                            if (response.appointment.visit_duration === '60') {
+                                $('#edit_visit_duration3').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_visit_duration3').prop('checked', false);
+                            }
+                            if (response.appointment.no_of_carers === '0') {
+                                $('#edit_no_of_carers1').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_no_of_carers1').prop('checked', false);
+                            }
+                            if (response.appointment.no_of_carers === '1') {
+                                $('#edit_no_of_carers2').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_no_of_carers2').prop('checked', false);
+                            }
                             $('#edit_start_time').val(response.appointment.start_time);
                             $('#edit_end_time').val(response.appointment.end_time);
                             $('#edit_price').val(response.appointment.price);
