@@ -949,6 +949,40 @@
                             else {
                                 $('#edit_repeat').prop('checked', false);
                             }
+                            if (response.appointment.time === 'Wake Up') {
+                                $('#edit_time1').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_time1').prop('checked', false);
+                            }
+                            if (response.appointment.time === 'Lunch') {
+                                $('#edit_time2').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_time2').prop('checked', false);
+                            }
+                            if (response.appointment.time === 'Dinner') {
+                                $('#edit_time3').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_time3').prop('checked', false);
+                            }
+                            if (response.appointment.time === 'Bed Time') {
+                                $('#edit_time4').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_time4').prop('checked', false);
+                            }
+                            if (response.appointment.time === 'Specific Time') {
+                                $('#edit_time5').prop('checked', true);
+                                $('#select_specific_time').css('display', 'block');
+                                $('#select_specific_time').val(response.appointment.specific_time);
+                            }
+                            else {
+                                $('#edit_time5').prop('checked', false);
+                                $('#select_specific_time').css('display', 'none');
+                                $('#select_specific_time').val('');
+                            }
                             $('#edit_start_time').val(response.appointment.start_time);
                             $('#edit_end_time').val(response.appointment.end_time);
                             $('#edit_price').val(response.appointment.price);
