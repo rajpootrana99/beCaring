@@ -934,7 +934,6 @@
                             $('#editAppointment').modal('hide');
                         }
                         else {
-                            console.log(response)
                             var patient_id = $('#edit_patient_id');
                             $('#edit_patient_id').children().remove().end()
                             $.each(response.patients, function (patient) {
