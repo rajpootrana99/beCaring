@@ -314,6 +314,7 @@
                     @method('PATCH')
                     <div class="modal-body">
                         <div class="row">
+                            <input type="hidden" id="appointment_id" name="appointment_id">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <div class="row"><label for="edit_patient_id" class="text-left col-form-label col-lg-8">Select Patient</label><a href="" id="addPatientButton" style="color: #024DEC" class="col-lg-4 col-form-label">+ patient</a></div>
@@ -940,13 +941,13 @@
                                 patient_id.append($("<option />").val(response.patients[patient].patient.id).text(response.patients[patient].patient.id+' - '+response.patients[patient].name));
                             });
                             $('#appointment_id').val(response.appointment.id);
-                            $('#edit_date').val(response.appointment.date);
+                            $('#edit_start_date').val(response.appointment.start_date);
                             $('#edit_start_time').val(response.appointment.start_time);
                             $('#edit_end_time').val(response.appointment.end_time);
                             $('#edit_price').val(response.appointment.price);
-                            $('#edit_max_price').val(response.appointment.max_price);
-                            $('#edit_min_price').val(response.appointment.min_price);
-                            $('#edit_bid_price').val(response.appointment.bid_price);
+                            $('#edit_max_hourly_rate').val(response.appointment.max_hourly_rate);
+                            $('#edit_min_hourly_rate').val(response.appointment.min_hourly_rate);
+                            $('#edit_bid_hourly_rate').val(response.appointment.bid_hourly_rate);
                             $('#edit_patient_id').val(response.appointment.patient_id).change();
                         }
                     }
