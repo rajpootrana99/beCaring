@@ -935,7 +935,7 @@
                             $('#editAppointment').modal('hide');
                         }
                         else {
-                            $('#addAppointmentLabel').text('Visit ID '+response.appointment.id);
+                            $('#editAppointmentLabel').text('Visit ID '+response.appointment.id);
                             var patient_id = $('#edit_patient_id');
                             $('#edit_patient_id').children().remove().end()
                             $.each(response.patients, function (patient) {
