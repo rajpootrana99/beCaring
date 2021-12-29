@@ -170,7 +170,6 @@ class AppointmentController extends Controller
         $validator = Validator::make($request->all(), [
             'patient_id' => 'required',
             'start_date' => 'required',
-            'day' => 'required',
             'time' => 'required',
             'specific_time' => 'nullable',
             'visit_duration' => 'required',

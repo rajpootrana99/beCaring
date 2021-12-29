@@ -381,7 +381,6 @@
                                         <div class="row">
                                             <span class="text-danger error-text day_update_error"></span>
                                         </div>
-                                        <input type="hidden" name="day" id="hidden_day">
                                     </div>
                                 </div>
                             </div>
@@ -980,49 +979,42 @@
                             $('#edit_start_date').val(response.appointment.start_date);
                             if (response.appointment.day === 'Monday') {
                                 $('#edit_day1').prop('checked', true);
-                                $('#hidden_day').val(response.appointment.day)
                             }
                             else {
                                 $('#edit_day1').prop('checked', false);
                             }
                             if (response.appointment.day === 'Tuesday') {
                                 $('#edit_day2').prop('checked', true);
-                                $('#hidden_day').val(response.appointment.day)
                             }
                             else {
                                 $('#edit_day2').prop('checked', false);
                             }
                             if (response.appointment.day === 'Wednesday') {
                                 $('#edit_day3').prop('checked', true);
-                                $('#hidden_day').val(response.appointment.day)
                             }
                             else {
                                 $('#edit_day3').prop('checked', false);
                             }
                             if (response.appointment.day === 'Thursday') {
                                 $('#edit_day4').prop('checked', true);
-                                $('#hidden_day').val(response.appointment.day)
                             }
                             else {
                                 $('#edit_day4').prop('checked', false);
                             }
                             if (response.appointment.day === 'Friday') {
                                 $('#edit_day5').prop('checked', true);
-                                $('#hidden_day').val(response.appointment.day)
                             }
                             else {
                                 $('#edit_day5').prop('checked', false);
                             }
                             if (response.appointment.day === 'Saturday') {
                                 $('#edit_day6').prop('checked', true);
-                                $('#hidden_day').val(response.appointment.day)
                             }
                             else {
                                 $('#edit_day6').prop('checked', false);
                             }
                             if (response.appointment.day === 'Sunday') {
                                 $('#edit_day7').prop('checked', true);
-                                $('#hidden_day').val(response.appointment.day)
                             }
                             else {
                                 $('#edit_day7').prop('checked', false);
