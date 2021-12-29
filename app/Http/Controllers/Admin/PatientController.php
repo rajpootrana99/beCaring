@@ -25,7 +25,8 @@ class PatientController extends Controller
     public function index()
     {
         if (Auth::id() == 1){
-            $patients = Patient::with('user')->get();
+            $patients = User::role('Patient')->get();
+            dd($patients);
         }
         else {
             $patients = User::role('Patient')->where('parent_id', Auth::id())->get();
