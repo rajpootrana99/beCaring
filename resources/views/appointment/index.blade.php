@@ -439,7 +439,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12" id="select_specific_time" style="display: none;">
+                            <div class="col-lg-12" id="edit_select_specific_time" style="display: none;">
                                 <div class="form-group row">
                                     <label for="edit_specific_time" class="col-sm-3 my-1 control-label">Select Time</label>
                                     <div class="col-sm-9">
@@ -976,12 +976,12 @@
                             if (response.appointment.time === 'Specific Time') {
                                 $('#edit_time5').prop('checked', true);
                                 $('#edit_select_specific_time').css('display', 'block');
-                                $('#edit_select_specific_time').val(response.appointment.specific_time);
+                                $('#edit_specific_time').val(response.appointment.specific_time);
                             }
                             else {
                                 $('#edit_time5').prop('checked', false);
                                 $('#edit_select_specific_time').css('display', 'none');
-                                $('#edit_select_specific_time').val('');
+                                $('#edit_specific_time').val('');
                             }
                             $('#edit_start_time').val(response.appointment.start_time);
                             $('#edit_end_time').val(response.appointment.end_time);
