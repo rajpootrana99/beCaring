@@ -1001,13 +1001,13 @@
                             else {
                                 $('#edit_visit_duration3').prop('checked', false);
                             }
-                            if (response.appointment.no_of_carers === '0') {
+                            if (response.appointment.no_of_carers === '1') {
                                 $('#edit_no_of_carers1').prop('checked', true);
                             }
                             else {
                                 $('#edit_no_of_carers1').prop('checked', false);
                             }
-                            if (response.appointment.no_of_carers === '1') {
+                            if (response.appointment.no_of_carers === '2') {
                                 $('#edit_no_of_carers2').prop('checked', true);
                             }
                             else {
