@@ -975,13 +975,13 @@
                             }
                             if (response.appointment.time === 'Specific Time') {
                                 $('#edit_time5').prop('checked', true);
-                                $('#select_specific_time').css('display', 'block');
-                                $('#select_specific_time').val(response.appointment.specific_time);
+                                $('#edit_select_specific_time').css('display', 'block');
+                                $('#edit_select_specific_time').val(response.appointment.specific_time);
                             }
                             else {
                                 $('#edit_time5').prop('checked', false);
-                                $('#select_specific_time').css('display', 'none');
-                                $('#select_specific_time').val('');
+                                $('#edit_select_specific_time').css('display', 'none');
+                                $('#edit_select_specific_time').val('');
                             }
                             $('#edit_start_time').val(response.appointment.start_time);
                             $('#edit_end_time').val(response.appointment.end_time);
