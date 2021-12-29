@@ -938,7 +938,6 @@
                             var patient_id = $('#edit_patient_id');
                             $('#edit_patient_id').children().remove().end()
                             $.each(response.patients, function (patient) {
-                                console.log(response.patients)
                                 patient_id.append($("<option />").val(response.patients[patient].patient.id).text(response.patients[patient].id+' - '+response.patients[patient].name));
                             });
                             $('#appointment_id').val(response.appointment.id);
@@ -949,11 +948,7 @@
                             $('#edit_max_price').val(response.appointment.max_price);
                             $('#edit_min_price').val(response.appointment.min_price);
                             $('#edit_bid_price').val(response.appointment.bid_price);
-                            var options = new Array();
-                            $.each(response.appointment.patients, function (key, patient) {
-                                options[key] = patient.id;
-                            });
-                            $('#edit_patient_id').val(options);
+                            $('#edit_patient_id').val(response.appointment.patient_id).change();
                         }
                     }
                 });
