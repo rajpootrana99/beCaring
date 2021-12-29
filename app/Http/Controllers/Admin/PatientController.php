@@ -28,9 +28,8 @@ class PatientController extends Controller
             $patients = Patient::with('user')->get();
         }
         else {
-            $user = User::where('parent_id', Auth::id());
-            $patients = $user->hasRole('Patient');
-            dd($user);
+            $patients = User::role('writer')->where('parent_id', Auth::id())->get();
+            dd($patients);
         }
         return view('patient.index', [
             'patients' => $patients,
