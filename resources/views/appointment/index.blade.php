@@ -540,7 +540,6 @@
                             </div>
                             <input type="hidden" name="min_hourly_rate" id="edit_min_hourly_rate">
                             <input type="hidden" name="bid_hourly_rate" id="edit_bid_hourly_rate">
-                            <input type="hidden" name="company_id" id="edit_company_id">
                         </div><!--end row-->
                     </div><!--end modal-body-->
                     <div class="modal-footer">
@@ -880,6 +879,7 @@
                 $('#addAppointment').modal('hide');
                 $('#addPatient').modal('show');
             })
+
             $(document).on('click', '#addAppointmentButton', function (e) {
                 e.preventDefault();
                 $.ajax({
@@ -934,7 +934,26 @@
                     $('#edit_select_specific_time').css('display', 'none');
                     $('#edit_specific_time').val('');
                 }
+            })
 
+            $(document).on('change', '#edit_max_hourly_rate', function (e) {
+                e.preventDefault();
+                var bid_hourly_rate = 0;
+                var max_hourly_rate = $('#edit_max_hourly_rate').val();
+                var min_hourly_rate = max_hourly_rate - ((max_hourly_rate /100)*30);
+                var date = $('#edit_start_date').val();
+                var current_date = new Date();
+                date = new Date(date);
+                var days_left = date.getDate()-current_date.getDate();
+                if (days_left > 0){
+                    var per = 30/days_left;
+                    bid_hourly_rate = min_hourly_rate +((max_hourly_rate /100)*per);
+                }
+                else {
+                    bid_hourly_rate = max_hourly_rate;
+                }
+                $('#edit_min_hourly_rate').val(min_hourly_rate);
+                $('#edit_bid_hourly_rate').val(bid_hourly_rate);
             })
 
             $(document).on('click', '.edit_btn', function (e) {

@@ -169,29 +169,23 @@ class AppointmentController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'patient_id' => 'required',
-            'date' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
-            'price' => 'required|numeric',
-            'max_price' => 'required|numeric',
-            'min_price' => 'required|numeric',
-            'bid_price' => 'required|numeric',
+            'start_date' => 'required',
+            'day' => 'required',
+            'time' => 'required',
+            'specific_time' => 'nullable',
+            'visit_duration' => 'required',
+            'no_of_carers' => 'required',
+            'hoist_required' => 'required',
+            'visit_information' => 'nullable',
+            'max_hourly_rate' => 'required',
+            'min_hourly_rate' => 'required',
+            'bid_hourly_rate' => 'required',
         ]);
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
         $appointment = Appointment::find($appointment);
-        $appointment->update([
-            'date' => $request->input('date'),
-            'start_time' => $request->input('start_time'),
-            'end_time' => $request->input('end_time'),
-            'price' => $request->input('price'),
-            'max_price' => $request->input('max_price'),
-            'min_price' => $request->input('min_price'),
-            'bid_price' => $request->input('bid_price'),
-        ]);
-        $appointment->patients()->detach();
-        $appointment->patients()->attach($request->patient_id);
+        $appointment->update($request->all());
         if ($appointment){
             return response()->json(['status' => 1, 'message' => 'Appointment Updated Successfully']);
         }
