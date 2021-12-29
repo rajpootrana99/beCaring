@@ -1013,9 +1013,19 @@
                             else {
                                 $('#edit_no_of_carers2').prop('checked', false);
                             }
-                            $('#edit_start_time').val(response.appointment.start_time);
-                            $('#edit_end_time').val(response.appointment.end_time);
-                            $('#edit_price').val(response.appointment.price);
+                            if (response.appointment.hoist_required === 'No') {
+                                $('#edit_hoist_required1').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_hoist_required1').prop('checked', false);
+                            }
+                            if (response.appointment.hoist_required === 'Yes') {
+                                $('#edit_hoist_required2').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_hoist_required2').prop('checked', false);
+                            }
+                            $('#edit_visit_information').val(response.appointment.visit_information);
                             $('#edit_max_hourly_rate').val(response.appointment.max_hourly_rate);
                             $('#edit_min_hourly_rate').val(response.appointment.min_hourly_rate);
                             $('#edit_bid_hourly_rate').val(response.appointment.bid_hourly_rate);
