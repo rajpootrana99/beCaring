@@ -951,6 +951,7 @@
                 else {
                     bid_hourly_rate = max_hourly_rate;
                 }
+                console.log(bid_hourly_rate)
                 $('#edit_min_hourly_rate').val(min_hourly_rate);
                 $('#edit_bid_hourly_rate').val(bid_hourly_rate);
             })
