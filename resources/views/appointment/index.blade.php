@@ -941,11 +941,9 @@
                 var max_hourly_rate = $('#edit_max_hourly_rate').val();
                 var min_hourly_rate = max_hourly_rate - ((max_hourly_rate /100)*30);
                 var date = $('#edit_start_date').val();
-                console.log(date)
                 var current_date = new Date();
                 date = new Date(date);
                 var days_left = date.getDate()-current_date.getDate();
-                console.log(days_left)
                 if (days_left > 0){
                     var per = 30/days_left;
                     bid_hourly_rate = min_hourly_rate +((max_hourly_rate /100)*per);
@@ -953,7 +951,6 @@
                 else {
                     bid_hourly_rate = max_hourly_rate;
                 }
-                console.log(bid_hourly_rate)
                 $('#edit_min_hourly_rate').val(min_hourly_rate);
                 $('#edit_bid_hourly_rate').val(bid_hourly_rate);
             })
