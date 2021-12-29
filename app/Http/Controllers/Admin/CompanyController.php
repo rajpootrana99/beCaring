@@ -103,7 +103,8 @@ class CompanyController extends Controller
         }
 
         $company = User::find($user);
-        $company->revokePermissionTo($request->input('permission_id'));
+        $permissions = $company->getAllPermissions()
+        $company->revokePermissionTo($permissions);
         $company->givePermissionTo($request->input('permission_id'));
         if ($company){
             return response()->json(['status' => 1, 'message' => 'Permissions Assigned Successfully']);
