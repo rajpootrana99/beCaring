@@ -237,6 +237,7 @@
                             $.each(response.permissions, function (permission) {
                                 permission_id.append($("<option />").val(response.permissions[permission].id).text(response.permissions[permission].name));
                             });
+                            console.log(response.company);
                             $('#user_id').val(response.company.id);
                             $('#edit_name').val(response.company.name);
                         }
