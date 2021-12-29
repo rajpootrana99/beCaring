@@ -30,7 +30,7 @@ class PatientController extends Controller
         else {
             $user = User::where('parent_id', Auth::id());
             $patients = $user->hasRole('Patient');
-            dd($patients);
+            dd($user);
         }
         return view('patient.index', [
             'patients' => $patients,
