@@ -1014,16 +1014,16 @@
                                 $('#edit_no_of_carers2').prop('checked', false);
                             }
                             if (response.appointment.hoist_required === 'No') {
-                                $('#edit_hoist_required1').prop('checked', true);
-                            }
-                            else {
-                                $('#edit_hoist_required1').prop('checked', false);
-                            }
-                            if (response.appointment.hoist_required === 'Yes') {
                                 $('#edit_hoist_required2').prop('checked', true);
                             }
                             else {
                                 $('#edit_hoist_required2').prop('checked', false);
+                            }
+                            if (response.appointment.hoist_required === 'Yes') {
+                                $('#edit_hoist_required1').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_hoist_required1').prop('checked', false);
                             }
                             $('#edit_visit_information').val(response.appointment.visit_information);
                             $('#edit_max_hourly_rate').val(response.appointment.max_hourly_rate);
