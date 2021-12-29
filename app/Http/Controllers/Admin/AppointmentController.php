@@ -137,8 +137,12 @@ class AppointmentController extends Controller
     public function edit($appointment)
     {
         $appointment = Appointment::with('patient')->where('id', $appointment)->first();
-        $role = Role::where('name', 'Patient')->first();
-        $patients = $role->users()->get();
+        if (Auth::id() == 1){
+            $patients = User::role('Patient')->get();
+        }
+        else {
+            $patients = User::role('Patient')->with('patient')->where('parent_id', Auth::id())->get();
+        }
         if ($appointment){
             return response()->json([
                 'status' => 200,
