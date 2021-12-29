@@ -24,7 +24,13 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::with('user')->get();
+        if (Auth::id() == 1){
+            $patients = Patient::with('user')->get();
+        }
+        else {
+            $patients = Patient::with('user')->get();
+            dd($patients->user());
+        }
         return view('patient.index', [
             'patients' => $patients,
         ]);
