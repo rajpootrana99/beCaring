@@ -407,31 +407,31 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="edit_time1" name="time" class="custom-control-input time" value="0">
+                                                <input type="radio" id="edit_time1" name="time" class="custom-control-input edit-time" value="0">
                                                 <label class="custom-control-label" for="edit_time1">Wake Up</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="edit_time2" name="time" class="custom-control-input time" value="1">
+                                                <input type="radio" id="edit_time2" name="time" class="custom-control-input edit-time" value="1">
                                                 <label class="custom-control-label" for="edit_time2">Lunch</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="edit_time3" name="time" class="custom-control-input time" value="2">
+                                                <input type="radio" id="edit_time3" name="time" class="custom-control-input edit-time" value="2">
                                                 <label class="custom-control-label" for="edit_time3">Dinner</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="edit_time4" name="time" class="custom-control-input time" value="3">
+                                                <input type="radio" id="edit_time4" name="time" class="custom-control-input edit-time" value="3">
                                                 <label class="custom-control-label" for="edit_time4">Bed Time</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-1">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="edit_time5" name="time" class="custom-control-input time" value="4">
+                                                <input type="radio" id="edit_time5" name="time" class="custom-control-input edit-time" value="4">
                                                 <label class="custom-control-label" for="edit_time5">Specific Time</label>
                                             </div>
                                         </div>
@@ -923,6 +923,19 @@
                     }
                 });
             });
+
+            $(document).on('change', '.edit-time', function (e) {
+                e.preventDefault();
+                if ($("#edit_time5").prop("checked")) {
+                    $('#edit_select_specific_time').css('display', 'block');
+                    $('#edit_specific_time').val('');
+                }
+                else {
+                    $('#edit_select_specific_time').css('display', 'none');
+                    $('#edit_specific_time').val('');
+                }
+
+            })
 
             $(document).on('click', '.edit_btn', function (e) {
                 e.preventDefault();
