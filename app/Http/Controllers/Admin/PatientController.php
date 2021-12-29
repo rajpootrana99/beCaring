@@ -29,7 +29,7 @@ class PatientController extends Controller
         }
         else {
             $patients = Patient::with('user')->get();
-            dd($patients->user());
+            dd($patients->user);
         }
         return view('patient.index', [
             'patients' => $patients,
