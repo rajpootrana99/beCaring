@@ -943,6 +943,12 @@
                             });
                             $('#appointment_id').val(response.appointment.id);
                             $('#edit_start_date').val(response.appointment.start_date);
+                            if (response.appointment.repeat === 'Repeat Every Week') {
+                                $('#edit_repeat').prop('checked', true);
+                            }
+                            else {
+                                $('#edit_repeat').prop('checked', false);
+                            }
                             $('#edit_start_time').val(response.appointment.start_time);
                             $('#edit_end_time').val(response.appointment.end_time);
                             $('#edit_price').val(response.appointment.price);
