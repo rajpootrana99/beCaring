@@ -835,7 +835,7 @@
                         var patient_id = $('#patient_id');
                         $('#patient_id').children().remove().end();
                         $.each(response.patients, function (patient) {
-                            patient_id.append($("<option />").val(response.patients[patient].patient.id).text(response.patients[patient].id+' - '+response.patients[patient].name));
+                            patient_id.append($("<option />").val(response.patients[patient].patient.id).text(response.patients[patient].patient.id+' - '+response.patients[patient].name));
                         });
                     }
                 });
@@ -937,7 +937,7 @@
                             var patient_id = $('#edit_patient_id');
                             $('#edit_patient_id').children().remove().end()
                             $.each(response.patients, function (patient) {
-                                patient_id.append($("<option />").val(response.patients[patient].patient.id).text(response.patients[patient].id+' - '+response.patients[patient].name));
+                                patient_id.append($("<option />").val(response.patients[patient].patient.id).text(response.patients[patient].patient.id+' - '+response.patients[patient].name));
                             });
                             $('#appointment_id').val(response.appointment.id);
                             $('#edit_date').val(response.appointment.date);
