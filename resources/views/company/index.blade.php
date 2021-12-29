@@ -232,8 +232,8 @@
                             $('#editCompany').modal('hide');
                         }
                         else {
-                            var permission_id = $('#permission_id');
-                            $('#permission_id').children().remove().end()
+                            var permission_id = $('#edit_permission_id');
+                            $('#edit_permission_id').children().remove().end()
                             $.each(response.permissions, function (permission) {
                                 permission_id.append($("<option />").val(response.permissions[permission].id).text(response.permissions[permission].name));
                             });
