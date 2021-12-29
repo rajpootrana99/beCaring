@@ -54,7 +54,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title m-0" id="editCompanyLabel">Patient Detail</h6>
+                    <h6 class="modal-title m-0" id="editCompanyLabel">Company Detail</h6>
                     <button type="button" class="close " data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="la la-times"></i></span>
                     </button>
@@ -170,8 +170,8 @@
                             <td>'+company.user.email+'</td>\
                             <td>'+options.join(' ')+'</td>\
                             <td>'+status+'</td>\
-                            <td><button value="'+company.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
-                            <td><button value="'+company.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
+                            <td><button value="'+company.user.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
+                            <td><button value="'+company.user.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                             <td><button value="'+company.user.id+'" style="border: none; background-color: #fff" class="approve_btn"><i class="fa fa-check-circle"></i></button></td>\
                     </tr>');
                         });
