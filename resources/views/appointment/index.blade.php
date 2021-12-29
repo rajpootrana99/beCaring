@@ -654,7 +654,8 @@
                         var patient_id = $('#patient_id');
                         $('#patient_id').children().remove().end();
                         $.each(response.patients, function (patient) {
-                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].user.id+' - '+response.patients[patient].user.name));
+                            console.log((response.patients))
+                            patient_id.append($("<option />").val(response.patients[patient].id).text(response.patients[patient].id+' - '+response.patients[patient].name));
                         });
                     }
                 });

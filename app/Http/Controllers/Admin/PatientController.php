@@ -36,7 +36,12 @@ class PatientController extends Controller
     }
 
     public function fetchPatients(){
-        $patients = Patient::with('user')->get();
+        if (Auth::id() == 1){
+            $patients = User::role('Patient')->get();
+        }
+        else {
+            $patients = User::role('Patient')->with('patient')->where('parent_id', Auth::id())->get();
+        }
         return response()->json([
             'status' => true,
             'patients' => $patients,
