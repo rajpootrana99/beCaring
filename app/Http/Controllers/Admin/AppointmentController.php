@@ -136,7 +136,7 @@ class AppointmentController extends Controller
      */
     public function edit($appointment)
     {
-        $appointment = Appointment::with('patients')->where('id', $appointment)->first();
+        $appointment = Appointment::with('patient')->where('id', $appointment)->first();
         $role = Role::where('name', 'Patient')->first();
         $patients = $role->users()->get();
         if ($appointment){
