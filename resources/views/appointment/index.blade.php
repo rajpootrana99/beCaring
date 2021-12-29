@@ -338,43 +338,43 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" readonly name="day[]" value="0" id="edit_day1" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" onclick="return false;" name="day[]" value="0" id="edit_day1" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day1">M</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day2" name="day[]" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" onclick="return false;" id="edit_day2" name="day[]" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day2">T</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day3" name="day[]" value="2" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" onclick="return false;" id="edit_day3" name="day[]" value="2" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day3">W</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day4" name="day[]" value="3" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" onclick="return false;" id="edit_day4" name="day[]" value="3" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day4">T</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day5" name="day[]" value="4" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" onclick="return false;" id="edit_day5" name="day[]" value="4" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day5">F</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day6" name="day[]" value="5" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" onclick="return false;" id="edit_day6" name="day[]" value="5" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day6">S</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day7" name="day[]" value="6" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" onclick="return false;" id="edit_day7" name="day[]" value="6" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day7">S</label>
                                             </div>
                                         </div>
