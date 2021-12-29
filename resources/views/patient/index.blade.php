@@ -41,10 +41,10 @@
                                 @foreach($patients as $patient)
                                     <tr>
                                         <td>{{ $patient->id }}</td>
-                                        <td>{{ $patient->user->name}}</td>
-                                        <td>{{ $patient->user->phone }}</td>
-                                        <td>{{ $patient->user->email }}</td>
-                                        <td>{{ $patient->user->address }}</td>
+                                        <td>{{ $patient->name}}</td>
+                                        <td>{{ $patient->phone }}</td>
+                                        <td>{{ $patient->email }}</td>
+                                        <td>{{ $patient->address }}</td>
                                         <td><a href="{{ route('patient.edit', ['patient' => $patient]) }}"><i class="fa fa-edit"></i></a></td>
                                         <td><button value="{{ $patient->id }}" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>
                                     </tr>

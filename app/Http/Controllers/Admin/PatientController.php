@@ -26,11 +26,9 @@ class PatientController extends Controller
     {
         if (Auth::id() == 1){
             $patients = User::role('Patient')->get();
-            dd($patients);
         }
         else {
             $patients = User::role('Patient')->where('parent_id', Auth::id())->get();
-            dd($patients);
         }
         return view('patient.index', [
             'patients' => $patients,
