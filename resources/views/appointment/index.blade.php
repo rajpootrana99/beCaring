@@ -314,48 +314,230 @@
                     @method('PATCH')
                     <div class="modal-body">
                         <div class="row">
-                            <input type="hidden" name="appointment_id" id="appointment_id">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="edit_patient_id" class="col-form-label text-right">Select Patient</label>
-                                    <select class="select2 mb-3 select2-multiple" name="patient_id[]" id="edit_patient_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
+                                    <div class="row"><label for="edit_patient_id" class="text-left col-form-label col-lg-8">Select Patient</label><a href="" id="addPatientButton" style="color: #024DEC" class="col-lg-4 col-form-label">+ patient</a></div>
+                                    <select class="select2 mb-3 form-control custom-select" name="patient_id" id="edit_patient_id" style="width: 100%; height:30px;">
 
                                     </select>
                                     <span class="text-danger error-text patient_id_update_error"></span>
                                 </div>
                             </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="edit_start_date" class="col-form-label text-right">Visit Start Date</label>
+                                    <input class="form-control" style="height: 30px;" type="date" name="start_date" id="edit_start_date">
+                                    <span class="text-danger error-text start_date_update_error"></span>
+                                </div>
+                            </div>
                             <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label for="edit_date" class="col-form-label text-right">Date</label>
-                                    <input class="form-control" type="date" name="date" id="edit_date" >
-                                    <span class="text-danger error-text date_update_error"></span>
+                                <div class="form-group mb-0 row">
+                                    <label for="days" class="col-md-3 my-1 control-label">Days : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="day[]" value="0" id="edit_day1" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="edit_day1">M</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="edit_day2" name="day[]" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="edit_day2">T</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="edit_day3" name="day[]" value="2" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="edit_day3">W</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="edit_day4" name="day[]" value="3" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="edit_day4">T</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="edit_day5" name="day[]" value="4" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="edit_day5">F</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="edit_day6" name="day[]" value="5" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="edit_day6">S</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="edit_day7" name="day[]" value="6" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="edit_day7">S</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <span class="text-danger error-text day_update_error"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="edit_start_time" class="col-form-label text-right">Start Time</label>
-                                    <input class="form-control" type="time" name="start_time" id="edit_start_time">
-                                    <span class="text-danger error-text start_time_update_error"></span>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label for="repeat" class="col-md-3 my-1 control-label">Repeat : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" value="1" name="repeat" id="edit_repeat" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="edit_repeat">Repeat Every Week</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <span class="text-danger error-text repeat_update_error"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="edit_end_time" class="col-form-label text-right">End Time</label>
-                                    <input class="form-control" type="time" name="end_time" id="edit_end_time">
-                                    <span class="text-danger error-text end_time_update_error"></span>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label class="col-md-3 my-1 control-label">Time : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_time1" name="time" class="custom-control-input time" value="0">
+                                                <label class="custom-control-label" for="edit_time1">Wake Up</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_time2" name="time" class="custom-control-input time" value="1">
+                                                <label class="custom-control-label" for="edit_time2">Lunch</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_time3" name="time" class="custom-control-input time" value="2">
+                                                <label class="custom-control-label" for="edit_time3">Dinner</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_time4" name="time" class="custom-control-input time" value="3">
+                                                <label class="custom-control-label" for="edit_time4">Bed Time</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_time5" name="time" class="custom-control-input time" value="4">
+                                                <label class="custom-control-label" for="edit_time5">Specific Time</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <span class="text-danger error-text time_update_error"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="edit_price" class="col-form-label text-right">Price</label>
-                                    <input class="form-control" type="text" name="price" id="edit_price">
-                                    <span class="text-danger error-text price_update_error"></span>
+                            <div class="col-lg-12" id="select_specific_time" style="display: none;">
+                                <div class="form-group row">
+                                    <label for="edit_specific_time" class="col-sm-3 my-1 control-label">Select Time</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" name="specific_time" type="time" id="edit_specific_time">
+                                    </div>
                                 </div>
                             </div>
-
-                            <input type="hidden" name="max_price" id="edit_max_price">
-                            <input type="hidden" name="min_price" id="edit_min_price">
-                            <input type="hidden" name="bid_price" id="edit_bid_price">
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label class="col-md-3 my-1 control-label">Visit Duration : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_visit_duration1" name="visit_duration" value="0" class="custom-control-input">
+                                                <label class="custom-control-label" for="edit_visit_duration1">30 min</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_visit_duration2" name="visit_duration" value="1" class="custom-control-input">
+                                                <label class="custom-control-label" for="edit_visit_duration2">45 min</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_visit_duration3" name="visit_duration" value="2" class="custom-control-input">
+                                                <label class="custom-control-label" for="edit_visit_duration3">60 min</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <span class="text-danger error-text visit_duration_update_error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label class="col-md-3 my-1 control-label">No of Carers : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_no_of_carers1" name="no_of_carers" value="1" class="custom-control-input">
+                                                <label class="custom-control-label" for="edit_no_of_carers1">1</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_no_of_carers2" name="no_of_carers" value="2" class="custom-control-input">
+                                                <label class="custom-control-label" for="edit_no_of_carers2">2</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <span class="text-danger error-text no_of_carers_update_error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-0 row">
+                                    <label class="col-md-3 my-1 control-label">Hoist Required : </label>
+                                    <div class="col-md-9">
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_hoist_required1" name="hoist_required" value="1" class="custom-control-input">
+                                                <label class="custom-control-label" for="edit_hoist_required1">Yes</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check-inline my-1">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="edit_hoist_required2" name="hoist_required" value="0" class="custom-control-input">
+                                                <label class="custom-control-label" for="edit_hoist_required2">No</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <span class="text-danger error-text hoist_required_update_error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group row">
+                                    <label for="edit_visit_information" class="my-1 col-sm-3 control-label">Visit Information</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" type="text" name="visit_information" id="edit_visit_information">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group row">
+                                    <label for="edit_max_hourly_rate" class="my-1 col-sm-3 control-label">Max Hourly Rate</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" style="height: 30px;" name="max_hourly_rate" placeholder="£ / hr" type="text" id="edit_max_hourly_rate">
+                                        <span class="text-danger error-text max_hourly_rate_update_error"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="min_hourly_rate" id="edit_min_hourly_rate">
+                            <input type="hidden" name="bid_hourly_rate" id="edit_bid_hourly_rate">
+                            <input type="hidden" name="company_id" id="edit_company_id">
                         </div><!--end row-->
                     </div><!--end modal-body-->
                     <div class="modal-footer">
