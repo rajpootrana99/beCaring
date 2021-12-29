@@ -318,7 +318,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <div class="row"><label for="edit_patient_id" class="text-left col-form-label col-lg-8">Select Patient</label><a href="" id="addPatientButton" style="color: #024DEC" class="col-lg-4 col-form-label">+ patient</a></div>
-                                    <select class="select2 mb-3 form-control custom-select" name="patient_id" id="edit_patient_id" style="width: 100%; height:30px;">
+                                    <select class="select2 mb-3 form-control custom-select" disabled name="patient_id" id="edit_patient_id" style="width: 100%; height:30px;">
 
                                     </select>
                                     <span class="text-danger error-text patient_id_update_error"></span>
@@ -327,7 +327,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="edit_start_date" class="col-form-label text-right">Visit Start Date</label>
-                                    <input class="form-control" style="height: 30px;" type="date" name="start_date" id="edit_start_date">
+                                    <input class="form-control" style="height: 30px;" type="date" readonly name="start_date" id="edit_start_date">
                                     <span class="text-danger error-text start_date_update_error"></span>
                                 </div>
                             </div>
@@ -337,43 +337,43 @@
                                     <div class="col-md-9">
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" name="day[]" value="0" id="edit_day1" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" readonly name="day[]" value="0" id="edit_day1" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day1">M</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="edit_day2" name="day[]" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day2" name="day[]" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day2">T</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="edit_day3" name="day[]" value="2" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day3" name="day[]" value="2" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day3">W</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="edit_day4" name="day[]" value="3" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day4" name="day[]" value="3" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day4">T</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="edit_day5" name="day[]" value="4" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day5" name="day[]" value="4" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day5">F</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="edit_day6" name="day[]" value="5" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day6" name="day[]" value="5" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day6">S</label>
                                             </div>
                                         </div>
                                         <div class="form-check-inline my-2">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="edit_day7" name="day[]" value="6" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <input type="checkbox" class="custom-control-input" readonly id="edit_day7" name="day[]" value="6" data-parsley-multiple="groups" data-parsley-mincheck="2">
                                                 <label class="custom-control-label" for="edit_day7">S</label>
                                             </div>
                                         </div>
