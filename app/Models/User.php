@@ -84,7 +84,7 @@ class User extends Authenticatable
     }
 
     public function company(){
-        return $this->hasOne(Company::class);
+        return $this->hasOne(Company::class, 'id', 'patient_id');
     }
 
     public function patient(){
