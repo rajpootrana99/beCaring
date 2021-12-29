@@ -103,7 +103,7 @@ class CompanyController extends Controller
         }
 
         $company = User::find($user);
-        $permissions = $company->getAllPermissions()
+        $permissions = $company->getAllPermissions();
         $company->revokePermissionTo($permissions);
         $company->givePermissionTo($request->input('permission_id'));
         if ($company){
