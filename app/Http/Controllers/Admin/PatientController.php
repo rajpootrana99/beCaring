@@ -124,7 +124,7 @@ class PatientController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($user)
+    public function edit(User $user)
     {
         $patient = Patient::where('patient_id', $user->id)->first();
         return view('patient.edit',[
