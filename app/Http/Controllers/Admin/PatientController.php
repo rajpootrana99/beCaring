@@ -188,8 +188,8 @@ class PatientController extends Controller
      */
     public function destroy($patient)
     {
-        $patient = Patient::find($patient);
-        $user = User::find($patient->patient_id);
+        $user = User::find($patient);
+        $patient = Patient::where('patient_id', $user->id)->first();
         $appointment = Appointment::where('patient_id', $patient->id)->get();
         if (count($appointment)>0){
             return response()->json([
