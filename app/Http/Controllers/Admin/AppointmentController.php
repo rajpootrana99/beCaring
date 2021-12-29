@@ -29,7 +29,12 @@ class AppointmentController extends Controller
     }
 
     public function fetchAppointments(){
-        $appointments = Appointment::with('patient','nurses.user','company')->get();
+        if (Auth::id() == 1){
+            $appointments = Appointment::with('patient','nurses.user','company')->get();
+        }
+        else {
+            $appointments = Appointment::with('patient','nurses.user','company')->where('company_id', Auth::id())->get();
+        }
         return response()->json([
             'status' => true,
             'appointments' => $appointments,
