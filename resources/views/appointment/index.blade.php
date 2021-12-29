@@ -323,6 +323,7 @@
                                     </select>
                                     <span class="text-danger error-text patient_id_update_error"></span>
                                 </div>
+                                <input type="hidden" name="patient_id" id="edit_hidden_patient_id">
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -942,6 +943,7 @@
                                 patient_id.append($("<option />").val(response.patients[patient].patient.id).text(response.patients[patient].patient.id+' - '+response.patients[patient].name));
                             });
                             $('#appointment_id').val(response.appointment.id);
+                            $('#edit_hidden_patient_id').val(response.appointment.patient_id);
                             $('#edit_start_date').val(response.appointment.start_date);
                             if (response.appointment.day === 'Monday') {
                                 $('#edit_day1').prop('checked', true);
