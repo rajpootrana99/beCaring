@@ -74,8 +74,8 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="permission_id" class="col-form-label text-right">Select Permission</label>
-                                    <select class="select2 mb-3 select2-multiple" name="permission_id[]" id="permission_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
+                                    <label for="edit_permission_id" class="col-form-label text-right">Select Permission</label>
+                                    <select class="select2 mb-3 select2-multiple" name="permission_id[]" id="edit_permission_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
 
                                     </select>
                                     <span class="text-danger error-text permission_id_update_error"></span>
@@ -237,9 +237,13 @@
                             $.each(response.permissions, function (permission) {
                                 permission_id.append($("<option />").val(response.permissions[permission].id).text(response.permissions[permission].name));
                             });
-                            console.log(response.company);
                             $('#user_id').val(response.company.id);
                             $('#edit_name').val(response.company.name);
+                            var options = new Array();
+                            $.each(response.company.permission, function (key, permission) {
+                                options[key] = permission.id;
+                            });
+                            $('#edit_permission_id').val(options);
                         }
                     }
                 });
