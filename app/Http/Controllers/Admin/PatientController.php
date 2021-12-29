@@ -126,7 +126,7 @@ class PatientController extends Controller
      */
     public function edit($user)
     {
-        $patient = Patient::find($user);
+        $patient = Patient::where('patient_id', $user->id)->first();
         return view('patient.edit',[
             'patient' => $patient,
         ]);
