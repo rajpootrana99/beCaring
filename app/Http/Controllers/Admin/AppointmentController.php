@@ -138,7 +138,7 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::with('patient')->where('id', $appointment)->first();
         if (Auth::id() == 1){
-            $patients = User::role('Patient')->get();
+            $patients = User::role('Patient')->with('patient')->get();
         }
         else {
             $patients = User::role('Patient')->with('patient')->where('parent_id', Auth::id())->get();
