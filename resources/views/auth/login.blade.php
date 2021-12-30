@@ -48,7 +48,7 @@
         </form>
         <!--end form-->
         <div class="m-3 text-center text-muted">
-            <p class="mb-0">Register your company? <a href="{{ route('registerCompany') }}" class="text-primary ml-2">Resister</a></p>
+            <p class="mb-0">Register your company? <a href="{{ route('registerCompany') }}" class="text-primary ml-2">Register</a></p>
         </div>
     </div>
 </div>

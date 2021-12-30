@@ -156,7 +156,7 @@
 
                 $.ajax({
                     type: 'delete',
-                    url: 'nurse/'+user_id,
+                    url: 'carer/'+user_id,
                     dataType: 'json',
                     success: function (response) {
                         if (response.status == 0) {

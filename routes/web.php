@@ -17,7 +17,7 @@ Route::get('/admin', function () {
     return view('index');
 })->middleware(['role:Admin|Company|Moderator','is_approved','auth'])->name('index');
 
-Route::resource('nurse', 'Admin\NurseController')->middleware('permission:Manage Nurse');
+Route::resource('carer', 'Admin\NurseController')->middleware('permission:Manage Nurse');
 Route::get('fetchNurses', 'Admin\NurseController@fetchNurses')->middleware('permission:Show Nurse');
 
 Route::resource('patient', 'Admin\PatientController')->middleware('permission:Manage Patient');
