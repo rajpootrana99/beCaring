@@ -180,7 +180,6 @@
                     } else {
                         $('#addNotificationDetailForm')[0].reset();
                         $('#addNotificationDetail').modal('hide');
-                        console.log(response);
                         fetchNotifications();
                     }
                 },

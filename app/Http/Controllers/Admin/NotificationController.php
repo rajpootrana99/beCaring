@@ -51,11 +51,9 @@ class NotificationController extends Controller
         $SERVER_API_KEY = 'AAAALiDuRoo:APA91bG9vg88duBhYDWTgfRSlkFBwDbUVipBk61XolqZMZePc-6bcB0jZ9GZXufX0Dq0H0nIZW0m27ihhMXgzqEPfc2juNFuW-PNbaIkKXjqHDlut3JvTSsNYLeOaqcsI6ZRHdWHsSK4';
         if ($request->device_id){
             $tokens = Token::whereIn('nurse_id', $request->device_id)->get();
-            $m = 'Hello';
         }
         else {
             $tokens = Token::all();
-            $m = 'no';
         }
         foreach ($tokens as $token){
             $token_1 = $token->token;
@@ -111,7 +109,7 @@ class NotificationController extends Controller
                 'body' => $request->input('body'),
             ]);
         }
-        return response()->json(['status' => 1, 'message' => 'Notification Send Successfully', 'flag' => $tokens]);
+        return response()->json(['status' => 1, 'message' => 'Notification Send Successfully',]);
     }
 
     /**
