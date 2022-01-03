@@ -151,7 +151,7 @@
                         var device_id = $('#device_id');
                         $('#device_id').children().remove().end()
                         $.each(response.nurses, function (nurse) {
-                            device_id.append($("<option />").val(response.nurses[nurse].nurse_id).text(response.nurses[nurse].email));
+                            device_id.append($("<option />").val(response.nurses[nurse].user.id).text(response.nurses[nurse].user.email));
                         });
                     }
                 }
