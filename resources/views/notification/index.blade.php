@@ -148,7 +148,6 @@
                     if (response.status == 404) {
                         $('#addNotificationDetail').modal('hide');
                     } else {
-                        console.log(response.permissions);
                         var device_id = $('#device_id');
                         $('#device_id').children().remove().end()
                         $.each(response.nurses, function (nurse) {
