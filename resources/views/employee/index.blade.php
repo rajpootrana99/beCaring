@@ -365,7 +365,7 @@
                     url: 'employee/create',
                     success: function(response) {
                         if (response.status == 404) {
-                            $('#editEmployee').modal('hide');
+                            $('#addEmployee').modal('hide');
                         } else {
                             console.log(response.permissions);
                             var permission_id = $('#permission_id');

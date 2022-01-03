@@ -79,6 +79,15 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
+                                <label for="permission_id" class="col-form-label text-right">Select User</label>
+                                <select class="select2 mb-3 select2-multiple" name="device_id[]" id="device_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
+
+                                </select>
+                                <span class="text-danger error-text device_id_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
                                 <label for="body" class="col-form-label text-right">Description</label>
                                 <input class="form-control" type="text" name="body" id="body">
                                 <span class="text-danger error-text email_error"></span>
@@ -99,74 +108,6 @@
     </div>
     <!--end modal-dialog-->
 </div>
-<!--
-<div class="modal fade" id="editPatientDetail" tabindex="-1" role="dialog" aria-labelledby="editPatientDetailLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title m-0" id="editPatientDetailLabel">Notification Detail</h6>
-                <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="la la-times"></i></span>
-                </button>
-            </div>
-            <form method="post" id="editPatientDetailForm" enctype="multipart/form-data">
-                @csrf
-                @method('PATCH')
-                <div class="modal-body">
-                    <div class="row">
-                        <input type="hidden" name="user_id" id="user_id">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="edit_name" class="col-form-label text-right">Title</label>
-                                <input class="form-control" type="text" name="name" id="edit_name">
-                                <span class="text-danger error-text name_update_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="edit_phone" class="col-form-label text-right">Description</label>
-                                <input class="form-control" type="text" name="phone" id="edit_phone">
-                                <span class="text-danger error-text phone_update_error"></span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> -->
-<!--
-<div class="modal fade" id="deletePatientDetail" tabindex="-1" role="dialog" aria-labelledby="deletePatientDetailLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title m-0" id="deletePatientDetailLabel">Delete</h6>
-                <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="la la-times"></i></span>
-                </button>
-            </div>
-            <form method="post" id="deletePatientDetailForm">
-                @csrf
-                @method('DELETE')
-                <div class="modal-body">
-                    <div class="row">
-                        <input type="hidden" id="user_id" name="user_id">
-                        <p class="mb-4">Are you sure want to delete?</p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-sm">Yes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> -->
 
 <script>
     $(document).ready(function() {
@@ -197,90 +138,27 @@
             });
         }
 
-        // $(document).on('click', '.delete_btn', function(e) {
-        //     e.preventDefault();
-        //     var user_id = $(this).val();
-        //     $('#deletePatientDetail').modal('show');
-        //     $('#user_id').val(user_id)
-        // });
-
-        // $(document).on('submit', '#deletePatientDetailForm', function(e) {
-        //     e.preventDefault();
-        //     var user_id = $('#user_id').val();
-
-        //     $.ajax({
-        //         type: 'delete',
-        //         url: 'patient/' + user_id,
-        //         dataType: 'json',
-        //         success: function(response) {
-        //             if (response.status == 0) {
-        //                 $('#deletePatientDetail').modal('hide');
-        //             } else {
-        //                 fetchPatients();
-        //                 $('#deletePatientDetail').modal('hide');
-        //             }
-        //         }
-        //     });
-        // });
-
-        // $(document).on('click', '.edit_btn', function(e) {
-        //     e.preventDefault();
-        //     var user_id = $(this).val();
-        //     $('#editPatientDetail').modal('show');
-        //     $(document).find('span.error-text').text('');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'patient/' + user_id + '/edit',
-        //         success: function(response) {
-        //             if (response.status == 404) {
-        //                 $('#editPatientDetail').modal('hide');
-        //             } else {
-        //                 console.log(response.patient);
-        //                 $('#user_id').val(response.patient.id);
-        //                 $('#edit_name').val(response.patient.name);
-        //                 $('#edit_email').val(response.patient.email);
-        //                 $('#edit_phone').val(response.patient.phone);
-        //             }
-        //         }
-        //     });
-        // });
-
-        // $(document).on('submit', '#editPatientDetailForm', function(e) {
-        //     e.preventDefault();
-        //     var user_id = $('#user_id').val();
-        //     let EditFormData = new FormData($('#editPatientDetailForm')[0]);
-
-        //     $.ajax({
-        //         type: "post",
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'),
-        //             '_method': 'patch'
-        //         },
-        //         url: "patient/" + user_id,
-        //         data: EditFormData,
-        //         contentType: false,
-        //         processData: false,
-        //         beforeSend: function() {
-        //             $(document).find('span.error-text').text('');
-        //         },
-        //         success: function(response) {
-        //             if (response.status == 0) {
-        //                 $('#editPatientDetail').modal('show')
-        //                 $.each(response.error, function(prefix, val) {
-        //                     $('span.' + prefix + '_update_error').text(val[0]);
-        //                 });
-        //             } else {
-        //                 $('#editPatientDetailForm')[0].reset();
-        //                 $('#editPatientDetail').modal('hide');
-        //                 fetchPatients();
-        //             }
-        //         },
-        //         error: function(error) {
-        //             console.log(error)
-        //             $('#editPatientDetail').modal('show');
-        //         }
-        //     });
-        // })
+        $(document).on('click', '#addNotificationDetailButton', function (e) {
+            e.preventDefault();
+            $('#addNotificationDetail').modal('show');
+            $.ajax({
+                type: "GET",
+                url: 'fetchNurses',
+                success: function(response) {
+                    if (response.status == 404) {
+                        $('#addNotificationDetail').modal('hide');
+                    } else {
+                        console.log(response.permissions);
+                        var device_id = $('#device_id');
+                        $('#device_id').children().remove().end()
+                        $.each(response.nurses, function (nurse) {
+                            device_id.append($("<option />").val(response.nurses[nurse].nurse_id).text(response.nurses[nurse].email));
+                        });
+                    }
+                }
+            });
+            $(document).find('span.error-text').text('');
+        });
 
         $(document).on('submit', '#addNotificationDetailForm', function(e) {
             e.preventDefault();

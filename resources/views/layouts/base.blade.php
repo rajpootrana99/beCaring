@@ -69,7 +69,13 @@
     <script src="{{ asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
     <script src="{{ asset('assets/pages/jquery.forms-advanced.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUan3-abHNhvaItsv0gCemR5DzDJjJXFQ&libraries=places&callback=initialize" async defer></script>
-
+    <script>
+        $('.custom-file-input').on('change', function() {
+            var fileName = $(this).val();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+            $('.custom-file-input').css('overflow', 'hidden');
+        });
+    </script>
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
