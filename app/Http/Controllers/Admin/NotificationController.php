@@ -49,8 +49,14 @@ class NotificationController extends Controller
         $response = '';
 
         $SERVER_API_KEY = 'AAAALiDuRoo:APA91bG9vg88duBhYDWTgfRSlkFBwDbUVipBk61XolqZMZePc-6bcB0jZ9GZXufX0Dq0H0nIZW0m27ihhMXgzqEPfc2juNFuW-PNbaIkKXjqHDlut3JvTSsNYLeOaqcsI6ZRHdWHsSK4';
-
-        $tokens = Token::all();
+        if ( $request->device_id->filled()){
+            $tokens = Token::whereIn('nurse_id', $request->device_id)->get();
+            dd($tokens);
+        }
+        else {
+            $tokens = Token::all();
+            dd($tokens);
+        }
         foreach ($tokens as $token){
             $token_1 = $token->token;
 
