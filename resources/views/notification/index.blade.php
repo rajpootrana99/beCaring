@@ -80,7 +80,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="permission_id" class="col-form-label text-right">Select User</label>
-                                <select class="select2 mb-3 select2-multiple" name="device_id[]" id="device_id" style="width: 100%; height:36px;" data-placeholder="Select Patient" multiple="multiple">
+                                <select class="select2 mb-3 select2-multiple" name="device_id[]" id="device_id" style="width: 100%; height:36px;" data-placeholder="Select User" multiple="multiple">
 
                                 </select>
                                 <span class="text-danger error-text device_id_error"></span>
