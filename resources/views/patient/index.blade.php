@@ -45,7 +45,7 @@
                                         <td>{{ $patient->name}}</td>
                                         <td>{{ $patient->phone }}</td>
                                         <td>{{ $patient->email }}</td>
-                                        <td><a target="_blank" href="{{ asset($patient->patient->care_plan) }}"><span class="badge badge-info">Show</span></a></td>
+                                        <td><img src="{{ asset($patient->patient->care_plan) }}" alt="care plan" height="50px"></td>
                                         <td>{{ $patient->address }}</td>
                                         <td><a href="{{ route('patient.edit', ['patient' => $patient]) }}"><i class="fa fa-edit"></i></a></td>
                                         <td><button value="{{ $patient->id }}" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>
