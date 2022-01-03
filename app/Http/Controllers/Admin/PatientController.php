@@ -91,7 +91,6 @@ class PatientController extends Controller
             'address_longitude' => $request->input('address_longitude'),
         ]);
         $patient->assignRole('Patient');
-        $this->storeImage($patient);
         $patient_detail = Patient::create([
             'patient_id' => $patient->id,
             'dob' => $request->input('dob'),
@@ -109,6 +108,7 @@ class PatientController extends Controller
             'lab_results' => $request->input('lab_results') ?? '',
             'additional_notes' => $request->input('additional_notes') ?? '',
         ]);
+        $this->storeImage($patient_detail);
         return redirect(route('patient.index'));
     }
 
@@ -182,6 +182,7 @@ class PatientController extends Controller
             'lab_results' => $request->input('lab_results') ?? '',
             'additional_notes' => $request->input('additional_notes') ?? '',
         ]);
+        $this->storeImage($patient);
         return redirect(route('patient.index'));
     }
 
