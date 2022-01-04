@@ -146,6 +146,7 @@
                         <option value="Good">Good</option>
                         <option value="Requires Improvement">Requires Improvement</option>
                         <option value="Inadequate">Inadequate</option>
+                        <option value="Not Rated Yet">Not Rated Yet</option>
                     </select>
                 </div>
             </div>
