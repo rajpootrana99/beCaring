@@ -63,7 +63,13 @@
     <script src="{{ asset('assets/js/waves.js') }}"></script>
     <script src="{{ asset('assets/js/feather.min.') }}js"></script>
     <script src="{{ asset('assets/js/simplebar.min.js') }}"></script>
-
+    <script>
+        $('.custom-file-input').on('change', function() {
+            var fileName = $(this).val();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+            $('.custom-file-input').css('overflow', 'hidden');
+        });
+    </script>
 
 </body>
 

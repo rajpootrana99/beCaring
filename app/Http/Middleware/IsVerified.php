@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IsVerified
 {
@@ -17,10 +18,11 @@ class IsVerified
     public function handle(Request $request, Closure $next)
     {
         if(auth()->check() && auth()->user()->is_approved == 'Approved'){
-            return $next($request);
+            dd(auth()->user()->is_approved);
         }
-        else {
-            return view('dashboard');
-        }
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return response()->view('dashboard');
     }
 }
