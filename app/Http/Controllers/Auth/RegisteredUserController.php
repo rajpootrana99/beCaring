@@ -11,8 +11,10 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -83,6 +85,12 @@ class RegisteredUserController extends Controller
         ]);
         $this->storeImage($company);
         $user->assignRole('Company');
+        $email = $user->email;
+        $name = $user->name;
+        Mail::send('Mails.signup_confirmation', ['name' => $name, 'email' => $email], function (Message $message) use ($email){
+            $message->to($email);
+            $message->subject('Sign Up Confirmation');
+        });
         event(new Registered($user));
 
         Auth::login($user);
