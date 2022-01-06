@@ -82,7 +82,7 @@ class PatientController extends Controller
         $last_name = $request->input('last_name');
         $patient = User::create([
             'name' => $first_name.' '.$last_name,
-            'email' => $request->input('email') ?? '',
+            'email' => $request->input('email'),
             'password' => Hash::make('password'),
             'phone' => $request->input('phone') ?? '',
             'parent_id' => $request->input('parent_id'),
