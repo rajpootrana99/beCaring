@@ -18,7 +18,7 @@ class IsVerified
     public function handle(Request $request, Closure $next)
     {
         if(auth()->check() && auth()->user()->is_approved == 'Approved'){
-            dd(auth()->user()->is_approved);
+            return $next($request);
         }
         Auth::guard('web')->logout();
         $request->session()->invalidate();
