@@ -8,10 +8,12 @@ use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
@@ -112,6 +114,13 @@ class AppointmentController extends Controller
                 'bid_hourly_rate' => $request->input('bid_hourly_rate'),
             ]);
         }
+
+        $email = Auth::user()->email;
+        $pid = $request->input('patient_id');
+        Mail::send('Mails.appointment_confirmation', ['pid' => $pid ], function (Message $message) use ($email){
+            $message->to($email);
+            $message->subject('Appointment Confirmation');
+        });
         if ($appointment){
             return response()->json(['status' => 1, 'message' => 'Appointment Added Successfully']);
         }
